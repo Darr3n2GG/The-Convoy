@@ -187,6 +187,8 @@ while True:
     current_ticks = pygame.time.get_ticks()
     if not show_landmines and current_ticks - start_ticks >= blink_duration:
         show_landmines = True
+        for landmine in landmines:
+            landmine.change_position()
         start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
@@ -216,6 +218,8 @@ while True:
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
+
+
 
     show_score(1, white, font_family, 20)
     # Refresh game screen
