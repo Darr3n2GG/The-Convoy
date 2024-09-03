@@ -10,9 +10,7 @@ import pygame, sys, time, random
 pygame.mixer.init(44100, -16, 2, 512)
 background = pygame.mixer.Sound('.\soundpack\sonar.mp3')
 detected = pygame.mixer.Sound('.\soundpack\enemy_sensed.mp3')
-
-background.play(-1)
-    #detected only plays when enemy is hit
+ended = false
 
 # Style
 font_family = "helvetica neue", "helvetica", "sans-serif"
@@ -81,6 +79,7 @@ score = 0
 
 # Game Over
 def game_over():
+    ended = true
     font = pygame.font.SysFont(font_family, 90)
     game_over_surface = font.render('YOU DIED', True, red)
     game_over_rect = game_over_surface.get_rect()
@@ -185,6 +184,11 @@ while True:
         snake_pos[1] = frame_size_y - 10
     if snake_pos[1] >= frame_size_y:
         snake_pos[1] = 0
+    
+    # Sound
+    if not ended:
+        background.play(-1)
+    #detected only plays when enemy is hit
         
     # Game Over conditions
     # Getting out of bounds
