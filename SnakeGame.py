@@ -1,10 +1,28 @@
-"""
-Snake Eater
-Made with PyGame
-"""
-
 import pygame, sys, time, random
 
+# Constants
+FONT_FAMILY = "helvetica neue", "sans serif"
+BLACK = pygame.Color(0, 0, 0)
+WHITE = pygame.Color(255, 255, 255)
+RED = pygame.Color(255, 0, 0)
+GREEN = pygame.Color(0, 255, 0)
+BLUE = pygame.Color(0, 0, 255)
+DIFFICULTY = 10
+FRAME_SIZE_X = 800
+FRAME_SIZE_Y = 800
+SNAKE_SIZE = 10
+FPS_CONTROLLER = pygame.time.Clock()
+
+
+# Variables
+snake_pos = [400, 400]
+snake_body = [[100, 50], [90, 50], [80, 50]]
+food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
+            random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
+food_spawn = True
+direction = 'RIGHT'
+change_to = direction
+score = 0
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
@@ -35,7 +53,7 @@ frame_size_multiplier = 1
 frame_size_x = 800 * frame_size_multiplier
 frame_size_y = 800 * frame_size_multiplier
 
-# Checks for errors encountered
+# Checks for errors encounteRED
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
 # second number in tuple gives number of errors
@@ -51,19 +69,16 @@ pygame.display.set_caption('Worm')
 game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
 
 
-
-# Colors (R, G, B)
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
-green = pygame.Color(0, 255, 0)
-blue = pygame.Color(0, 0, 255)
-
-
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
 
 
+# Game Over
+def game_over():
+    font = pygame.font.SysFont(FONT_FAMILY, 90)
+    game_over_surface = font.render('YOU DIED', True, RED)
+
+    
 # Game variables
 snake_pos = [400, 400]
 snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
@@ -75,22 +90,6 @@ direction = 'RIGHT'
 change_to = direction
 
 score = 0
-
-
-# Game Over
-def game_over():
-    ended = True
-    font = pygame.font.SysFont(font_family, 90)
-    game_over_surface = font.render('YOU DIED', True, red)
-    game_over_rect = game_over_surface.get_rect()
-    game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
-    game_window.fill(black)
-    game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, red, font_family, 20)
-    pygame.display.flip()
-    time.sleep(3)
-    pygame.quit()
-    sys.exit()
 
 
 # Score
@@ -161,19 +160,20 @@ while True:
     food_spawn = True
 
     # GFX
-    game_window.fill(black)
-    for i in range(0, frame_size_x, 30):
-        pygame.draw.line(game_window, green, (0, i), (frame_size_x, i))
-    for i in range(0, frame_size_y , 30):
-        pygame.draw.line(game_window, green, (i, 0), (i, frame_size_y))
+    game_window.fill(BLACK)
+    for i in range(0, frame_size_x, 50):
+        pygame.draw.line(game_window, GREEN, (0, i), (frame_size_x, i))
+    for i in range(0, frame_size_y , 50):
+        pygame.draw.line(game_window, GREEN, (i, 0), (i, frame_size_y))
     for pos in snake_body:
         # Snake body
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
-        pygame.draw.rect(game_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
+        pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], 10, 10))
+
 
     # Snake food
-    pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
     # Teleportation logic
     if snake_pos[0] < 0:
@@ -201,7 +201,7 @@ while True:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
-    show_score(1, white, font_family, 20)
+    show_score(1, WHITE, FONT_FAMILY, 20)
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
