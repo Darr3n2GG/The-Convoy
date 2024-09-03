@@ -15,9 +15,9 @@ import pygame, sys, time, random
 difficulty = 25
 
 # Window size
-frame_size_multiplier = 2
-frame_size_x = 720 * frame_size_multiplier
-frame_size_y = 480 * frame_size_multiplier
+frame_size_multiplier = 1
+frame_size_x = 820 * frame_size_multiplier
+frame_size_y = 820 * frame_size_multiplier
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -49,7 +49,7 @@ fps_controller = pygame.time.Clock()
 
 
 # Game variables
-snake_pos = [100, 50]
+snake_pos = [410, 410]
 snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
@@ -145,6 +145,10 @@ while True:
 
     # GFX
     game_window.fill(black)
+    for i in range(0, frame_size_x, 30):
+        pygame.draw.line(game_window, green, (0, i), (frame_size_x, i))
+    for i in range(0, frame_size_y , 30):
+        pygame.draw.line(game_window, green, (i, 0), (i, frame_size_y))
     for pos in snake_body:
         # Snake body
         # .draw.rect(play_surface, color, xy-coordinate)
