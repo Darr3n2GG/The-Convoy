@@ -6,17 +6,27 @@ Made with PyGame
 import pygame, sys, time, random
 
 
+# Style
+font_family = "helvetica neue", "helvetica", "sans-serif"
+
+# Colors (R, G, B)
+black = pygame.Color(0, 0, 0)
+white = pygame.Color(255, 255, 255)
+red = pygame.Color(255, 0, 0)
+green = pygame.Color(0, 255, 0)
+blue = pygame.Color(0, 0, 255)
+
 # Difficulty settings
 # Easy      ->  10
 # Medium    ->  25
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-difficulty = 25
+difficulty = 10
 
 # Window size
-frame_size_x = 1080
-frame_size_y = 1080
+frame_size_x = 1000
+frame_size_y = 1000
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -30,16 +40,8 @@ else:
 
 
 # Initialise game window
-pygame.display.set_caption('Snake Eater')
+pygame.display.set_caption('Worm')
 game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
-
-
-# Colors (R, G, B)
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
-green = pygame.Color(0, 255, 0)
-blue = pygame.Color(0, 0, 255)
 
 
 # FPS (frames per second) controller
@@ -61,13 +63,13 @@ score = 0
 
 # Game Over
 def game_over():
-    my_font = pygame.font.SysFont('times new roman', 90)
-    game_over_surface = my_font.render('YOU DIED', True, red)
+    font = pygame.font.SysFont(font_family, 90)
+    game_over_surface = font.render('YOU DIED', True, red)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
     game_window.fill(black)
     game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, red, 'times', 20)
+    show_score(0, red, font_family, 20)
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
@@ -163,7 +165,7 @@ while True:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
-    show_score(1, white, 'consolas', 20)
+    show_score(1, white, font_family, 20)
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
