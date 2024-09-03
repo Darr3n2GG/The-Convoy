@@ -25,8 +25,8 @@ blue = pygame.Color(0, 0, 255)
 difficulty = 25
 
 # Window size
-frame_size_x = 690
-frame_size_y = 690
+frame_size_x = 450
+frame_size_y = 450
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -219,7 +219,9 @@ while True:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
-
+    for landmine in landmines:
+        if snake_pos[0] == landmine.pos[0] and snake_pos[1] == landmine.pos[1]:
+            snake_body.pop()
 
     show_score(1, white, font_family, 20)
     # Refresh game screen
