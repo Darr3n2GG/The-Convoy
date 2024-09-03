@@ -32,8 +32,8 @@ difficulty = 10
 
 # Window size
 frame_size_multiplier = 1
-frame_size_x = 820 * frame_size_multiplier
-frame_size_y = 820 * frame_size_multiplier
+frame_size_x = 800 * frame_size_multiplier
+frame_size_y = 800 * frame_size_multiplier
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -65,7 +65,7 @@ fps_controller = pygame.time.Clock()
 
 
 # Game variables
-snake_pos = [410, 410]
+snake_pos = [400, 400]
 snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
@@ -79,7 +79,7 @@ score = 0
 
 # Game Over
 def game_over():
-    ended = true
+    ended = True
     font = pygame.font.SysFont(font_family, 90)
     game_over_surface = font.render('YOU DIED', True, red)
     game_over_rect = game_over_surface.get_rect()
