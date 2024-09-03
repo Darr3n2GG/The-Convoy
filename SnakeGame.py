@@ -24,6 +24,23 @@ direction = 'RIGHT'
 change_to = direction
 score = 0
 
+# Sound effect
+pygame.mixer.init(44100, -16, 2, 512)
+background = pygame.mixer.Sound('.\soundpack\sonar.mp3')
+detected = pygame.mixer.Sound('.\soundpack\enemy_sensed.mp3')
+
+background.play(-1)
+    #detected only plays when enemy is hit
+
+# Style
+font_family = "helvetica neue", "helvetica", "sans-serif"
+
+# Colors (R, G, B)
+black = pygame.Color(0, 0, 0)
+white = pygame.Color(255, 255, 255)
+red = pygame.Color(255, 0, 0)
+green = pygame.Color(0, 255, 0)
+blue = pygame.Color(0, 0, 255)
 
 # Difficulty settings
 # Easy      ->  10
