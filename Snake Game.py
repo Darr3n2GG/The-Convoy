@@ -49,7 +49,6 @@ fps_controller = pygame.time.Clock()
 # Game variables
 snake_pos = [100, 50]
 snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
-snake_speed = 10
 
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 food_spawn = True
@@ -121,13 +120,13 @@ while True:
 
     # Moving the snake
     if direction == 'UP':
-        snake_pos[1] -= snake_speed
+        snake_pos[1] -= 10
     if direction == 'DOWN':
-        snake_pos[1] += snake_speed
+        snake_pos[1] += 10
     if direction == 'LEFT':
-        snake_pos[0] -= snake_speed
+        snake_pos[0] -= 10
     if direction == 'RIGHT':
-        snake_pos[0] += snake_speed
+        snake_pos[0] += 10
 
     # Snake body growing mechanism
     snake_body.insert(0, list(snake_pos))
