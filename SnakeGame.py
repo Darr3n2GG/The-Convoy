@@ -6,6 +6,14 @@ Made with PyGame
 import pygame, sys, time, random
 
 
+# Sound effect
+pygame.mixer.init(44100, -16, 2, 512)
+background = pygame.mixer.Sound('.\soundpack\sonar.mp3')
+detected = pygame.mixer.Sound('.\soundpack\enemy_sensed.mp3')
+
+background.play(-1)
+    #detected only plays when enemy is hit
+
 # Style
 font_family = "helvetica neue", "helvetica", "sans-serif"
 
@@ -153,6 +161,7 @@ while True:
 
     # Snake food
     pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+
 
     # Game Over conditions
     # Getting out of bounds
