@@ -33,8 +33,9 @@ blue = pygame.Color(0, 0, 255)
 difficulty = 10
 
 # Window size
-frame_size_x = 1000
-frame_size_y = 1000
+frame_size_multiplier = 1
+frame_size_x = 820 * frame_size_multiplier
+frame_size_y = 820 * frame_size_multiplier
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -52,12 +53,21 @@ pygame.display.set_caption('Worm')
 game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
 
 
+
+# Colors (R, G, B)
+black = pygame.Color(0, 0, 0)
+white = pygame.Color(255, 255, 255)
+red = pygame.Color(255, 0, 0)
+green = pygame.Color(0, 255, 0)
+blue = pygame.Color(0, 0, 255)
+
+
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
 
 
 # Game variables
-snake_pos = [100, 50]
+snake_pos = [410, 410]
 snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
@@ -153,6 +163,10 @@ while True:
 
     # GFX
     game_window.fill(black)
+    for i in range(0, frame_size_x, 30):
+        pygame.draw.line(game_window, green, (0, i), (frame_size_x, i))
+    for i in range(0, frame_size_y , 30):
+        pygame.draw.line(game_window, green, (i, 0), (i, frame_size_y))
     for pos in snake_body:
         # Snake body
         # .draw.rect(play_surface, color, xy-coordinate)
@@ -162,13 +176,22 @@ while True:
     # Snake food
     pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
-
+    # Teleportation logic
+    if snake_pos[0] < 0:
+        snake_pos[0] = frame_size_x - 10
+    if snake_pos[0] >= frame_size_x:
+        snake_pos[0] = 0
+    if snake_pos[1] < 0:
+        snake_pos[1] = frame_size_y - 10
+    if snake_pos[1] >= frame_size_y:
+        snake_pos[1] = 0
+        
     # Game Over conditions
     # Getting out of bounds
-    if snake_pos[0] < 0 or snake_pos[0] > frame_size_x-10:
-        game_over()
-    if snake_pos[1] < 0 or snake_pos[1] > frame_size_y-10:
-        game_over()
+    # if snake_pos[0] < 0 or snake_pos[0] > frame_size_x-10:
+    #     game_over()
+    # if snake_pos[1] < 0 or snake_pos[1] > frame_size_y-10:
+    #     game_over()
     # Touching the snake body
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
