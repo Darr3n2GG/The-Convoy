@@ -1,0 +1,53 @@
+{
+  "arch": "arm64",
+  "build": "h8414b35_3",
+  "build_number": 3,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libgettextpo 0.22.5 h8414b35_3",
+    "libiconv >=1.17,<2.0a0",
+    "libintl 0.22.5 h8414b35_3"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libgettextpo-devel-0.22.5-h8414b35_3",
+  "files": [
+    "include/gettext-po.h",
+    "lib/libgettextpo.dylib"
+  ],
+  "fn": "libgettextpo-devel-0.22.5-h8414b35_3.conda",
+  "license": "GPL-3.0-or-later",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libgettextpo-devel-0.22.5-h8414b35_3",
+    "type": 1
+  },
+  "md5": "7074dc1c9aae1bb5d7bccb4ff03746ca",
+  "name": "libgettextpo-devel",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libgettextpo-devel-0.22.5-h8414b35_3.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/gettext-po.h",
+        "path_type": "hardlink",
+        "sha256": "f02f06ce7179e99b3001151a82fdae5e943ca739d6de31f1383ccefaa9935631",
+        "sha256_in_prefix": "f02f06ce7179e99b3001151a82fdae5e943ca739d6de31f1383ccefaa9935631",
+        "size_in_bytes": 15548
+      },
+      {
+        "_path": "lib/libgettextpo.dylib",
+        "path_type": "softlink",
+        "sha256": "7b1654da6c285ea5fc28843886fd52ddf94c9108c1476414c8cc5a50f8f7cb3c",
+        "size_in_bytes": 407152
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::libgettextpo-devel==0.22.5=h8414b35_3",
+  "sha256": "ea3ca757bf11ed25965b39466b50411c7c2a43f3b90ab4a36fc0ef43f7ab98ac",
+  "size": 37153,
+  "subdir": "osx-arm64",
+  "timestamp": 1723627048000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/libgettextpo-devel-0.22.5-h8414b35_3.conda",
+  "version": "0.22.5"
+}

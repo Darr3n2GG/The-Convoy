@@ -1,0 +1,11 @@
+prefix=/opt/anaconda3/envs/snake
+exec_prefix=/opt/anaconda3/envs/snake
+libdir=/opt/anaconda3/envs/snake/lib
+includedir=/opt/anaconda3/envs/snake/include
+
+Name: FLAC++
+Description: Free Lossless Audio Codec Library (C++ API)
+Version: 1.4.3
+Requires: flac
+Libs: -L${libdir} -lFLAC++
+Cflags: -I${includedir}

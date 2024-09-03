@@ -1,0 +1,45 @@
+{
+  "arch": "arm64",
+  "build": "h8414b35_3",
+  "build_number": 3,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libiconv >=1.17,<2.0a0",
+    "libintl 0.22.5 h8414b35_3"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libgettextpo-0.22.5-h8414b35_3",
+  "files": [
+    "lib/libgettextpo.0.dylib"
+  ],
+  "fn": "libgettextpo-0.22.5-h8414b35_3.conda",
+  "license": "GPL-3.0-or-later",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libgettextpo-0.22.5-h8414b35_3",
+    "type": 1
+  },
+  "md5": "c8cd7295cfb7bda5cbabea4fef904349",
+  "name": "libgettextpo",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libgettextpo-0.22.5-h8414b35_3.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "lib/libgettextpo.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "7b1654da6c285ea5fc28843886fd52ddf94c9108c1476414c8cc5a50f8f7cb3c",
+        "sha256_in_prefix": "7b1654da6c285ea5fc28843886fd52ddf94c9108c1476414c8cc5a50f8f7cb3c",
+        "size_in_bytes": 407152
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::libgettextpo==0.22.5=h8414b35_3",
+  "sha256": "bc446fad58155e96a01b28e99254415c2151bdddf57f9a2c00c44e6f0298bb62",
+  "size": 159800,
+  "subdir": "osx-arm64",
+  "timestamp": 1723627007000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/libgettextpo-0.22.5-h8414b35_3.conda",
+  "version": "0.22.5"
+}

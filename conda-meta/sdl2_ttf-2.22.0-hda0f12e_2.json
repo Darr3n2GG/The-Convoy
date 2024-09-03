@@ -1,0 +1,146 @@
+{
+  "arch": "arm64",
+  "build": "hda0f12e_2",
+  "build_number": 2,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "freetype >=2.12.1,<3.0a0",
+    "harfbuzz >=9.0.0,<10.0a0",
+    "sdl2 >=2.30.2,<3.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/sdl2_ttf-2.22.0-hda0f12e_2",
+  "files": [
+    "include/SDL2/SDL_ttf.h",
+    "lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets-release.cmake",
+    "lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets.cmake",
+    "lib/cmake/SDL2_ttf/SDL2_ttfConfig.cmake",
+    "lib/cmake/SDL2_ttf/SDL2_ttfConfigVersion.cmake",
+    "lib/libSDL2_ttf-2.0.0.dylib",
+    "lib/libSDL2_ttf-2.0.15.0.0.dylib",
+    "lib/libSDL2_ttf-2.0.2001.1.0.dylib",
+    "lib/libSDL2_ttf-2.0.2001.2.0.dylib",
+    "lib/libSDL2_ttf-2.0.2201.0.0.dylib",
+    "lib/libSDL2_ttf-2.0.dylib",
+    "lib/libSDL2_ttf.dylib",
+    "lib/pkgconfig/SDL2_ttf.pc",
+    "share/licenses/SDL2_ttf/LICENSE.txt"
+  ],
+  "fn": "sdl2_ttf-2.22.0-hda0f12e_2.conda",
+  "license": "Zlib",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/sdl2_ttf-2.22.0-hda0f12e_2",
+    "type": 1
+  },
+  "md5": "1d6211311356539d7dd9c75c40400650",
+  "name": "sdl2_ttf",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/sdl2_ttf-2.22.0-hda0f12e_2.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/SDL2/SDL_ttf.h",
+        "path_type": "hardlink",
+        "sha256": "e65c899b434dad8b7813d4cfb1eebaa67d7905f5ae7949409b4dcfc2d67f72cf",
+        "sha256_in_prefix": "e65c899b434dad8b7813d4cfb1eebaa67d7905f5ae7949409b4dcfc2d67f72cf",
+        "size_in_bytes": 87296
+      },
+      {
+        "_path": "lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "ba77dbb1b64547e2f37460c8d972db53c48f7a3922b86f12f21879e43dcbb31f",
+        "sha256_in_prefix": "ba77dbb1b64547e2f37460c8d972db53c48f7a3922b86f12f21879e43dcbb31f",
+        "size_in_bytes": 953
+      },
+      {
+        "_path": "lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets.cmake",
+        "path_type": "hardlink",
+        "sha256": "9f4d66646d27618bdd1b408e7769a8c4ffddb18a35b2f68005432744ab96a1fb",
+        "sha256_in_prefix": "9f4d66646d27618bdd1b408e7769a8c4ffddb18a35b2f68005432744ab96a1fb",
+        "size_in_bytes": 4218
+      },
+      {
+        "_path": "lib/cmake/SDL2_ttf/SDL2_ttfConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "bb9e79695ae0b7c380cc2c3ca3a5f067d5d5d971a27ecb8e1eed79a77bc25f9f",
+        "sha256_in_prefix": "bb9e79695ae0b7c380cc2c3ca3a5f067d5d5d971a27ecb8e1eed79a77bc25f9f",
+        "size_in_bytes": 1565
+      },
+      {
+        "_path": "lib/cmake/SDL2_ttf/SDL2_ttfConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "f0674a1979933886df4eff2500a7616ac9ec07cdf43ed9a897aaefde150051c1",
+        "sha256_in_prefix": "f0674a1979933886df4eff2500a7616ac9ec07cdf43ed9a897aaefde150051c1",
+        "size_in_bytes": 1862
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "sha256_in_prefix": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.15.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.2001.1.0.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.2001.2.0.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.2201.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf-2.0.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/libSDL2_ttf.dylib",
+        "path_type": "softlink",
+        "sha256": "65e7bc315825b89ccfd11e4726ffaf261decb0415c44a57731073d63fffc6f35",
+        "size_in_bytes": 109936
+      },
+      {
+        "_path": "lib/pkgconfig/SDL2_ttf.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/sdl2_ttf_1719635990566/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "sha256": "607459516dbd5add0519d56cc6ed05683c28a8494caec009dd99eec3de83313f",
+        "sha256_in_prefix": "8c8e3fa47747061932942bbfe4a9195a52ef21291035f176ea2468729bfad8d3",
+        "size_in_bytes": 585
+      },
+      {
+        "_path": "share/licenses/SDL2_ttf/LICENSE.txt",
+        "path_type": "hardlink",
+        "sha256": "a0e8ce06504966e45088ee1cc7583cc8af9aac615d4cf56d47d847da9cb15139",
+        "sha256_in_prefix": "a0e8ce06504966e45088ee1cc7583cc8af9aac615d4cf56d47d847da9cb15139",
+        "size_in_bytes": 878
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::sdl2_ttf==2.22.0=hda0f12e_2",
+  "sha256": "5b331bcf57ae337b9f62ec59c72f5a98d659f8ef9b8346896c2475a6b9ce6ee3",
+  "size": 44468,
+  "subdir": "osx-arm64",
+  "timestamp": 1719636195000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/sdl2_ttf-2.22.0-hda0f12e_2.conda",
+  "version": "2.22.0"
+}

@@ -1,0 +1,84 @@
+{
+  "arch": "arm64",
+  "build": "h13dd4ca_9",
+  "build_number": 9,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "libcxx >=15.0.7"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/portaudio-19.6.0-h13dd4ca_9",
+  "files": [
+    "include/pa_mac_core.h",
+    "include/portaudio.h",
+    "lib/libportaudio.2.dylib",
+    "lib/libportaudio.a",
+    "lib/libportaudio.dylib",
+    "lib/pkgconfig/portaudio-2.0.pc"
+  ],
+  "fn": "portaudio-19.6.0-h13dd4ca_9.conda",
+  "license": "MIT",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/portaudio-19.6.0-h13dd4ca_9",
+    "type": 1
+  },
+  "md5": "d325d46394b6c46d15718c855fb20b4a",
+  "name": "portaudio",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/portaudio-19.6.0-h13dd4ca_9.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/pa_mac_core.h",
+        "path_type": "hardlink",
+        "sha256": "bb33d5f0e11113c4927c8f2d208b034d13ef93c28c7b414c563d3597cc591b0c",
+        "sha256_in_prefix": "bb33d5f0e11113c4927c8f2d208b034d13ef93c28c7b414c563d3597cc591b0c",
+        "size_in_bytes": 7551
+      },
+      {
+        "_path": "include/portaudio.h",
+        "path_type": "hardlink",
+        "sha256": "f563f1eaf48bfa8e8f650b1e42c7f1e157c6a4db88564af5d88bc15a367f5d1d",
+        "sha256_in_prefix": "f563f1eaf48bfa8e8f650b1e42c7f1e157c6a4db88564af5d88bc15a367f5d1d",
+        "size_in_bytes": 47638
+      },
+      {
+        "_path": "lib/libportaudio.2.dylib",
+        "path_type": "hardlink",
+        "sha256": "ccd52f69801fff74dbec01881ddddcee6439ed595e31d683374c53d3bc1525eb",
+        "sha256_in_prefix": "ccd52f69801fff74dbec01881ddddcee6439ed595e31d683374c53d3bc1525eb",
+        "size_in_bytes": 134816
+      },
+      {
+        "_path": "lib/libportaudio.a",
+        "path_type": "hardlink",
+        "sha256": "cde00e677eefb8b60749d24a83e5d9141ddd575379ed308b5b5f2a9159b44cc0",
+        "sha256_in_prefix": "cde00e677eefb8b60749d24a83e5d9141ddd575379ed308b5b5f2a9159b44cc0",
+        "size_in_bytes": 141528
+      },
+      {
+        "_path": "lib/libportaudio.dylib",
+        "path_type": "softlink",
+        "sha256": "ccd52f69801fff74dbec01881ddddcee6439ed595e31d683374c53d3bc1525eb",
+        "size_in_bytes": 134816
+      },
+      {
+        "_path": "lib/pkgconfig/portaudio-2.0.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/portaudio_1693868306590/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+        "sha256": "0b987d79075a73ea9fc0272e87385f87bdb36f89e589091555ca651b2d597c3a",
+        "sha256_in_prefix": "f3b1c0dd16b6eb84d5ab7bc63d78d56a69b77ef3f72c0d60ead85943e15d40ca",
+        "size_in_bytes": 551
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::portaudio==19.6.0=h13dd4ca_9",
+  "sha256": "5ff2b55d685c29dfe632ef856796a4b862305088543d4982f0b807e8d9bb756e",
+  "size": 78863,
+  "subdir": "osx-arm64",
+  "timestamp": 1693868663000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/portaudio-19.6.0-h13dd4ca_9.conda",
+  "version": "19.6.0"
+}

@@ -1,0 +1,123 @@
+{
+  "arch": "arm64",
+  "build": "h13dd4ca_2",
+  "build_number": 2,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "libcxx >=15.0.7"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/portmidi-2.0.4-h13dd4ca_2",
+  "files": [
+    "include/pmutil.h",
+    "include/portmidi.h",
+    "include/porttime.h",
+    "lib/cmake/PortMidi/PortMidiConfig.cmake",
+    "lib/cmake/PortMidi/PortMidiConfigVersion.cmake",
+    "lib/cmake/PortMidi/PortMidiTargets-release.cmake",
+    "lib/cmake/PortMidi/PortMidiTargets.cmake",
+    "lib/libportmidi.2.0.3.dylib",
+    "lib/libportmidi.2.dylib",
+    "lib/libportmidi.dylib",
+    "lib/pkgconfig/portmidi.pc"
+  ],
+  "fn": "portmidi-2.0.4-h13dd4ca_2.conda",
+  "license": "MIT",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/portmidi-2.0.4-h13dd4ca_2",
+    "type": 1
+  },
+  "md5": "fe77195a950275fe63e560b1b855e818",
+  "name": "portmidi",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/portmidi-2.0.4-h13dd4ca_2.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/pmutil.h",
+        "path_type": "hardlink",
+        "sha256": "bbac1d49d5011473e72ef2f6e3470533cdd471086bcc2ce5938b913ac04269e9",
+        "sha256_in_prefix": "bbac1d49d5011473e72ef2f6e3470533cdd471086bcc2ce5938b913ac04269e9",
+        "size_in_bytes": 7151
+      },
+      {
+        "_path": "include/portmidi.h",
+        "path_type": "hardlink",
+        "sha256": "1a71bd46c53baef56ecedcb38a50eb5d411c5e9ad2f34e86b0ba077432c4d361",
+        "sha256_in_prefix": "1a71bd46c53baef56ecedcb38a50eb5d411c5e9ad2f34e86b0ba077432c4d361",
+        "size_in_bytes": 42434
+      },
+      {
+        "_path": "include/porttime.h",
+        "path_type": "hardlink",
+        "sha256": "73f48929b824385f30bd9e4f220ffafeb9b982276224ca4aafeb6925ccc2395f",
+        "sha256_in_prefix": "73f48929b824385f30bd9e4f220ffafeb9b982276224ca4aafeb6925ccc2395f",
+        "size_in_bytes": 2635
+      },
+      {
+        "_path": "lib/cmake/PortMidi/PortMidiConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "dc08c81a76988b3a0eeb0bacf92c4aae098e65c074dfc436e0c2103c0ad9cce6",
+        "sha256_in_prefix": "dc08c81a76988b3a0eeb0bacf92c4aae098e65c074dfc436e0c2103c0ad9cce6",
+        "size_in_bytes": 1110
+      },
+      {
+        "_path": "lib/cmake/PortMidi/PortMidiConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "c8b901e2a1e7d6a21cdbf27835f3da097e98360fa7e59f6ffacd22bcc72084ce",
+        "sha256_in_prefix": "c8b901e2a1e7d6a21cdbf27835f3da097e98360fa7e59f6ffacd22bcc72084ce",
+        "size_in_bytes": 2762
+      },
+      {
+        "_path": "lib/cmake/PortMidi/PortMidiTargets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "360b4e3a92a7b6e23f839d9f11f359e1145bda78076329f5a2a8642bffd522c3",
+        "sha256_in_prefix": "360b4e3a92a7b6e23f839d9f11f359e1145bda78076329f5a2a8642bffd522c3",
+        "size_in_bytes": 892
+      },
+      {
+        "_path": "lib/cmake/PortMidi/PortMidiTargets.cmake",
+        "path_type": "hardlink",
+        "sha256": "5920a29775f5a8c9d8b0698f592fec09277786bfe1305409182257d37c832677",
+        "sha256_in_prefix": "5920a29775f5a8c9d8b0698f592fec09277786bfe1305409182257d37c832677",
+        "size_in_bytes": 3942
+      },
+      {
+        "_path": "lib/libportmidi.2.0.3.dylib",
+        "path_type": "hardlink",
+        "sha256": "074ba526f4223e085f744d392283853cadffad04bcc4d5dd26b34d949ab16da3",
+        "sha256_in_prefix": "074ba526f4223e085f744d392283853cadffad04bcc4d5dd26b34d949ab16da3",
+        "size_in_bytes": 96688
+      },
+      {
+        "_path": "lib/libportmidi.2.dylib",
+        "path_type": "softlink",
+        "sha256": "074ba526f4223e085f744d392283853cadffad04bcc4d5dd26b34d949ab16da3",
+        "size_in_bytes": 96688
+      },
+      {
+        "_path": "lib/libportmidi.dylib",
+        "path_type": "softlink",
+        "sha256": "074ba526f4223e085f744d392283853cadffad04bcc4d5dd26b34d949ab16da3",
+        "size_in_bytes": 96688
+      },
+      {
+        "_path": "lib/pkgconfig/portmidi.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/portmidi_1693881684021/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "sha256": "a87a3e9ccc39e68b84eaa6c88f1cb8ffd9881e7e038fb689f3444ec485955f6e",
+        "sha256_in_prefix": "c20057c78a4c381b9fac271bd695eee775558cba60e80838084dc73c8111640c",
+        "size_in_bytes": 970
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::portmidi==2.0.4=h13dd4ca_2",
+  "sha256": "b948bea6ef3203d049997ca348ba0d751a3d891579388e53d323693b20896af6",
+  "size": 47319,
+  "subdir": "osx-arm64",
+  "timestamp": 1693882007000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/portmidi-2.0.4-h13dd4ca_2.conda",
+  "version": "2.0.4"
+}

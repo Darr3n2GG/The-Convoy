@@ -1,0 +1,34 @@
+{
+  "build": "hd3eb1b0_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/noarch",
+  "constrains": [],
+  "depends": [
+    "fonts-anaconda"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/fonts-conda-ecosystem-1-hd3eb1b0_0",
+  "files": [],
+  "fn": "fonts-conda-ecosystem-1-hd3eb1b0_0.conda",
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/fonts-conda-ecosystem-1-hd3eb1b0_0",
+    "type": 1
+  },
+  "md5": "76790b62a799de73c4364f7cdc445583",
+  "name": "fonts-conda-ecosystem",
+  "noarch": "generic",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/fonts-conda-ecosystem-1-hd3eb1b0_0.conda",
+  "package_type": "noarch_generic",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "defaults/noarch::fonts-conda-ecosystem==1=hd3eb1b0_0",
+  "sha256": "80cac54c479f6e580c8f3717d317b5b06dfa079295fe910d8f7b9d3ba81150d5",
+  "size": 5326,
+  "subdir": "noarch",
+  "timestamp": 1629720855000,
+  "url": "https://repo.anaconda.com/pkgs/main/noarch/fonts-conda-ecosystem-1-hd3eb1b0_0.conda",
+  "version": "1"
+}

@@ -1,0 +1,11 @@
+prefix="/opt/anaconda3/envs/snake"
+exec_prefix="${prefix}"
+libdir=/opt/anaconda3/envs/snake/lib
+includedir=/opt/anaconda3/envs/snake/include
+
+Name: portmidi
+Description: Cross-Platform MIDI IO
+Version: 2.0.3
+Cflags: -I${includedir}
+Libs: -L${libdir} -lportmidi
+Requires.private: 

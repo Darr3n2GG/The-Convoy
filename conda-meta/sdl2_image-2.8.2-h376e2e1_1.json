@@ -1,0 +1,181 @@
+{
+  "arch": "arm64",
+  "build": "h376e2e1_1",
+  "build_number": 1,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libavif16 >=1.0.4,<2.0a0",
+    "libcxx >=16",
+    "libjpeg-turbo >=3.0.0,<4.0a0",
+    "libpng >=1.6.43,<1.7.0a0",
+    "libtiff >=4.6.0,<4.7.0a0",
+    "libwebp-base >=1.4.0,<2.0a0",
+    "libzlib >=1.2.13,<2.0.0a0",
+    "sdl2 >=2.30.2,<3.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/sdl2_image-2.8.2-h376e2e1_1",
+  "files": [
+    "include/SDL2/SDL_image.h",
+    "lib/cmake/SDL2_image/Findlibjxl.cmake",
+    "lib/cmake/SDL2_image/Findwebp.cmake",
+    "lib/cmake/SDL2_image/SDL2_image-shared-targets-release.cmake",
+    "lib/cmake/SDL2_image/SDL2_image-shared-targets.cmake",
+    "lib/cmake/SDL2_image/SDL2_imageConfig.cmake",
+    "lib/cmake/SDL2_image/SDL2_imageConfigVersion.cmake",
+    "lib/libSDL2_image-2.0.0.dylib",
+    "lib/libSDL2_image-2.0.3.0.0.dylib",
+    "lib/libSDL2_image-2.0.601.0.0.dylib",
+    "lib/libSDL2_image-2.0.601.1.0.dylib",
+    "lib/libSDL2_image-2.0.601.2.0.dylib",
+    "lib/libSDL2_image-2.0.601.3.0.dylib",
+    "lib/libSDL2_image-2.0.801.0.0.dylib",
+    "lib/libSDL2_image-2.0.dylib",
+    "lib/libSDL2_image.dylib",
+    "lib/pkgconfig/SDL2_image.pc",
+    "share/licenses/SDL2_image/LICENSE.txt"
+  ],
+  "fn": "sdl2_image-2.8.2-h376e2e1_1.conda",
+  "license": "Zlib",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/sdl2_image-2.8.2-h376e2e1_1",
+    "type": 1
+  },
+  "md5": "247d2c5a873901ef51f378c69a2c708e",
+  "name": "sdl2_image",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/sdl2_image-2.8.2-h376e2e1_1.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/SDL2/SDL_image.h",
+        "path_type": "hardlink",
+        "sha256": "41e8529428376479c77d5cdd085b85ef1fab3c31e81349cd6dc5adc9d83c3367",
+        "sha256_in_prefix": "41e8529428376479c77d5cdd085b85ef1fab3c31e81349cd6dc5adc9d83c3367",
+        "size_in_bytes": 71008
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/Findlibjxl.cmake",
+        "path_type": "hardlink",
+        "sha256": "4de9f25e25717bead575f94410f4c1a7301e20bafb1f890414bc7616fcbaaa99",
+        "sha256_in_prefix": "4de9f25e25717bead575f94410f4c1a7301e20bafb1f890414bc7616fcbaaa99",
+        "size_in_bytes": 958
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/Findwebp.cmake",
+        "path_type": "hardlink",
+        "sha256": "4af92f6d97eb4ca7ec75b6cd0c65a2c527e38bdefecf770fcd94cd9596ec445f",
+        "sha256_in_prefix": "4af92f6d97eb4ca7ec75b6cd0c65a2c527e38bdefecf770fcd94cd9596ec445f",
+        "size_in_bytes": 1797
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/SDL2_image-shared-targets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "494a4d162baabfe77dc4fcbf13212e1cd4d19411bc55c303913ef8db8e516ae2",
+        "sha256_in_prefix": "494a4d162baabfe77dc4fcbf13212e1cd4d19411bc55c303913ef8db8e516ae2",
+        "size_in_bytes": 979
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/SDL2_image-shared-targets.cmake",
+        "path_type": "hardlink",
+        "sha256": "f4188cc5ac10bb5e1109619b14fdd9f17ecde29f5055ed60a4a092b8a7497909",
+        "sha256_in_prefix": "f4188cc5ac10bb5e1109619b14fdd9f17ecde29f5055ed60a4a092b8a7497909",
+        "size_in_bytes": 4262
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/SDL2_imageConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "3c21ae273e7e8c0e1444a68b0629866482e10a490e608d5fae7d71d0ce3c0610",
+        "sha256_in_prefix": "3c21ae273e7e8c0e1444a68b0629866482e10a490e608d5fae7d71d0ce3c0610",
+        "size_in_bytes": 2835
+      },
+      {
+        "_path": "lib/cmake/SDL2_image/SDL2_imageConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "0ce71b52a464ce0f0e8d37604081388e808629defca7d79bab37a9c4ca8e5238",
+        "sha256_in_prefix": "0ce71b52a464ce0f0e8d37604081388e808629defca7d79bab37a9c4ca8e5238",
+        "size_in_bytes": 1861
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "sha256_in_prefix": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.3.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.601.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.601.1.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.601.2.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.601.3.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.801.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image-2.0.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/libSDL2_image.dylib",
+        "path_type": "softlink",
+        "sha256": "80dd74100194684f9e3b3ff62ed615e9fdc6437e5ee90cb689f3eebe2229f608",
+        "size_in_bytes": 248848
+      },
+      {
+        "_path": "lib/pkgconfig/SDL2_image.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/sdl2_image_1716856965696/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "a74dd98669855bd1a755711bde4b6508e5c281dac65d7e95af4344d9bbb7f1e0",
+        "sha256_in_prefix": "8f2947500da5a3c7a3d1cf4921f3377fda5ae2d01f9295378afc8b5dd455ef33",
+        "size_in_bytes": 581
+      },
+      {
+        "_path": "share/licenses/SDL2_image/LICENSE.txt",
+        "path_type": "hardlink",
+        "sha256": "a0e8ce06504966e45088ee1cc7583cc8af9aac615d4cf56d47d847da9cb15139",
+        "sha256_in_prefix": "a0e8ce06504966e45088ee1cc7583cc8af9aac615d4cf56d47d847da9cb15139",
+        "size_in_bytes": 878
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::sdl2_image==2.8.2=h376e2e1_1",
+  "sha256": "8c385478a7b6a6e34b3b3f3d48ed48f504698544987ad331f03a7b43b11d689a",
+  "size": 118041,
+  "subdir": "osx-arm64",
+  "timestamp": 1716857215000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/sdl2_image-2.8.2-h376e2e1_1.conda",
+  "version": "2.8.2"
+}

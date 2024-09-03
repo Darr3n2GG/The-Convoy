@@ -1,0 +1,50 @@
+{
+  "build": "hcb22688_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/noarch",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/font-ttf-inconsolata-2.001-hcb22688_0",
+  "files": [
+    "fonts/Inconsolata-Bold.ttf",
+    "fonts/Inconsolata-Regular.ttf"
+  ],
+  "fn": "font-ttf-inconsolata-2.001-hcb22688_0.conda",
+  "license": "OFL",
+  "license_family": "Other",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/font-ttf-inconsolata-2.001-hcb22688_0",
+    "type": 1
+  },
+  "md5": "9e3fa1886c808910ecd9b9be64566410",
+  "name": "font-ttf-inconsolata",
+  "noarch": "generic",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/font-ttf-inconsolata-2.001-hcb22688_0.conda",
+  "package_type": "noarch_generic",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "fonts/Inconsolata-Bold.ttf",
+        "path_type": "hardlink",
+        "sha256": "76a242626e1c791b6945060d7a61b5b61f6f1c6b364b6c7868a30af1ef44b623",
+        "sha256_in_prefix": "76a242626e1c791b6945060d7a61b5b61f6f1c6b364b6c7868a30af1ef44b623",
+        "size_in_bytes": 108360
+      },
+      {
+        "_path": "fonts/Inconsolata-Regular.ttf",
+        "path_type": "hardlink",
+        "sha256": "2a53b53d55363c4913a8873d0e1636d6c09d8a3c38570fb166fc71a5123ec8dc",
+        "sha256_in_prefix": "2a53b53d55363c4913a8873d0e1636d6c09d8a3c38570fb166fc71a5123ec8dc",
+        "size_in_bytes": 95960
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "defaults/noarch::font-ttf-inconsolata==2.001=hcb22688_0",
+  "sha256": "8ab12417afdb2049576c61ac70a24b18aabc6ef8a030d95597f4e07405b0a63e",
+  "size": 85498,
+  "subdir": "noarch",
+  "timestamp": 1507939979000,
+  "url": "https://repo.anaconda.com/pkgs/main/noarch/font-ttf-inconsolata-2.001-hcb22688_0.conda",
+  "version": "2.001"
+}

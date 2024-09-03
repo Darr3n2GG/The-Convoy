@@ -1,0 +1,112 @@
+{
+  "build": "h80987f9_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/osx-arm64",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/dav1d-1.2.1-h80987f9_0",
+  "files": [
+    "bin/dav1d",
+    "include/dav1d/common.h",
+    "include/dav1d/data.h",
+    "include/dav1d/dav1d.h",
+    "include/dav1d/headers.h",
+    "include/dav1d/picture.h",
+    "include/dav1d/version.h",
+    "lib/libdav1d.6.dylib",
+    "lib/libdav1d.dylib",
+    "lib/pkgconfig/dav1d.pc"
+  ],
+  "fn": "dav1d-1.2.1-h80987f9_0.conda",
+  "license": "BSD-2-Clause",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/dav1d-1.2.1-h80987f9_0",
+    "type": 1
+  },
+  "md5": "6b5bdb6514aef41c2c4a92425165612a",
+  "name": "dav1d",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/dav1d-1.2.1-h80987f9_0.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/dav1d",
+        "path_type": "hardlink",
+        "sha256": "e8ad176f87889a373fe460a33f1a1f99295419e1296a29e057b0e4dbb0cd0e6a",
+        "sha256_in_prefix": "e8ad176f87889a373fe460a33f1a1f99295419e1296a29e057b0e4dbb0cd0e6a",
+        "size_in_bytes": 88240
+      },
+      {
+        "_path": "include/dav1d/common.h",
+        "path_type": "hardlink",
+        "sha256": "62bcebef397d127de595d24164730a026670a3428303f809aed59f7aa26175a6",
+        "sha256_in_prefix": "62bcebef397d127de595d24164730a026670a3428303f809aed59f7aa26175a6",
+        "size_in_bytes": 3258
+      },
+      {
+        "_path": "include/dav1d/data.h",
+        "path_type": "hardlink",
+        "sha256": "283e79ba35c3f90083d68f729a82a3d3625945c0776de5e87b4c081f0296a529",
+        "sha256_in_prefix": "283e79ba35c3f90083d68f729a82a3d3625945c0776de5e87b4c081f0296a529",
+        "size_in_bytes": 4488
+      },
+      {
+        "_path": "include/dav1d/dav1d.h",
+        "path_type": "hardlink",
+        "sha256": "e74102e8c9bc57a408b6821a7c8b1420998e1a7a8a734f70055046e51a0a7dab",
+        "sha256_in_prefix": "e74102e8c9bc57a408b6821a7c8b1420998e1a7a8a734f70055046e51a0a7dab",
+        "size_in_bytes": 12382
+      },
+      {
+        "_path": "include/dav1d/headers.h",
+        "path_type": "hardlink",
+        "sha256": "04d00dde4b0f4759438bc82ef8a4cf0e81a43d42f05b809614324747f94f1442",
+        "sha256_in_prefix": "04d00dde4b0f4759438bc82ef8a4cf0e81a43d42f05b809614324747f94f1442",
+        "size_in_bytes": 13873
+      },
+      {
+        "_path": "include/dav1d/picture.h",
+        "path_type": "hardlink",
+        "sha256": "60dcdc56cd2f67771b281cbe0149249ffee59a3ec768c825b8fbd5c9faf6ae16",
+        "sha256_in_prefix": "60dcdc56cd2f67771b281cbe0149249ffee59a3ec768c825b8fbd5c9faf6ae16",
+        "size_in_bytes": 6013
+      },
+      {
+        "_path": "include/dav1d/version.h",
+        "path_type": "hardlink",
+        "sha256": "fd3a2d9a74930b4ca1d6522b72f1dbff8b89a05d6244abfc0785014f7d61e7ae",
+        "sha256_in_prefix": "fd3a2d9a74930b4ca1d6522b72f1dbff8b89a05d6244abfc0785014f7d61e7ae",
+        "size_in_bytes": 1652
+      },
+      {
+        "_path": "lib/libdav1d.6.dylib",
+        "path_type": "hardlink",
+        "sha256": "244018bfffc231a09ca2016c6a2f8338b5fb0dc2eaaeafd6c642cea91e561d04",
+        "sha256_in_prefix": "244018bfffc231a09ca2016c6a2f8338b5fb0dc2eaaeafd6c642cea91e561d04",
+        "size_in_bytes": 814032
+      },
+      {
+        "_path": "lib/libdav1d.dylib",
+        "path_type": "softlink",
+        "sha256": "244018bfffc231a09ca2016c6a2f8338b5fb0dc2eaaeafd6c642cea91e561d04",
+        "size_in_bytes": 814032
+      },
+      {
+        "_path": "lib/pkgconfig/dav1d.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_4dfheevhta/croot/dav1d_1688745959022/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "ca704c8c96ed79ada311c61418e104b30140e2265e084c66c2c8763e9114de34",
+        "sha256_in_prefix": "505eb142e3143605043ee620018a32719b3f62a184c28cd8f577f715043dc58b",
+        "size_in_bytes": 428
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "defaults/osx-arm64::dav1d==1.2.1=h80987f9_0",
+  "sha256": "f9335195a8077028f6b8a494001f289a6537997df4c8bcb07104197ce51c17b7",
+  "size": 372195,
+  "subdir": "osx-arm64",
+  "timestamp": 1688746000000,
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/dav1d-1.2.1-h80987f9_0.conda",
+  "version": "1.2.1"
+}

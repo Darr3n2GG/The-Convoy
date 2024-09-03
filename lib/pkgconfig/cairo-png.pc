@@ -1,0 +1,8 @@
+prefix=/opt/anaconda3/envs/snake
+includedir=${prefix}/include
+
+Name: cairo-png
+Description: PNG functions for cairo graphics library
+Version: 1.18.0
+Requires: cairo, libpng
+Cflags: -I${includedir}

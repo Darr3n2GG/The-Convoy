@@ -1,0 +1,135 @@
+{
+  "arch": "arm64",
+  "build": "h5643135_2",
+  "build_number": 2,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "libogg >=1.3.4,<1.4.0a0",
+    "libopus >=1.3.1,<2.0a0",
+    "openssl >=3.0.7,<4.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/opusfile-0.12-h5643135_2",
+  "files": [
+    "include/opus/opusfile.h",
+    "lib/libopusfile.0.dylib",
+    "lib/libopusfile.a",
+    "lib/libopusfile.dylib",
+    "lib/libopusurl.0.dylib",
+    "lib/libopusurl.a",
+    "lib/libopusurl.dylib",
+    "lib/pkgconfig/opusfile.pc",
+    "lib/pkgconfig/opusurl.pc",
+    "share/doc/opusfile/AUTHORS",
+    "share/doc/opusfile/COPYING",
+    "share/doc/opusfile/README.md"
+  ],
+  "fn": "opusfile-0.12-h5643135_2.conda",
+  "license": "BSD-3-Clause",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/opusfile-0.12-h5643135_2",
+    "type": 1
+  },
+  "md5": "e34e472ae04beeb642c5e937a2aeeebf",
+  "name": "opusfile",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/opusfile-0.12-h5643135_2.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/opus/opusfile.h",
+        "path_type": "hardlink",
+        "sha256": "fec33e1edcf905af91ed9f7bb8e5860235cc11ba5551fc2e28fc22ca951520d5",
+        "sha256_in_prefix": "fec33e1edcf905af91ed9f7bb8e5860235cc11ba5551fc2e28fc22ca951520d5",
+        "size_in_bytes": 116107
+      },
+      {
+        "_path": "lib/libopusfile.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "40b3e3a6e161b97a9752c5619792c9b1c6c50da609c3930ec075ebda33f87635",
+        "sha256_in_prefix": "40b3e3a6e161b97a9752c5619792c9b1c6c50da609c3930ec075ebda33f87635",
+        "size_in_bytes": 90832
+      },
+      {
+        "_path": "lib/libopusfile.a",
+        "path_type": "hardlink",
+        "sha256": "ada7655740881a536c3297695ce019fcf51bff6408995090da3d9e1bd383e6c4",
+        "sha256_in_prefix": "ada7655740881a536c3297695ce019fcf51bff6408995090da3d9e1bd383e6c4",
+        "size_in_bytes": 45944
+      },
+      {
+        "_path": "lib/libopusfile.dylib",
+        "path_type": "softlink",
+        "sha256": "40b3e3a6e161b97a9752c5619792c9b1c6c50da609c3930ec075ebda33f87635",
+        "size_in_bytes": 90832
+      },
+      {
+        "_path": "lib/libopusurl.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "699bb908789fbe6fd4f06e1c4b6cce5e71890262c095fe982440fc0607a77573",
+        "sha256_in_prefix": "699bb908789fbe6fd4f06e1c4b6cce5e71890262c095fe982440fc0607a77573",
+        "size_in_bytes": 90272
+      },
+      {
+        "_path": "lib/libopusurl.a",
+        "path_type": "hardlink",
+        "sha256": "feef7d9e4d551eba5d73ae285fb7ea43b9cc05e6314c4a243872c126f61fbf82",
+        "sha256_in_prefix": "feef7d9e4d551eba5d73ae285fb7ea43b9cc05e6314c4a243872c126f61fbf82",
+        "size_in_bytes": 41608
+      },
+      {
+        "_path": "lib/libopusurl.dylib",
+        "path_type": "softlink",
+        "sha256": "699bb908789fbe6fd4f06e1c4b6cce5e71890262c095fe982440fc0607a77573",
+        "size_in_bytes": 90272
+      },
+      {
+        "_path": "lib/pkgconfig/opusfile.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/opusfile_1670387498696/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "sha256": "185351dc0813d98cd1fc8ddb5779830e9a5f99226875fa0d10091b7e528b1216",
+        "sha256_in_prefix": "508c3e6cce576fd5abc63313104f563dbf070c60676520e2aabc390b4856bd04",
+        "size_in_bytes": 581
+      },
+      {
+        "_path": "lib/pkgconfig/opusurl.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/opusfile_1670387498696/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_",
+        "sha256": "c980a318b54608fb34a24b8cd11324b1afa7e4a06ac4e17811dfb7186a8f84f8",
+        "sha256_in_prefix": "faf0009e3612095729379d796ca211afdc64cff3c8e149a50f51afdcc25aa4a4",
+        "size_in_bytes": 549
+      },
+      {
+        "_path": "share/doc/opusfile/AUTHORS",
+        "path_type": "hardlink",
+        "sha256": "7bafd4ec8a8f284cce7a8c9dab476f141ed0de91f38947c145e49929d0922071",
+        "sha256_in_prefix": "7bafd4ec8a8f284cce7a8c9dab476f141ed0de91f38947c145e49929d0922071",
+        "size_in_bytes": 262
+      },
+      {
+        "_path": "share/doc/opusfile/COPYING",
+        "path_type": "hardlink",
+        "sha256": "0267ae795ab744c4e0f9c45e249440fdf2e75dac8c804f36066b28649bf74aaf",
+        "sha256_in_prefix": "0267ae795ab744c4e0f9c45e249440fdf2e75dac8c804f36066b28649bf74aaf",
+        "size_in_bytes": 1487
+      },
+      {
+        "_path": "share/doc/opusfile/README.md",
+        "path_type": "hardlink",
+        "sha256": "efe39e25a51d9399464980aa2daecd3146d1ca395ccd0278e8423181590f0388",
+        "sha256_in_prefix": "efe39e25a51d9399464980aa2daecd3146d1ca395ccd0278e8423181590f0388",
+        "size_in_bytes": 908
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::opusfile==0.12=h5643135_2",
+  "sha256": "108dbee936a8e3c21d2aa5618326343844df8f1fe14067c4dc5a731d7945ecc0",
+  "size": 80128,
+  "subdir": "osx-arm64",
+  "timestamp": 1670387790000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/opusfile-0.12-h5643135_2.conda",
+  "version": "0.12"
+}

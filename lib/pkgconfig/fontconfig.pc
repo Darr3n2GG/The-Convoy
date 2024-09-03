@@ -1,0 +1,16 @@
+prefix=/opt/anaconda3/envs/snake
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+sysconfdir=/opt/anaconda3/envs/snake/etc
+localstatedir=/opt/anaconda3/envs/snake/var
+confdir=/opt/anaconda3/envs/snake/etc/fonts
+cachedir=/opt/anaconda3/envs/snake/var/cache/fontconfig
+
+Name: Fontconfig
+Description: Font configuration and customization library
+Version: 2.14.2
+Requires: freetype2 >=  21.0.15
+Requires.private: expat
+Libs: -L${libdir} -lfontconfig
+Cflags: -I${includedir}

@@ -1,0 +1,130 @@
+{
+  "arch": "arm64",
+  "build": "h4fe3bdc_1",
+  "build_number": 1,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "fluidsynth >=2.3.4,<2.4.0a0",
+    "libcxx >=15.0.7",
+    "libflac >=1.4.3,<1.5.0a0",
+    "libmad >=0.15.1b,<0.16.0a0",
+    "libogg >=1.3.4,<1.4.0a0",
+    "libvorbis >=1.3.7,<1.4.0a0",
+    "mpg123 >=1.32.1,<1.33.0a0",
+    "opusfile >=0.12,<0.13.0a0",
+    "sdl2 >=2.28.3,<3.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/sdl2_mixer-2.6.3-h4fe3bdc_1",
+  "files": [
+    "include/SDL2/SDL_mixer.h",
+    "lib/cmake/SDL2_mixer/SDL2_mixer-shared-targets-release.cmake",
+    "lib/cmake/SDL2_mixer/SDL2_mixer-shared-targets.cmake",
+    "lib/cmake/SDL2_mixer/SDL2_mixerConfig.cmake",
+    "lib/cmake/SDL2_mixer/SDL2_mixerConfigVersion.cmake",
+    "lib/libSDL2_mixer-2.0.3.0.0.dylib",
+    "lib/libSDL2_mixer-2.0.601.3.0.dylib",
+    "lib/libSDL2_mixer-2.0.dylib",
+    "lib/libSDL2_mixer.dylib",
+    "lib/pkgconfig/SDL2_mixer.pc",
+    "share/licenses/SDL2_mixer/LICENSE.txt"
+  ],
+  "fn": "sdl2_mixer-2.6.3-h4fe3bdc_1.conda",
+  "license": "Zlib",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/sdl2_mixer-2.6.3-h4fe3bdc_1",
+    "type": 1
+  },
+  "md5": "b92222911d46f08faa583df51191bd7f",
+  "name": "sdl2_mixer",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/sdl2_mixer-2.6.3-h4fe3bdc_1.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/SDL2/SDL_mixer.h",
+        "path_type": "hardlink",
+        "sha256": "b049cc6232040b12e16aa23838025f9f488d8d665b5e49c405f036ecba77124f",
+        "sha256_in_prefix": "b049cc6232040b12e16aa23838025f9f488d8d665b5e49c405f036ecba77124f",
+        "size_in_bytes": 110151
+      },
+      {
+        "_path": "lib/cmake/SDL2_mixer/SDL2_mixer-shared-targets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "8c5eb1abe432bc78d33bb4a10d73c9c7d9ca1341cf0c7a3a50a65ba50d79f518",
+        "sha256_in_prefix": "8c5eb1abe432bc78d33bb4a10d73c9c7d9ca1341cf0c7a3a50a65ba50d79f518",
+        "size_in_bytes": 995
+      },
+      {
+        "_path": "lib/cmake/SDL2_mixer/SDL2_mixer-shared-targets.cmake",
+        "path_type": "hardlink",
+        "sha256": "126454678ed99a59844c926a4f397753d76fa1ba342a86ca98c67427ebb4fabf",
+        "sha256_in_prefix": "126454678ed99a59844c926a4f397753d76fa1ba342a86ca98c67427ebb4fabf",
+        "size_in_bytes": 4018
+      },
+      {
+        "_path": "lib/cmake/SDL2_mixer/SDL2_mixerConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "43a156405daff9b008f8eef2452b888de0275992abf94c2c84e387669760f59e",
+        "sha256_in_prefix": "43a156405daff9b008f8eef2452b888de0275992abf94c2c84e387669760f59e",
+        "size_in_bytes": 3258
+      },
+      {
+        "_path": "lib/cmake/SDL2_mixer/SDL2_mixerConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "ad68e259ac569ba5d00972af513d8d4be72ad4cb46887995ed7fc68c3bf14318",
+        "sha256_in_prefix": "ad68e259ac569ba5d00972af513d8d4be72ad4cb46887995ed7fc68c3bf14318",
+        "size_in_bytes": 1861
+      },
+      {
+        "_path": "lib/libSDL2_mixer-2.0.3.0.0.dylib",
+        "path_type": "softlink",
+        "sha256": "f91dfb687a5234b8875790c70d7cd9260261c43ae3e2c24d7d914405c356b530",
+        "size_in_bytes": 413424
+      },
+      {
+        "_path": "lib/libSDL2_mixer-2.0.601.3.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "f91dfb687a5234b8875790c70d7cd9260261c43ae3e2c24d7d914405c356b530",
+        "sha256_in_prefix": "f91dfb687a5234b8875790c70d7cd9260261c43ae3e2c24d7d914405c356b530",
+        "size_in_bytes": 413424
+      },
+      {
+        "_path": "lib/libSDL2_mixer-2.0.dylib",
+        "path_type": "softlink",
+        "sha256": "f91dfb687a5234b8875790c70d7cd9260261c43ae3e2c24d7d914405c356b530",
+        "size_in_bytes": 413424
+      },
+      {
+        "_path": "lib/libSDL2_mixer.dylib",
+        "path_type": "softlink",
+        "sha256": "f91dfb687a5234b8875790c70d7cd9260261c43ae3e2c24d7d914405c356b530",
+        "size_in_bytes": 413424
+      },
+      {
+        "_path": "lib/pkgconfig/SDL2_mixer.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/sdl2_mixer_1695761784716/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "3de0ca46c920dffab2d549b49d4d6d0c33c2ad751ba186cdb423146e8500fa41",
+        "sha256_in_prefix": "2b2984ee95dc594ffca98195b1942df4143ea1c0b1ddac27cb99b8bbbaad2b7c",
+        "size_in_bytes": 547
+      },
+      {
+        "_path": "share/licenses/SDL2_mixer/LICENSE.txt",
+        "path_type": "hardlink",
+        "sha256": "1852c8549e3d154687197d46abababd3e8faae035f19991b2ca850fa3a43ad57",
+        "sha256_in_prefix": "1852c8549e3d154687197d46abababd3e8faae035f19991b2ca850fa3a43ad57",
+        "size_in_bytes": 878
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::sdl2_mixer==2.6.3=h4fe3bdc_1",
+  "sha256": "fcaaf1b589aed11498f5b9735b996fb92ff18e4673a4c804bbfa28eb00264e06",
+  "size": 188504,
+  "subdir": "osx-arm64",
+  "timestamp": 1695762176000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/sdl2_mixer-2.6.3-h4fe3bdc_1.conda",
+  "version": "2.6.3"
+}

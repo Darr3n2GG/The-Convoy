@@ -1,0 +1,99 @@
+{
+  "arch": "arm64",
+  "build": "h69fbcac_2",
+  "build_number": 2,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/rav1e-0.6.6-h69fbcac_2",
+  "files": [
+    ".crates.toml",
+    ".crates2.json",
+    "bin/rav1e",
+    "include/rav1e/rav1e.h",
+    "lib/librav1e.0.6.6.dylib",
+    "lib/librav1e.0.6.dylib",
+    "lib/librav1e.dylib",
+    "lib/pkgconfig/rav1e.pc"
+  ],
+  "fn": "rav1e-0.6.6-h69fbcac_2.conda",
+  "license": "BSD-2-Clause",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/rav1e-0.6.6-h69fbcac_2",
+    "type": 1
+  },
+  "md5": "e309ae86569b1cd55a0285fa4e939844",
+  "name": "rav1e",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/rav1e-0.6.6-h69fbcac_2.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": ".crates.toml",
+        "path_type": "hardlink",
+        "sha256": "73c8794cfa4b2b8a395754006a52ac37820b91b53d6b3dfd106f335d84d97867",
+        "sha256_in_prefix": "73c8794cfa4b2b8a395754006a52ac37820b91b53d6b3dfd106f335d84d97867",
+        "size_in_bytes": 105
+      },
+      {
+        "_path": ".crates2.json",
+        "path_type": "hardlink",
+        "sha256": "b64ebce709c67df81bcccf3299e92c0df8c78548c63c5dc54a681334147e5855",
+        "sha256_in_prefix": "b64ebce709c67df81bcccf3299e92c0df8c78548c63c5dc54a681334147e5855",
+        "size_in_bytes": 464
+      },
+      {
+        "_path": "bin/rav1e",
+        "file_mode": "binary",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/rav1e_1694328871487/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "sha256": "4e1fdebf6f4ee9df8058b49421582273db1ea4d260515c6b11209736fb43c7eb",
+        "sha256_in_prefix": "6c0dcf4523d39e97b198b5f4404bcc8d5dc0dc1cacc0f96fcbd072286090ae96",
+        "size_in_bytes": 5019264
+      },
+      {
+        "_path": "include/rav1e/rav1e.h",
+        "path_type": "hardlink",
+        "sha256": "9717bc89263f0f05d1b8e740df94c9a582747a0a8748e70220fec3d7a0e9c08c",
+        "sha256_in_prefix": "9717bc89263f0f05d1b8e740df94c9a582747a0a8748e70220fec3d7a0e9c08c",
+        "size_in_bytes": 25062
+      },
+      {
+        "_path": "lib/librav1e.0.6.6.dylib",
+        "path_type": "hardlink",
+        "sha256": "04d08b03493dbd06f2064be7af389ab169b0091f4ae90d104939a055add324e0",
+        "sha256_in_prefix": "04d08b03493dbd06f2064be7af389ab169b0091f4ae90d104939a055add324e0",
+        "size_in_bytes": 3296048
+      },
+      {
+        "_path": "lib/librav1e.0.6.dylib",
+        "path_type": "softlink",
+        "sha256": "04d08b03493dbd06f2064be7af389ab169b0091f4ae90d104939a055add324e0",
+        "size_in_bytes": 3296048
+      },
+      {
+        "_path": "lib/librav1e.dylib",
+        "path_type": "softlink",
+        "sha256": "04d08b03493dbd06f2064be7af389ab169b0091f4ae90d104939a055add324e0",
+        "size_in_bytes": 3296048
+      },
+      {
+        "_path": "lib/pkgconfig/rav1e.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/rav1e_1694328871487/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+        "sha256": "5e90942b170be982ed5e5fdc6b67a5ee5f6547492ad2fa819d6be24ab2e9cd7e",
+        "sha256_in_prefix": "0e98f3e1792eaae4c6fe4ff9ebe713e6f73ae0968bf2f6e9cb33b31bd8444964",
+        "size_in_bytes": 487
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::rav1e==0.6.6=h69fbcac_2",
+  "sha256": "be6174970193cb4d0ffa7d731a93a4c9542881dbc7ab24e74b460ef312161169",
+  "size": 1526706,
+  "subdir": "osx-arm64",
+  "timestamp": 1694329743000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/rav1e-0.6.6-h69fbcac_2.conda",
+  "version": "0.6.6"
+}

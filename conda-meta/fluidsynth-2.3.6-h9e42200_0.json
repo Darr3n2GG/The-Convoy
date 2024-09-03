@@ -1,0 +1,270 @@
+{
+  "arch": "arm64",
+  "build": "h9e42200_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libcxx >=16",
+    "libglib >=2.80.3,<3.0a0",
+    "libsndfile >=1.2.2,<1.3.0a0",
+    "portaudio >=19.6.0,<19.7.0a0",
+    "readline >=8.2,<9.0a0",
+    "sdl2 >=2.30.5,<3.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/fluidsynth-2.3.6-h9e42200_0",
+  "files": [
+    "bin/fluidsynth",
+    "include/fluidsynth.h",
+    "include/fluidsynth/audio.h",
+    "include/fluidsynth/event.h",
+    "include/fluidsynth/gen.h",
+    "include/fluidsynth/ladspa.h",
+    "include/fluidsynth/log.h",
+    "include/fluidsynth/midi.h",
+    "include/fluidsynth/misc.h",
+    "include/fluidsynth/mod.h",
+    "include/fluidsynth/seq.h",
+    "include/fluidsynth/seqbind.h",
+    "include/fluidsynth/settings.h",
+    "include/fluidsynth/sfont.h",
+    "include/fluidsynth/shell.h",
+    "include/fluidsynth/synth.h",
+    "include/fluidsynth/types.h",
+    "include/fluidsynth/version.h",
+    "include/fluidsynth/voice.h",
+    "lib/cmake/fluidsynth/FluidSynthConfig.cmake",
+    "lib/cmake/fluidsynth/FluidSynthConfigVersion.cmake",
+    "lib/cmake/fluidsynth/FluidSynthTargets-release.cmake",
+    "lib/cmake/fluidsynth/FluidSynthTargets.cmake",
+    "lib/libfluidsynth.3.2.4.dylib",
+    "lib/libfluidsynth.3.dylib",
+    "lib/libfluidsynth.dylib",
+    "lib/pkgconfig/fluidsynth.pc",
+    "share/man/man1/fluidsynth.1"
+  ],
+  "fn": "fluidsynth-2.3.6-h9e42200_0.conda",
+  "license": "GPL-2.0-or-later",
+  "license_family": "LGPL",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/fluidsynth-2.3.6-h9e42200_0",
+    "type": 1
+  },
+  "md5": "193ace2829d0af78cbe4c0c0ee45049d",
+  "name": "fluidsynth",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/fluidsynth-2.3.6-h9e42200_0.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/fluidsynth",
+        "path_type": "hardlink",
+        "sha256": "acac9ae94e2891fa7a1dd06b9e3dd378afb92feeb2329bf4dbff6ba1b1012dca",
+        "sha256_in_prefix": "acac9ae94e2891fa7a1dd06b9e3dd378afb92feeb2329bf4dbff6ba1b1012dca",
+        "size_in_bytes": 73616
+      },
+      {
+        "_path": "include/fluidsynth.h",
+        "path_type": "hardlink",
+        "sha256": "d7713a369e092db6898025216a6e5b7a465dc8d20b8aacf74d602a3915b654ea",
+        "sha256_in_prefix": "d7713a369e092db6898025216a6e5b7a465dc8d20b8aacf74d602a3915b654ea",
+        "size_in_bytes": 3566
+      },
+      {
+        "_path": "include/fluidsynth/audio.h",
+        "path_type": "hardlink",
+        "sha256": "14cb3bce21b26404f8284b32fbf01176f690dbc90a6347ceb4610730035b82c3",
+        "sha256_in_prefix": "14cb3bce21b26404f8284b32fbf01176f690dbc90a6347ceb4610730035b82c3",
+        "size_in_bytes": 5612
+      },
+      {
+        "_path": "include/fluidsynth/event.h",
+        "path_type": "hardlink",
+        "sha256": "98f2d13fdcbb904002d51a50a9a82576fd0c09b9fb22830eaa74e278df0a10b2",
+        "sha256_in_prefix": "98f2d13fdcbb904002d51a50a9a82576fd0c09b9fb22830eaa74e278df0a10b2",
+        "size_in_bytes": 6838
+      },
+      {
+        "_path": "include/fluidsynth/gen.h",
+        "path_type": "hardlink",
+        "sha256": "5ccc8be75dab5d38ba74c2b7f6a583d35bf42a3a84919806b41686ac5827ef7e",
+        "sha256_in_prefix": "5ccc8be75dab5d38ba74c2b7f6a583d35bf42a3a84919806b41686ac5827ef7e",
+        "size_in_bytes": 5984
+      },
+      {
+        "_path": "include/fluidsynth/ladspa.h",
+        "path_type": "hardlink",
+        "sha256": "7e858438f5558ad1c49ddf2203a3ba3ceceecc3d6d45bf23d1fa472472239e16",
+        "sha256_in_prefix": "7e858438f5558ad1c49ddf2203a3ba3ceceecc3d6d45bf23d1fa472472239e16",
+        "size_in_bytes": 2825
+      },
+      {
+        "_path": "include/fluidsynth/log.h",
+        "path_type": "hardlink",
+        "sha256": "6732f8a7fac998e1ad3dbfd1486d0e7f6e29145a43208421d6df32611463379c",
+        "sha256_in_prefix": "6732f8a7fac998e1ad3dbfd1486d0e7f6e29145a43208421d6df32611463379c",
+        "size_in_bytes": 3203
+      },
+      {
+        "_path": "include/fluidsynth/midi.h",
+        "path_type": "hardlink",
+        "sha256": "b5f8640094feae2fd6d0df554a7d9835f9c865af001c64dcc61495303c3dbf7e",
+        "sha256_in_prefix": "b5f8640094feae2fd6d0df554a7d9835f9c865af001c64dcc61495303c3dbf7e",
+        "size_in_bytes": 12153
+      },
+      {
+        "_path": "include/fluidsynth/misc.h",
+        "path_type": "hardlink",
+        "sha256": "7cf922a4a06983f1cdf4951a0b0b0ee443eaadbf969122da9596b7ce9fb3b6d1",
+        "sha256_in_prefix": "7cf922a4a06983f1cdf4951a0b0b0ee443eaadbf969122da9596b7ce9fb3b6d1",
+        "size_in_bytes": 1920
+      },
+      {
+        "_path": "include/fluidsynth/mod.h",
+        "path_type": "hardlink",
+        "sha256": "0060736aa8852514a50a58e0aa9476763f518b2f89b4a0bd5dea44bf51fffda5",
+        "sha256_in_prefix": "0060736aa8852514a50a58e0aa9476763f518b2f89b4a0bd5dea44bf51fffda5",
+        "size_in_bytes": 4177
+      },
+      {
+        "_path": "include/fluidsynth/seq.h",
+        "path_type": "hardlink",
+        "sha256": "82066a20171b6ed242dc58377e59a28a65700c14c2fd6ae1732e9399d01326f3",
+        "sha256_in_prefix": "82066a20171b6ed242dc58377e59a28a65700c14c2fd6ae1732e9399d01326f3",
+        "size_in_bytes": 4127
+      },
+      {
+        "_path": "include/fluidsynth/seqbind.h",
+        "path_type": "hardlink",
+        "sha256": "b4af56577d54a6f62923baf2e728fcc7c14c32361062c71dcc5e653307fc2235",
+        "sha256_in_prefix": "b4af56577d54a6f62923baf2e728fcc7c14c32361062c71dcc5e653307fc2235",
+        "size_in_bytes": 1292
+      },
+      {
+        "_path": "include/fluidsynth/settings.h",
+        "path_type": "hardlink",
+        "sha256": "78a3c2c9607ab4a431aceec847b9a145eda927f36639d074fe0c1ea4df65242d",
+        "sha256_in_prefix": "78a3c2c9607ab4a431aceec847b9a145eda927f36639d074fe0c1ea4df65242d",
+        "size_in_bytes": 6680
+      },
+      {
+        "_path": "include/fluidsynth/sfont.h",
+        "path_type": "hardlink",
+        "sha256": "2871024d1098b60ee566312b674b3ca80fd271713a21d5ef1ae655d4ec8dfe64",
+        "sha256_in_prefix": "2871024d1098b60ee566312b674b3ca80fd271713a21d5ef1ae655d4ec8dfe64",
+        "size_in_bytes": 14314
+      },
+      {
+        "_path": "include/fluidsynth/shell.h",
+        "path_type": "hardlink",
+        "sha256": "3d25a6fd9f57adf3ec9af85fdf885d553a24a3c741c4aeed13acb2243816737c",
+        "sha256_in_prefix": "3d25a6fd9f57adf3ec9af85fdf885d553a24a3c741c4aeed13acb2243816737c",
+        "size_in_bytes": 4614
+      },
+      {
+        "_path": "include/fluidsynth/synth.h",
+        "path_type": "hardlink",
+        "sha256": "4aca9a9b969b4347b84de7866eb0a321964265c3cffb2fb15523673bec568298",
+        "sha256_in_prefix": "4aca9a9b969b4347b84de7866eb0a321964265c3cffb2fb15523673bec568298",
+        "size_in_bytes": 25279
+      },
+      {
+        "_path": "include/fluidsynth/types.h",
+        "path_type": "hardlink",
+        "sha256": "b42e0617e7d9685afa40870efa173606edd81e95daea0849d5feec4e7b4d03a2",
+        "sha256_in_prefix": "b42e0617e7d9685afa40870efa173606edd81e95daea0849d5feec4e7b4d03a2",
+        "size_in_bytes": 4100
+      },
+      {
+        "_path": "include/fluidsynth/version.h",
+        "path_type": "hardlink",
+        "sha256": "407b7c4751e824d4a856168526a6bb799e8d1529fdd70628acc56c8378f93f09",
+        "sha256_in_prefix": "407b7c4751e824d4a856168526a6bb799e8d1529fdd70628acc56c8378f93f09",
+        "size_in_bytes": 1556
+      },
+      {
+        "_path": "include/fluidsynth/voice.h",
+        "path_type": "hardlink",
+        "sha256": "442910739a7c1b4a9a13f74c00f264b43fb0256c3d7e3eacd5b13f2d0019843d",
+        "sha256_in_prefix": "442910739a7c1b4a9a13f74c00f264b43fb0256c3d7e3eacd5b13f2d0019843d",
+        "size_in_bytes": 3018
+      },
+      {
+        "_path": "lib/cmake/fluidsynth/FluidSynthConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "18ca635835d821f3dcd9e43a971c4476f1fad7e76d9d0ebff2fd9d668f8681be",
+        "sha256_in_prefix": "18ca635835d821f3dcd9e43a971c4476f1fad7e76d9d0ebff2fd9d668f8681be",
+        "size_in_bytes": 4172
+      },
+      {
+        "_path": "lib/cmake/fluidsynth/FluidSynthConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "12ebb007714fcf99ab10b88239c98e9df156f30499a3d5083868ef7152d8c885",
+        "sha256_in_prefix": "12ebb007714fcf99ab10b88239c98e9df156f30499a3d5083868ef7152d8c885",
+        "size_in_bytes": 3675
+      },
+      {
+        "_path": "lib/cmake/fluidsynth/FluidSynthTargets-release.cmake",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/fluidsynth_1722731734051/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "c77487fcd84e5bc9821e26f40c3fc5f105cc58a6d945cc4892907f67fab14bec",
+        "sha256_in_prefix": "8c5c6d7482abccd10ef8b7d78791578e9f09905df8ed0e6a79933d9e520f0c44",
+        "size_in_bytes": 1639
+      },
+      {
+        "_path": "lib/cmake/fluidsynth/FluidSynthTargets.cmake",
+        "path_type": "hardlink",
+        "sha256": "256fecfa8b1f74e3ebbb268dc8368d3cae0cf4ed7ba066e756b4aff01a3775fd",
+        "sha256_in_prefix": "256fecfa8b1f74e3ebbb268dc8368d3cae0cf4ed7ba066e756b4aff01a3775fd",
+        "size_in_bytes": 4718
+      },
+      {
+        "_path": "lib/libfluidsynth.3.2.4.dylib",
+        "file_mode": "binary",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/fluidsynth_1722731734051/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "f33ce4c2963a10289f0be03f752a29fcfb8310789b1fb3544a60ed01b666a1ec",
+        "sha256_in_prefix": "a649b0ffd64871938456e64ab12be25ce6f61c72a5ed8843cf2d13f993762d6d",
+        "size_in_bytes": 476368
+      },
+      {
+        "_path": "lib/libfluidsynth.3.dylib",
+        "path_type": "softlink",
+        "sha256": "f33ce4c2963a10289f0be03f752a29fcfb8310789b1fb3544a60ed01b666a1ec",
+        "size_in_bytes": 476368
+      },
+      {
+        "_path": "lib/libfluidsynth.dylib",
+        "path_type": "softlink",
+        "sha256": "f33ce4c2963a10289f0be03f752a29fcfb8310789b1fb3544a60ed01b666a1ec",
+        "size_in_bytes": 476368
+      },
+      {
+        "_path": "lib/pkgconfig/fluidsynth.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/fluidsynth_1722731734051/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "cbcb157952b5b8286829f5afd6c26f89a80e9426e7c03e4933b57fe7f750f4b4",
+        "sha256_in_prefix": "9585bd188f44cdf0f1854fcb117db131142a53d0bc5b9fdddbef06a040496a8e",
+        "size_in_bytes": 639
+      },
+      {
+        "_path": "share/man/man1/fluidsynth.1",
+        "path_type": "hardlink",
+        "sha256": "f7f73ac7b5e7bd83452716d6960b2dbbc11b518b2386b137407de050d320fdb5",
+        "sha256_in_prefix": "f7f73ac7b5e7bd83452716d6960b2dbbc11b518b2386b137407de050d320fdb5",
+        "size_in_bytes": 8567
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::fluidsynth==2.3.6=h9e42200_0",
+  "sha256": "6603b507104016c334155c9401e58048f660dfb147c96419f2bfc9e8513f6ea3",
+  "size": 238953,
+  "subdir": "osx-arm64",
+  "timestamp": 1722732025000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/fluidsynth-2.3.6-h9e42200_0.conda",
+  "version": "2.3.6"
+}

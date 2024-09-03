@@ -1,0 +1,14 @@
+prefix=/opt/anaconda3/envs/snake
+exec_prefix=/opt/anaconda3/envs/snake
+libdir=/opt/anaconda3/envs/snake/lib
+includedir=/opt/anaconda3/envs/snake/include
+
+Name: FreeType 2
+URL: https://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 24.3.18
+Requires: 
+Requires.private: 
+Libs: -L/opt/anaconda3/envs/snake/lib -lfreetype
+Libs.private: -lz -L/opt/anaconda3/envs/snake/lib -lpng16 -lz
+Cflags: -I${includedir}/freetype2

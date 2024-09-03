@@ -1,0 +1,10 @@
+prefix=/opt/anaconda3/envs/snake
+exec_prefix=/opt/anaconda3/envs/snake
+libdir=/opt/anaconda3/envs/snake/lib
+includedir=/opt/anaconda3/envs/snake/include
+
+Name: libturbojpeg
+Description: A SIMD-accelerated JPEG codec that provides the TurboJPEG API
+Version: 3.0.3
+Libs: -L${libdir} -lturbojpeg
+Cflags: -I${includedir}

@@ -1,0 +1,14 @@
+prefix=/opt/anaconda3/envs/snake
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SDL2_image
+Description: image loading library for Simple DirectMedia Layer
+Version: 2.8.2
+Requires: sdl2 >= 2.0.9
+Libs: -L${libdir} -lSDL2_image
+Requires.private: libavif libtiff-4 libwebp
+Libs.private: 
+Cflags: -I${includedir}/SDL2
+

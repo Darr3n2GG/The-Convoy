@@ -1,0 +1,51 @@
+{
+  "arch": "arm64",
+  "build": "h8414b35_3",
+  "build_number": 3,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libasprintf 0.22.5 h8414b35_3"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libasprintf-devel-0.22.5-h8414b35_3",
+  "files": [
+    "include/autosprintf.h",
+    "lib/libasprintf.dylib"
+  ],
+  "fn": "libasprintf-devel-0.22.5-h8414b35_3.conda",
+  "license": "LGPL-2.1-or-later",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libasprintf-devel-0.22.5-h8414b35_3",
+    "type": 1
+  },
+  "md5": "a03ca97f9fabf5626660697c2e0b8850",
+  "name": "libasprintf-devel",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libasprintf-devel-0.22.5-h8414b35_3.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/autosprintf.h",
+        "path_type": "hardlink",
+        "sha256": "b63993786da0e9435ee611e08bfc12800e32f47c9820f7be42cb75687d7ee541",
+        "sha256_in_prefix": "b63993786da0e9435ee611e08bfc12800e32f47c9820f7be42cb75687d7ee541",
+        "size_in_bytes": 2421
+      },
+      {
+        "_path": "lib/libasprintf.dylib",
+        "path_type": "softlink",
+        "sha256": "70a6e59e7181af0412349dcdc6699bffd1abe1a8b96ebaa88961d4e9ac82ae28",
+        "size_in_bytes": 54128
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::libasprintf-devel==0.22.5=h8414b35_3",
+  "sha256": "ca7322f7c3f1a68cb36630eaa88a44c774261150d42d70a4be3d77bc9ed28d5d",
+  "size": 34648,
+  "subdir": "osx-arm64",
+  "timestamp": 1723626983000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/libasprintf-devel-0.22.5-h8414b35_3.conda",
+  "version": "0.22.5"
+}

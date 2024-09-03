@@ -1,0 +1,56 @@
+{
+  "arch": "arm64",
+  "build": "h1a8c8d9_1001",
+  "build_number": 1001,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libmad-0.15.1b-h1a8c8d9_1001",
+  "files": [
+    "include/mad.h",
+    "lib/libmad.0.dylib",
+    "lib/libmad.dylib"
+  ],
+  "fn": "libmad-0.15.1b-h1a8c8d9_1001.conda",
+  "license": "GPL-2.0-only",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libmad-0.15.1b-h1a8c8d9_1001",
+    "type": 1
+  },
+  "md5": "1eb30852ed396fbe6e301fe6d715aef9",
+  "name": "libmad",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libmad-0.15.1b-h1a8c8d9_1001.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/mad.h",
+        "path_type": "hardlink",
+        "sha256": "d7cbcf2f2d53dbd4814c5a7b1f017ed56b2a99c88c9e4e4c06e828ac29d1d704",
+        "sha256_in_prefix": "d7cbcf2f2d53dbd4814c5a7b1f017ed56b2a99c88c9e4e4c06e828ac29d1d704",
+        "size_in_bytes": 27127
+      },
+      {
+        "_path": "lib/libmad.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "ab9308e53a1111885fcf746e2d62ca6c35bbbc5777b3fb01556f4cd4dcf199fb",
+        "sha256_in_prefix": "ab9308e53a1111885fcf746e2d62ca6c35bbbc5777b3fb01556f4cd4dcf199fb",
+        "size_in_bytes": 171920
+      },
+      {
+        "_path": "lib/libmad.dylib",
+        "path_type": "softlink",
+        "sha256": "ab9308e53a1111885fcf746e2d62ca6c35bbbc5777b3fb01556f4cd4dcf199fb",
+        "size_in_bytes": 171920
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::libmad==0.15.1b=h1a8c8d9_1001",
+  "sha256": "8e9209acf4bf6865760e61dc0d86116ffc9efc3e13c7f559eb1ea78532a3a625",
+  "size": 77255,
+  "subdir": "osx-arm64",
+  "timestamp": 1670815732000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/libmad-0.15.1b-h1a8c8d9_1001.conda",
+  "version": "0.15.1b"
+}

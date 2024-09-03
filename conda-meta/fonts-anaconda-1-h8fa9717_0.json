@@ -1,0 +1,37 @@
+{
+  "build": "h8fa9717_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/noarch",
+  "constrains": [],
+  "depends": [
+    "font-ttf-dejavu-sans-mono",
+    "font-ttf-inconsolata",
+    "font-ttf-source-code-pro",
+    "font-ttf-ubuntu"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/fonts-anaconda-1-h8fa9717_0",
+  "files": [],
+  "fn": "fonts-anaconda-1-h8fa9717_0.conda",
+  "license": "Unknown",
+  "license_family": "Other",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/fonts-anaconda-1-h8fa9717_0",
+    "type": 1
+  },
+  "md5": "a5efad43de0590ada98f8bcf02ecbfe8",
+  "name": "fonts-anaconda",
+  "noarch": "generic",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/fonts-anaconda-1-h8fa9717_0.conda",
+  "package_type": "noarch_generic",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "defaults/noarch::fonts-anaconda==1=h8fa9717_0",
+  "sha256": "321cf8fadda28d61b120d999dd9c6143c9522dfa6246630ac8ef23141e624a91",
+  "size": 2835,
+  "subdir": "noarch",
+  "timestamp": 1507939991000,
+  "url": "https://repo.anaconda.com/pkgs/main/noarch/fonts-anaconda-1-h8fa9717_0.conda",
+  "version": "1"
+}

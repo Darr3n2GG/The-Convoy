@@ -1,0 +1,46 @@
+{
+  "arch": "arm64",
+  "build": "h8414b35_3",
+  "build_number": 3,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=11.0",
+    "libiconv >=1.17,<2.0a0"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libintl-0.22.5-h8414b35_3",
+  "files": [
+    "lib/libintl.8.dylib"
+  ],
+  "fn": "libintl-0.22.5-h8414b35_3.conda",
+  "license": "LGPL-2.1-or-later",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libintl-0.22.5-h8414b35_3",
+    "type": 1
+  },
+  "md5": "3b98ec32e91b3b59ad53dbb9c96dd334",
+  "name": "libintl",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libintl-0.22.5-h8414b35_3.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "lib/libintl.8.dylib",
+        "file_mode": "binary",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/gettext-split_1723625734682/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place",
+        "sha256": "8fae07bfb221dc263bcfa763b5e9af3268ff8efd70c74b4f4c3330a5fc99b36f",
+        "sha256_in_prefix": "63bedd9c2f02e5a4341751851fb712a6c20d64d9b0bd7437ce663fe48d951ba9",
+        "size_in_bytes": 162560
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "darwin",
+  "requested_spec": "conda-forge/osx-arm64::libintl==0.22.5=h8414b35_3",
+  "sha256": "7c1d238d4333af385e594c89ebcb520caad7ed83a735c901099ec0970a87a891",
+  "size": 81171,
+  "subdir": "osx-arm64",
+  "timestamp": 1723626968000,
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/libintl-0.22.5-h8414b35_3.conda",
+  "version": "0.22.5"
+}
