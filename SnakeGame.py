@@ -8,9 +8,9 @@ import pygame, sys, time, random
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
-background = pygame.mixer.Sound('.\soundpack\sonar.mp3')
-detected = pygame.mixer.Sound('.\soundpack\enemy_sensed.mp3')
-ended = false
+background = pygame.mixer.Sound('./soundpack/sonar.mp3')
+detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
+ended = False
 
 # Style
 font_family = "helvetica neue", "helvetica", "sans-serif"
