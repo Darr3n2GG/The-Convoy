@@ -22,7 +22,7 @@ blue = pygame.Color(0, 0, 255)
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-difficulty = 10
+difficulty = 25
 
 # Window size
 frame_size_multiplier = 1
@@ -65,13 +65,21 @@ snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 food_spawn = True
 
-enemy_pos = [10,10]
+class LANDMINE():
+    def __init__(self):
+        self.pos = [0,0]
+    def change_position(self):
+        self.pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+    def draw_landmine(self):
+        pygame.draw.rect(game_window, red, pygame.Rect(self.pos[0], self.pos[1], 10, 10))
+
+landmines = []
+next_show_time = 0
 
 direction = 'RIGHT'
 change_to = direction
 
 score = 0
-
 
 # Game Over
 def game_over():
@@ -153,10 +161,8 @@ while True:
     # Spawning food on the screen
     if not food_spawn:
         food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+        landmines.insert(0,LANDMINE()) #spawn landmine
     food_spawn = True
-
-    # Enemy pathfinding
-
 
     # GFX
     game_window.fill(black)
@@ -173,8 +179,16 @@ while True:
     # Snake food
     pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
-    # Enemy body
-    pygame.draw.rect(game_window, red, pygame.Rect(enemy_pos[0], enemy_pos[1], 10, 10))
+    # Landmine
+    time_passed = pygame.time.get_ticks()
+    show_landmines = False
+    if time_passed > next_show_time:
+        show_landmines = True
+        
+    
+    for landmine in landmines:
+        landmine.draw_landmine()
+        time_passed
 
     # Game Over conditions
     # Getting out of bounds
