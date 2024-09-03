@@ -65,6 +65,8 @@ snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 food_spawn = True
 
+enemy_pos = [10,10]
+
 direction = 'RIGHT'
 change_to = direction
 
@@ -153,6 +155,9 @@ while True:
         food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
     food_spawn = True
 
+    # Enemy pathfinding
+
+
     # GFX
     game_window.fill(black)
     for i in range(0, frame_size_x, 30):
@@ -168,12 +173,26 @@ while True:
     # Snake food
     pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
+    # Enemy body
+    pygame.draw.rect(game_window, red, pygame.Rect(enemy_pos[0], enemy_pos[1], 10, 10))
+
     # Game Over conditions
     # Getting out of bounds
     # if snake_pos[0] < 0 or snake_pos[0] > frame_size_x-10:
     #     game_over()
     # if snake_pos[1] < 0 or snake_pos[1] > frame_size_y-10:
     #     game_over()
+
+    # Teleportation logic
+    if snake_pos[0] < 0:
+        snake_pos[0] = frame_size_x - 10
+    if snake_pos[0] >= frame_size_x:
+        snake_pos[0] = 0
+    if snake_pos[1] < 0:
+        snake_pos[1] = frame_size_y - 10
+    if snake_pos[1] >= frame_size_y:
+        snake_pos[1] = 0
+
     # Touching the snake body
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
