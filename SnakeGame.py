@@ -26,11 +26,9 @@ score = 0
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
-background = pygame.mixer.Sound('.\soundpack\sonar.mp3')
-detected = pygame.mixer.Sound('.\soundpack\enemy_sensed.mp3')
-
-background.play(-1)
-    #detected only plays when enemy is hit
+background = pygame.mixer.Sound('./soundpack/sonar.mp3')
+detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
+ended = False
 
 # Style
 font_family = "helvetica neue", "helvetica", "sans-serif"
@@ -54,7 +52,6 @@ difficulty = 10
 frame_size_multiplier = 1
 frame_size_x = 800 * frame_size_multiplier
 frame_size_y = 800 * frame_size_multiplier
-
 
 # Checks for errors encounteRED
 check_errors = pygame.init()
@@ -80,15 +77,19 @@ fps_controller = pygame.time.Clock()
 def game_over():
     font = pygame.font.SysFont(FONT_FAMILY, 90)
     game_over_surface = font.render('YOU DIED', True, RED)
-    game_over_rect = game_over_surface.get_rect()
-    game_over_rect.midtop = (frame_size_x/2, frame_size_y/4)
-    game_window.fill(BLACK)
-    game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, RED, FONT_FAMILY, 20)
-    pygame.display.flip()
-    time.sleep(3)
-    pygame.quit()
-    sys.exit()
+
+    
+# Game variables
+snake_pos = [400, 400]
+snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
+
+food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+food_spawn = True
+
+direction = 'RIGHT'
+change_to = direction
+
+score = 0
 
 
 # Score
@@ -183,6 +184,11 @@ while True:
         snake_pos[1] = frame_size_y - 10
     if snake_pos[1] >= frame_size_y:
         snake_pos[1] = 0
+    
+    # Sound
+    if not ended:
+        background.play(-1)
+    #detected only plays when enemy is hit
         
     # Game Over conditions
     # Getting out of bounds
