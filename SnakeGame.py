@@ -14,6 +14,12 @@ FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
+# Difficulty settings
+# Easy      ->  10
+# Medium    ->  25
+# Hard      ->  40
+# Harder    ->  60
+# Impossible->  120
 speed = 20
 
 # Sound effect
@@ -33,12 +39,13 @@ else:
 
 
 # Initialise game window
-pygame.display.set_caption('Worm')
+pygame.display.set_caption('The Convoy')
 game_window = pygame.display.set_mode((FRAME_SIZE_X, FRAME_SIZE_Y))
 
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
 start_ticks = pygame.time.get_ticks()
+radar_start_ticks = pygame.time.get_ticks()
 
 # Returns a new list of random positions based on frame size
 def random_pos():
@@ -203,22 +210,20 @@ while True:
 
     # Sonar animation
     if not pulse_done:
-        time_passed += 0.02
+        time_passed += (current_ticks - radar_start_ticks) / 50000
         radius = FRAME_SIZE_X * time_passed
         if radius > FRAME_SIZE_X * 1.1:
             radius = 0
             time_passed = 0
+            radar_start_ticks = current_ticks
             pulse_done = True
         pygame.draw.circle(game_window,(0, 255, 0), last_snake_pos, int(radius), 3)
-        print(last_snake_pos)
-
     
     # Game Over conditions
     # Touching the snake body
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
-
 
     # Touching landmine
     for landmine_pos in landmines:
