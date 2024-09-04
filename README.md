@@ -1,8 +1,12 @@
 # The Convoy
 
-  This is a game combining pacman elements to the snake game
+  You are the convoy commodore of the Convoy, who is tasked with escorting merchant ships. Your mission is simple yet challenging: reach as many checkpoints as possible and evade U-boats, which will inflict damage on the convoy. Godspeed
+
+
 
 ## Instructions
+
+### Controls
 
 | Keys | Role        |
 |------|-------------|
@@ -10,14 +14,25 @@
 | d / right arrow    | Move Right  |
 | w / up arrow   | Move Up  |
 | s / down arrow   |  Move Down |
-| comma (,)  | Decrease Speed  |
-| period/fullstop (.)   |  Increase Speed |
 | escape    |  Quit game  |
 
-Teleportation is enabled.
 
-Speed increases/decreases in increments of 10.
-  
+### Mechanics
+
+| Colour | Name        |
+|------|-------------|
+| 🟩 Green    | The Convoy   |
+| ⬜️ White    | Checkpoint  |
+| 🟥 Red   | U-boat  |
+
+U-boats will reduce the health of the Convoy, which is represented by its length, by 1; while checkpoints will increase its health by 1. Colliding with the edge of the map will teleport the Convoy to the other side.
+
+
+### Settings
+
+Throttle the speed by pressing the comma (",") key for decreasing and the period/fullstop (".") key for increasing. The speed increases/decreases in increments of 10.
+
+
  
 ## Credits
  
