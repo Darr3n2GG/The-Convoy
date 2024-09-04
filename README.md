@@ -25,7 +25,7 @@
 | ⬜️ White    | Checkpoint  |
 | 🟥 Red   | U-boat  |
 
-U-boats will reduce the health of the Convoy, which is represented by its length, by 1; while checkpoints will increase its health by 1. Colliding with the edge of the map will teleport the Convoy to the other side.
+U-boats will reduce the health of the Convoy, which is represented by its length, by 1; while checkpoints will increase its health by 1. Colliding with the edge of the map will teleport the Convoy to the other side. U-boats only appear on the map for 2 seconds every 5 seconds, they will still cause damage when invisible.
 
 
 ### Settings
