@@ -13024,3 +13024,7 @@ ssl/openssl.cnf
 ssl/openssl.cnf 2.dist
 ssl/openssl.cnf.dist
 var/cache/fontconfig/.leave
+dist/SnakeGame.app/Contents/_CodeSignature/CodeResources
+dist/SnakeGame.app/Contents/Resources/icon-windowed.icns
+dist/SnakeGame.app/Contents/MacOS/SnakeGame
+dist/SnakeGame.app/Contents/Info.plist
