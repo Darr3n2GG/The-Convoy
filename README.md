@@ -35,7 +35,7 @@ Throttle the speed by pressing the comma (",") key for decreasing and the period
 
 ## Installation
 
-To play The Convoy, Python and Pygame is required.
+To play The Convoy, Python and Pygame are required.
 
 1. Install Python (if required): [python.org](https://www.python.org/). 
 
