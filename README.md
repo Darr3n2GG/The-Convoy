@@ -1,4 +1,4 @@
-# Snake-GameJam-2024-CLHS
+# The Convoy
 
   This is a game combining pacman elements to the snake game
 
@@ -23,4 +23,4 @@ Speed increases/decreases in increments of 10.
  
   Derived from [Rajat Dipta Biswas's Snake Eater](https://github.com/rajatdiptabiswas/snake-pygame).
   
-  Sonar sound from [Pixabay](https://pixabay.com/sound-effects/sonar-a-dry-98689/).
+  Sonar sound from Pixabay. ( [Sonar](https://pixabay.com/sound-effects/sonar-a-dry-98689/) [Beep](https://pixabay.com/sound-effects/short-beep-tone-47916/) [Repair](https://pixabay.com/sound-effects/repair-metal-85833/) [Explode](https://pixabay.com/sound-effects/large-underwater-explosion-190270/) )
