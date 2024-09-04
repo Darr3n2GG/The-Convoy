@@ -12,6 +12,14 @@ FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
+# Difficulty settings
+# Easy      ->  10
+# Medium    ->  25
+# Hard      ->  40
+# Harder    ->  60
+# Impossible->  120
+DIFFICULTY = 10
+
 
 # Variables
 snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
@@ -29,13 +37,6 @@ background = pygame.mixer.Sound('./soundpack/sonar.mp3')
 detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 ended = False
 
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
-DIFFICULTY = 10
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -51,10 +52,6 @@ else:
 # Initialise game window
 pygame.display.set_caption('Worm')
 game_window = pygame.display.set_mode((FRAME_SIZE_X, FRAME_SIZE_Y))
-
-
-# FPS (frames per second) controlled
-fps_controller = pygame.time.Clock()
 
 
 # Game Over
@@ -81,6 +78,7 @@ def generate_food_position():
         if new_food_pos not in snake_body:
             return new_food_pos
 
+
 # Main logic
 while True:
     for event in pygame.event.get():
@@ -102,7 +100,7 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
 
-    # Making sure the snake cannot move in the opposite direction instantaneously
+    # instantaneous manoeuvre prevention
     if change_to == 'UP' and direction != 'DOWN':
         direction = 'UP'
     if change_to == 'DOWN' and direction != 'UP':
@@ -112,7 +110,24 @@ while True:
     if change_to == 'RIGHT' and direction != 'LEFT':
         direction = 'RIGHT'
 
-    # Moving the snake
+    # GFX
+    game_window.fill(BLACK)
+    for i in range(0, FRAME_SIZE_X, 50):
+        pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
+    for i in range(0, FRAME_SIZE_Y , 50):
+        pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
+    for pos in snake_body:
+        # Snake body
+        # .draw.rect(play_surface, color, xy-coordinate)
+        # xy-coordinate -> .Rect(x, y, size_x, size_y)
+        pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], SNAKE_SIZE, SNAKE_SIZE))
+
+    # Sound
+    if not ended:
+        background.play(-1)
+    #detected only plays when enemy is hit
+
+    # Snake movements
     if direction == 'UP':
         snake_pos[1] -= SNAKE_SIZE
     if direction == 'DOWN':
@@ -121,6 +136,17 @@ while True:
         snake_pos[0] -= SNAKE_SIZE
     if direction == 'RIGHT':
         snake_pos[0] += SNAKE_SIZE
+
+    # Teleportation logic
+    if snake_pos[0] < 0:
+        snake_pos[0] = FRAME_SIZE_X - SNAKE_SIZE
+    if snake_pos[0] >= FRAME_SIZE_X:
+        snake_pos[0] = 0
+    if snake_pos[1] < 0:
+        snake_pos[1] = FRAME_SIZE_Y - SNAKE_SIZE
+    if snake_pos[1] >= FRAME_SIZE_Y:
+        snake_pos[1] = 0
+
 
     # Snake body growing mechanism
     snake_body.insert(0, list(snake_pos))
@@ -135,36 +161,8 @@ while True:
         food_pos = generate_food_position()
     food_spawn = True
 
-    # GFX
-    game_window.fill(BLACK)
-    for i in range(0, FRAME_SIZE_X, 50):
-        pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
-    for i in range(0, FRAME_SIZE_Y , 50):
-        pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
-    for pos in snake_body:
-        # Snake body
-        # .draw.rect(play_surface, color, xy-coordinate)
-        # xy-coordinate -> .Rect(x, y, size_x, size_y)
-        pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], SNAKE_SIZE, SNAKE_SIZE))
-
-
-    # Snake food
     pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], SNAKE_SIZE, SNAKE_SIZE))
 
-    # Teleportation logic
-    if snake_pos[0] < 0:
-        snake_pos[0] = FRAME_SIZE_X - SNAKE_SIZE
-    if snake_pos[0] >= FRAME_SIZE_X:
-        snake_pos[0] = 0
-    if snake_pos[1] < 0:
-        snake_pos[1] = FRAME_SIZE_Y - SNAKE_SIZE
-    if snake_pos[1] >= FRAME_SIZE_Y:
-        snake_pos[1] = 0
-    
-    # Sound
-    if not ended:
-        background.play(-1)
-    #detected only plays when enemy is hit
         
     # Game Over conditions
     # Getting out of bounds
@@ -181,4 +179,4 @@ while True:
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
-    fps_controller.tick(DIFFICULTY)
+    FPS_CONTROLLER.tick(DIFFICULTY)
