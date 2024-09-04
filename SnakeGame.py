@@ -3,7 +3,7 @@ import pygame, sys, time, random
 pygame.init()
 
 # Constants
-FONT = pygame.font.Font('./Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf', 20)
+FONT = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 20)
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
@@ -13,14 +13,6 @@ FRAME_SIZE_X = 500
 FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
-
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
-speed = 20
 
 
 # Variables
@@ -32,9 +24,10 @@ food_spawn = True
 direction = 'RIGHT'
 change_to = direction
 score = 0
+speed = 20
 
 landmines = []
-blink_duration = 2000
+blink_duration = 3000
 fade_duration = 1000
 show_landmines = False
 
@@ -69,16 +62,14 @@ start_ticks = pygame.time.get_ticks()
 def random_pos():
     return [random.randrange(1, (FRAME_SIZE_X//10)) * 10, random.randrange(1, (FRAME_SIZE_Y//10)) * 10]
 
-
 # Game Over
-def game_over():
-    font = pygame.font.SysFont(FONT, 90)
-    game_over_surface = font.render('YOU DIED', True, RED)
+def game_over(color, FONT, size):
+    game_over_surface = FONT.render('YOU DIED', True, RED)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
     game_window.fill(BLACK)
     game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, RED, FONT, 20)
+    show_score(RED, FONT, 20)
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
@@ -89,14 +80,16 @@ def game_over():
 def show_score(color, FONT, size):
     score_surface = FONT.render('Score : ' + str(score), True, color)
     score_rect = score_surface.get_rect()
-    score_rect.topleft = (10, 15)
+    score_rect.topleft = (10, 10)
+    game_window.blit(score_surface, score_rect)
+
     game_window.blit(score_surface, score_rect)
 
 # Speed
 def show_speed(color, FONT, size):
     speed_surface = FONT.render('Speed : ' + str(speed), True, color)
     speed_rect = speed_surface.get_rect()
-    speed_rect.topleft = (10, 50)
+    speed_rect.topleft = (10, 40)
     game_window.blit(speed_surface, speed_rect)
 
 
@@ -107,6 +100,9 @@ def generate_food_position():
         if new_food_pos not in snake_body:
             return new_food_pos
 
+def landmine_pos():
+    for i in range(len(landmines)):
+        landmines[i] = random_pos()
 
 # Main logic
 while True:
@@ -206,8 +202,6 @@ while True:
     current_ticks = pygame.time.get_ticks()
     if not show_landmines and current_ticks - start_ticks >= blink_duration:
         show_landmines = True
-        for i in range(len(landmines)):
-            landmines[i] = random_pos()
         start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
@@ -221,19 +215,18 @@ while True:
     # Touching the snake body
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
-            game_over()
-
+            game_over(RED, FONT, 100)
 
     # landmine
     for landmine_pos in landmines:
         if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
             snake_body.pop()
             if snake_body == []:
-                game_over()
+                game_over(RED, FONT, 100)
 
     show_score(WHITE, FONT, 20)
-
     show_speed(WHITE, FONT, 20)
+
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
