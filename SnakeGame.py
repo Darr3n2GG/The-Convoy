@@ -40,18 +40,13 @@ fps_controller = pygame.time.Clock()
 emit_start_ticks = pygame.time.get_ticks()
 radar_start_ticks = None
 
-# SFX
-pygame.mixer.init()
-SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
-
 
 # Functions #
 # Returns a new list of random positions based on frame size
 def random_pos():
     xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
     ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
-    while [xpos, ypos] in snake_body: #repeats generating the random position when it is occupied by player
+    while [xpos, ypos] in convoy_body: #repeats generating the random position when it is occupied by player
         xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
         ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
     return [xpos, ypos]
