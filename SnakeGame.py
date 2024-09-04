@@ -21,7 +21,6 @@ SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
-
 # Checks for errors encountered
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
@@ -50,8 +49,13 @@ DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 # Functions #
 # Returns a new list of random positions based on frame size
 def random_pos():
-    return [random.randrange(1, (FRAME_SIZE_X//PIXEL_SIZE)) * PIXEL_SIZE, random.randrange(1, (FRAME_SIZE_Y//PIXEL_SIZE)) * PIXEL_SIZE]
-
+    xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
+    ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
+    while [xpos, ypos] in snake_body: #repeats generating the random position when it is occupied by player
+        xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
+        ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
+    return [xpos, ypos]
+    
 # Game over screen and auto-close
 def game_over():
     game_over_font = pygame.font.Font('./fonts/Jacquard24-Regular.ttf', 100)
