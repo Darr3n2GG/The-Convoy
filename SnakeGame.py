@@ -1,4 +1,4 @@
-import pygame, sys, time, random
+import pygame, sys, time, random, math
 
 pygame.init()
 
@@ -22,11 +22,6 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Impossible->  120
 speed = 10
 
-# Sound effect
-pygame.mixer.init()
-SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
-
 # Checks for errors encounteREDf
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
@@ -37,15 +32,19 @@ if check_errors[1] > 0:
 else:
     print('[+] Game successfully initialised')
 
-
 # Initialise game window
 pygame.display.set_caption('The Convoy')
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
 
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
-start_ticks = pygame.time.get_ticks()
-radar_start_ticks = pygame.time.get_ticks()
+emit_start_ticks = pygame.time.get_ticks()
+radar_start_ticks = None
+
+# SFX
+pygame.mixer.init()
+SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
+DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 
 # Returns a new list of random positions based on frame size
 def random_pos():
@@ -78,32 +77,36 @@ def show_speed():
     speed_rect.bottomright = (game_window.get_width() - 10, game_window.get_height() - 10)
     game_window.blit(speed_surface, speed_rect)
 
+def detect_collision(cx, cy, radius, px, py):
+    # Calculate the distance between the circle center and the point
+    distance = math.sqrt((px - cx) ** 2 + (py - cy) ** 2)
+    # Check if the distance is less than or equal to the radius
+    return distance <= radius
+
 
 #   Variables  #
 # Snake
-snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
+snake_pos = [FRAME_SIZE_X / 5, FRAME_SIZE_Y / 2]
 snake_body = [[snake_pos[0] - 10, snake_pos[1]], [snake_pos[0] - 20, snake_pos[1]], [snake_pos[0] - 30, snake_pos[1]]]
 last_snake_pos = [0,0]
 direction = 'RIGHT'
 change_to = direction
 
 # checkpoints
-checkpoints_pos = random_pos()
+checkpoints_pos = [400, snake_pos[1]]
 checkpoints_spawn = True
 checkpoints = 0
 
-# Landmine
+# Submarine
 submarines = []
-blink_duration = 2000
-fade_duration = 1000
-show_submarines = False
+emit_duration = 3000
 
 # Radar
+radar_pulsed = False
 pulse_done = True
 time_passed = 0
 radius = 0
 
-#-------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Main logic
 while True:
@@ -144,11 +147,10 @@ while True:
     if change_to == 'RIGHT' and direction != 'LEFT':
         direction = 'RIGHT'
 
-
     # GFX
     game_window.fill(BLACK)
 
-    # Grid
+    # Draw Grid
     for i in range(0, FRAME_SIZE_X + 1, 50):
         pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
     for i in range(0, FRAME_SIZE_Y + 1, 50):
@@ -203,42 +205,39 @@ while True:
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], 10, 10))
 
     
-    # Landmine blinking
+    # Emit sonar every 3 seconds
     current_ticks = pygame.time.get_ticks()
-    if not show_submarines and current_ticks - start_ticks >= blink_duration:
-        show_submarines = True
+    if current_ticks - emit_start_ticks >= emit_duration:
         pulse_done = False
         last_snake_pos = list(snake_pos)
-        for i in range(len(submarines)):
-            submarines[i] = random_pos()
+        radar_start_ticks = pygame.time.get_ticks()
         SONAR.play()
-        start_ticks = current_ticks
-    elif show_submarines and current_ticks - start_ticks >= fade_duration:
-        show_submarines = False
-        start_ticks = current_ticks
-    if show_submarines:
-        for landmine_pos in submarines:
-            pygame.draw.rect(game_window, RED, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))
+        emit_start_ticks = current_ticks
 
             
     # Sonar animation
     if not pulse_done:
-        time_passed += (current_ticks - radar_start_ticks) / 50000
+        time_passed = (current_ticks - radar_start_ticks) / 2000
         radius = FRAME_SIZE_X * time_passed
-        if radius > FRAME_SIZE_X * 1.1:
+        if time_passed > 1:
             radius = 0
             time_passed = 0
             radar_start_ticks = current_ticks
+            for i in range(len(submarines)):
+                submarines[i] = random_pos()
             pulse_done = True
         pygame.draw.circle(game_window,(0, 255, 0), last_snake_pos, int(radius), 3)
+        
+        for submarine_pos in submarines:
+            if detect_collision(last_snake_pos[0], last_snake_pos[1], radius, submarine_pos[0], submarine_pos[1]):
+                pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], 10, 10))
     
     
     # Game Over conditions
     # Touching the snake body
-    for block in snake_body[1:]:
-        if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
+    for body in snake_body[1:]:
+        if snake_pos[0] == body[0] and snake_pos[1] == body[1]:
             game_over()
-
 
     # Touching landmine
     for landmine_pos in submarines:
@@ -246,7 +245,6 @@ while True:
             snake_body.pop()
             if snake_body == []:
                 game_over()
-
 
     # Show checkpoints and speed value
     show_checkpoints()
