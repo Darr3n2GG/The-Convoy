@@ -17,7 +17,7 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Constants for sound
 pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3') #not in used
+# DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
@@ -30,7 +30,8 @@ SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 speed = 10
 
 
-# Checks for errors encounteREDf
+
+# Checks for errors encountered
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
 # second number in tuple gives number of errors
@@ -45,19 +46,21 @@ else:
 pygame.display.set_caption('The Convoy')
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
 
-# FPS (frames per second) controller
+# FPS controller
 fps_controller = pygame.time.Clock()
 start_ticks = pygame.time.get_ticks()
 radar_start_ticks = pygame.time.get_ticks()
 
+
+# Functions #
 # Returns a new list of random positions based on frame size
 def random_pos():
     return [random.randrange(1, (FRAME_SIZE_X//PIXEL_SIZE)) * PIXEL_SIZE, random.randrange(1, (FRAME_SIZE_Y//PIXEL_SIZE)) * PIXEL_SIZE]
 
 # Game over screen and auto-close
 def game_over():
-    game_over_font = pygame.font.Font(FONT_PATH, 100)
-    game_over_surface = game_over_font.render('YOU DIED', True, RED)
+    game_over_font = pygame.font.Font('./fonts/Jacquard24-Regular.ttf', 100)
+    game_over_surface = game_over_font.render('Defeat', True, RED)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
     game_window.fill(BLACK)
@@ -85,20 +88,29 @@ def show_speed():
     game_window.blit(speed_surface, speed_rect)
 
 
+
 #   Variables  #
-# the Convoy
+# Convoy
 convoy_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
 convoy_body = [[convoy_pos[0] - 10, convoy_pos[1]], [convoy_pos[0] - 20, convoy_pos[1]], [convoy_pos[0] - 30, convoy_pos[1]]]
 last_convoy_pos = [0,0]
 direction = 'RIGHT'
 change_to = direction
 
+# Speed settings
+# Easy      ->  10
+# Medium    ->  25
+# Hard      ->  40
+# Harder    ->  60
+# Impossible->  120
+speed = 10
+
 # checkpoints
 checkpoints_pos = random_pos()
 checkpoints_spawn = True
 checkpoints = 0
 
-# U-boat, the red dots
+# Submarines
 submarines = []
 blink_duration = 2000
 fade_duration = 1000
@@ -109,9 +121,12 @@ pulse_done = True
 time_passed = 0
 radius = 0
 
+
+
 #-------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Main logic
+
+# Main logic #
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -167,7 +182,6 @@ while True:
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
         pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], PIXEL_SIZE, PIXEL_SIZE))
-
         
     # Convoy movements
     if direction == 'UP':
@@ -201,18 +215,17 @@ while True:
         convoy_body.pop()
 
         
-    # Spawning checkpoints on the screen
+    # Spawning checkpoints
     if not checkpoints_spawn:
         checkpoints_pos = random_pos()
-        submarines.insert(0,random_pos()) # Spawn U-boat/red
+        submarines.insert(0,random_pos()) # Spawn Submarine
     checkpoints_spawn = True
 
-    
-    # Convoy checkpoints
+    # Checkpoints
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], 10, 10))
 
     
-    # U-boat/red blinking
+    # Submarine blinking
     current_ticks = pygame.time.get_ticks()
     if not show_submarines and current_ticks - start_ticks >= blink_duration:
         show_submarines = True
@@ -226,8 +239,8 @@ while True:
         show_submarines = False
         start_ticks = current_ticks
     if show_submarines:
-        for uboat_pos in submarines:
-            pygame.draw.rect(game_window, RED, pygame.Rect(uboat_pos[0], uboat_pos[1], 10, 10))
+        for submarine_pos in submarines:
+            pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], 10, 10))
 
             
     # Sonar animation
@@ -249,13 +262,14 @@ while True:
             game_over()
 
 
-    # Touching U-boat
-    for uboat_pos in submarines:
-        if convoy_pos[0] == uboat_pos[0] and convoy_pos[1] == uboat_pos[1]:
+    # Touching Submarine
+    for submarine_pos in submarines:
+        if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
             convoy_body.pop()
             HIT.play()
             if convoy_body == []:
                 game_over()
+
 
 
     # Show checkpoints and speed value
