@@ -1,6 +1,6 @@
 # The Convoy
 
-  You are the convoy commodore of the Convoy, who is tasked with escorting merchant ships. Your mission is simple yet challenging: reach as many checkpoints as possible and evade U-boats, which will inflict damage on the convoy. Godspeed
+  You are the convoy commodore of the Convoy, who is tasked with escorting merchant ships. Your mission is simple yet challenging: reach as many checkpoints as possible and evade U-boats, which will inflict damage on the convoy. Godspeed.
 
 
 
