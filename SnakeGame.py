@@ -23,22 +23,6 @@ FPS_CONTROLLER = pygame.time.Clock()
 speed = 20
 
 
-# Variables
-snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
-snake_body = [[100, 50], [90, 50], [80, 50]]
-food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
-            random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
-food_spawn = True
-direction = 'RIGHT'
-change_to = direction
-score = 0
-
-landmines = []
-blink_duration = 2000
-fade_duration = 1000
-show_landmines = False
-
-
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
 background = pygame.mixer.Sound('./soundpack/sonar.mp3')
@@ -68,7 +52,6 @@ start_ticks = pygame.time.get_ticks()
 # Returns a new list of random positions based on frame size
 def random_pos():
     return [random.randrange(1, (FRAME_SIZE_X//10)) * 10, random.randrange(1, (FRAME_SIZE_Y//10)) * 10]
-
 
 # Game Over
 def game_over():
@@ -107,6 +90,20 @@ def generate_food_position():
         if new_food_pos not in snake_body:
             return new_food_pos
 
+# Variables
+snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
+snake_body = [[100, 50], [90, 50], [80, 50]]
+food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
+            random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
+food_spawn = True
+direction = 'RIGHT'
+change_to = direction
+score = 0
+
+landmines = []
+blink_duration = 2000
+fade_duration = 1000
+show_landmines = False
 
 # Main logic
 while True:
@@ -114,6 +111,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
         # Whenever a key is pressed down
         elif event.type == pygame.KEYDOWN:
             # W -> Up; S -> Down; A -> Left; D -> Right
@@ -150,6 +148,7 @@ while True:
 
     # GFX
     game_window.fill(BLACK)
+    # Grid
     for i in range(0, FRAME_SIZE_X, 50):
         pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
     for i in range(0, FRAME_SIZE_Y , 50):
@@ -196,11 +195,12 @@ while True:
 
     # Spawning food on the screen
     if not food_spawn:
-        food_pos = generate_food_position()
+        food_pos = random_pos()
         landmines.insert(0,random_pos()) # Spawn landmine
     food_spawn = True
 
-    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], SNAKE_SIZE, SNAKE_SIZE))
+    # Snake food
+    pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
     # Landmine blinking
     current_ticks = pygame.time.get_ticks()
@@ -224,16 +224,17 @@ while True:
             game_over()
 
 
-    # landmine
+    # Touching landmine
     for landmine_pos in landmines:
         if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
             snake_body.pop()
             if snake_body == []:
                 game_over()
 
+    # Show score and speed value
     show_score(WHITE, FONT, 20)
-
     show_speed(WHITE, FONT, 20)
+    
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
