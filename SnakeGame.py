@@ -113,7 +113,7 @@ checkpoints = 0
 # Submarines
 submarines = []
 blink_duration = 2000
-fade_duration = 1000
+fade_duration = 3000
 show_submarines = False
 
 # Radar
