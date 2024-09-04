@@ -47,7 +47,9 @@ To play The Convoy, Python and Pygame are required.
 
 5. Run The Convoy in your code editor (recommended), or run it in your command-line interface.
 
-6. The Convoy will open in a new window. 
+6. The Convoy will open in a new window.
+
+If help is needed, feel free to ask at [Discussions/installation and game help](https://github.com/Darr3n2GG/The-Convoy/discussions/categories/installation-and-game-help)
 
  
 ## Credits
