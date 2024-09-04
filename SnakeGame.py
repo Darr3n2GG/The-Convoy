@@ -59,15 +59,17 @@ def game_over():
     sys.exit()
 
 # Score
-def show_score(color, FONT, size):
-    score_surface = FONT.render('Checkpoints : ' + str(score), True, color)
+def show_score():
+    FONT = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf',20)
+    score_surface = FONT.render('Checkpoints : ' + str(score), True, WHITE)
     score_rect = score_surface.get_rect()
     score_rect.topleft = (10, 15)
     game_window.blit(score_surface, score_rect)
 
 # Speed
-def show_speed(color, FONT, size):
-    speed_surface = FONT.render('Speed : ' + str(speed), True, color)
+def show_speed():
+    FONT = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 12)
+    speed_surface = FONT.render('Speed : ' + str(speed), True, WHITE)
     speed_rect = speed_surface.get_rect()
     speed_rect.bottomright = (game_window.get_width() - 10, game_window.get_height() - 10)
     game_window.blit(speed_surface, speed_rect)
@@ -222,8 +224,8 @@ while True:
 
 
     # Show score and speed value
-    show_score(WHITE, FONT, 20)
-    show_speed(WHITE, FONT, 1)
+    show_score()
+    show_speed()
     
 
     # Refresh game screen
