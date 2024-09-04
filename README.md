@@ -43,7 +43,7 @@ To play The Convoy, Python and Pygame are required.
 
 3. Download The Convoy [here](https://github.com/Darr3n2GG/Snake-GameJam-2024-CLHS). 
 
-4. Open The Convoy into a code editor (recommended), or with any other workable method of your choice.
+4. Open The Convoy in a code editor (recommended), or with any other workable method of your choice.
 
 5. Run The Convoy in your code editor (recommended), or run it in your command-line interface.
 
