@@ -20,6 +20,8 @@ speed = 20
 pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
 DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
+HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
+SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -81,12 +83,6 @@ def show_speed(color, FONT, size):
     game_window.blit(speed_surface, speed_rect)
 
 
-def generate_food_position(): #func could be replaced by random_pos()
-    while True:
-        new_food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
-                        random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
-        if new_food_pos not in snake_body:
-            return new_food_pos
 
 # Variables
 snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
@@ -183,6 +179,7 @@ while True:
     if snake_pos[0] == food_pos[0] and snake_pos[1] == food_pos[1]:
         score += 1
         food_spawn = False
+        SUPPLIED.play()
     else:
         snake_body.pop()
 
@@ -222,6 +219,7 @@ while True:
     for landmine_pos in landmines:
         if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
             snake_body.pop()
+            HIT.play()
             if snake_body == []:
                 game_over()
 
