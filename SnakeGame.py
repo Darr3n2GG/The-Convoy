@@ -14,14 +14,7 @@ FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
 speed = 20
-
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
