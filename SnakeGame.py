@@ -7,15 +7,14 @@ WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
 GREEN = pygame.Color(0, 255, 0)
 BLUE = pygame.Color(0, 0, 255)
-DIFFICULTY = 10
-FRAME_SIZE_X = 800
-FRAME_SIZE_Y = 800
+FRAME_SIZE_X = 500
+FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
 
 # Variables
-snake_pos = [400, 400]
+snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
 snake_body = [[100, 50], [90, 50], [80, 50]]
 food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
             random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
@@ -30,30 +29,15 @@ background = pygame.mixer.Sound('./soundpack/sonar.mp3')
 detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 ended = False
 
-# Style
-font_family = "helvetica neue", "helvetica", "sans-serif"
-
-# Colors (R, G, B)
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
-green = pygame.Color(0, 255, 0)
-blue = pygame.Color(0, 0, 255)
-
 # Difficulty settings
 # Easy      ->  10
 # Medium    ->  25
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-difficulty = 10
+DIFFICULTY = 10
 
-# Window size
-frame_size_multiplier = 1
-frame_size_x = 800 * frame_size_multiplier
-frame_size_y = 800 * frame_size_multiplier
-
-# Checks for errors encounteRED
+# Checks for errors encounteREDf
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
 # second number in tuple gives number of errors
@@ -66,10 +50,10 @@ else:
 
 # Initialise game window
 pygame.display.set_caption('Worm')
-game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
+game_window = pygame.display.set_mode((FRAME_SIZE_X, FRAME_SIZE_Y))
 
 
-# FPS (frames per second) controller
+# FPS (frames per second) controlled
 fps_controller = pygame.time.Clock()
 
 
@@ -78,19 +62,6 @@ def game_over():
     font = pygame.font.SysFont(FONT_FAMILY, 90)
     game_over_surface = font.render('YOU DIED', True, RED)
 
-    
-# Game variables
-snake_pos = [400, 400]
-snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
-
-food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
-food_spawn = True
-
-direction = 'RIGHT'
-change_to = direction
-
-score = 0
-
 
 # Score
 def show_score(choice, color, font, size):
@@ -98,12 +69,17 @@ def show_score(choice, color, font, size):
     score_surface = score_font.render('Score : ' + str(score), True, color)
     score_rect = score_surface.get_rect()
     if choice == 1:
-        score_rect.midtop = (frame_size_x/10, 15)
+        score_rect.midtop = (FRAME_SIZE_X/10, 15)
     else:
-        score_rect.midtop = (frame_size_x/2, frame_size_y/1.25)
+        score_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/1.25)
     game_window.blit(score_surface, score_rect)
-    # pygame.display.flip()
 
+def generate_food_position():
+    while True:
+        new_food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
+                        random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
+        if new_food_pos not in snake_body:
+            return new_food_pos
 
 # Main logic
 while True:
@@ -138,13 +114,13 @@ while True:
 
     # Moving the snake
     if direction == 'UP':
-        snake_pos[1] -= 10
+        snake_pos[1] -= SNAKE_SIZE
     if direction == 'DOWN':
-        snake_pos[1] += 10
+        snake_pos[1] += SNAKE_SIZE
     if direction == 'LEFT':
-        snake_pos[0] -= 10
+        snake_pos[0] -= SNAKE_SIZE
     if direction == 'RIGHT':
-        snake_pos[0] += 10
+        snake_pos[0] += SNAKE_SIZE
 
     # Snake body growing mechanism
     snake_body.insert(0, list(snake_pos))
@@ -156,33 +132,33 @@ while True:
 
     # Spawning food on the screen
     if not food_spawn:
-        food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+        food_pos = generate_food_position()
     food_spawn = True
 
     # GFX
     game_window.fill(BLACK)
-    for i in range(0, frame_size_x, 50):
-        pygame.draw.line(game_window, GREEN, (0, i), (frame_size_x, i))
-    for i in range(0, frame_size_y , 50):
-        pygame.draw.line(game_window, GREEN, (i, 0), (i, frame_size_y))
+    for i in range(0, FRAME_SIZE_X, 50):
+        pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
+    for i in range(0, FRAME_SIZE_Y , 50):
+        pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
     for pos in snake_body:
         # Snake body
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
-        pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], 10, 10))
+        pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], SNAKE_SIZE, SNAKE_SIZE))
 
 
     # Snake food
-    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], SNAKE_SIZE, SNAKE_SIZE))
 
     # Teleportation logic
     if snake_pos[0] < 0:
-        snake_pos[0] = frame_size_x - 10
-    if snake_pos[0] >= frame_size_x:
+        snake_pos[0] = FRAME_SIZE_X - SNAKE_SIZE
+    if snake_pos[0] >= FRAME_SIZE_X:
         snake_pos[0] = 0
     if snake_pos[1] < 0:
-        snake_pos[1] = frame_size_y - 10
-    if snake_pos[1] >= frame_size_y:
+        snake_pos[1] = FRAME_SIZE_Y - SNAKE_SIZE
+    if snake_pos[1] >= FRAME_SIZE_Y:
         snake_pos[1] = 0
     
     # Sound
@@ -205,4 +181,4 @@ while True:
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
-    fps_controller.tick(difficulty)
+    fps_controller.tick(DIFFICULTY)
