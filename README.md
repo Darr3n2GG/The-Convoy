@@ -1,2 +1,4 @@
 # Snake-GameJam-2024-CLHS
- Hi
+  This is a game combining pacman elements to the snake game
+ 
+ 
