@@ -1,4 +1,4 @@
-# Snake-GameJam-2024-CLHS
+# The Convoy
 
   This is a game combining pacman elements to the snake game
 
