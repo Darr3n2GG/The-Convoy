@@ -42,7 +42,14 @@ start_ticks = pygame.time.get_ticks()
 
 # Returns a new list of random positions based on frame size
 def random_pos():
-    return [random.randrange(1, (FRAME_SIZE_X//10)) * 10, random.randrange(1, (FRAME_SIZE_Y//10)) * 10]
+    xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
+    ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
+    if [xpos, ypos] in snake_body:
+        xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
+        ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
+    else:
+        return [xpos, ypos]
+    
 
 # Game Over
 def game_over():
@@ -74,7 +81,7 @@ def show_speed(color, FONT, size):
     game_window.blit(speed_surface, speed_rect)
 
 
-def generate_food_position():
+def generate_food_position(): #func could be replaced by random_pos()
     while True:
         new_food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
                         random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
@@ -200,7 +207,7 @@ while True:
         show_landmines = False
         start_ticks = current_ticks
     if show_landmines:
-        for landmine_pos in landmines:
+        for landmine_pos in landmines: #??? unknown code
             pygame.draw.rect(game_window, RED, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))   
 
     
