@@ -25,10 +25,8 @@ speed = 20
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
-background = pygame.mixer.Sound('./soundpack/sonar.mp3')
-detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
-ended = False
-
+SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
+DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -159,11 +157,6 @@ while True:
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
         pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], SNAKE_SIZE, SNAKE_SIZE))
 
-    # Sound
-    if not ended:
-        background.play(-1)
-    #detected only plays when enemy is hit
-
     # Snake movements
     if direction == 'UP':
         snake_pos[1] -= SNAKE_SIZE
@@ -200,7 +193,7 @@ while True:
     food_spawn = True
 
     # Snake food
-    pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
     # Landmine blinking
     current_ticks = pygame.time.get_ticks()
@@ -208,6 +201,7 @@ while True:
         show_landmines = True
         for i in range(len(landmines)):
             landmines[i] = random_pos()
+            SONAR.play()
         start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
