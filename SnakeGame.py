@@ -46,11 +46,10 @@ start_ticks = pygame.time.get_ticks()
 def random_pos():
     xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
     ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
-    if [xpos, ypos] in snake_body:
+    while [xpos, ypos] in snake_body: #repeats generating the random position when it is occupied by player
         xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
         ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
-    else:
-        return [xpos, ypos]
+    return [xpos, ypos]
     
 
 # Game Over
