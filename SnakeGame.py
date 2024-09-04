@@ -1,7 +1,9 @@
 import pygame, sys, time, random
 
+pygame.init()
+
 # Constants
-FONT_FAMILY = "helvetica neue", "sans serif"
+FONT = pygame.font.Font('./Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf', 20)
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
@@ -18,7 +20,7 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-DIFFICULTY = 10
+speed = 20
 
 
 # Variables
@@ -43,7 +45,7 @@ check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
 # second number in tuple gives number of errors
 if check_errors[1] > 0:
-    print(f'[!] Had {check_errors[1]} errors when initialising game, exiting...')
+    print('[!] Had {check_errors[1]} errors when initialising game, exiting...')
     sys.exit(-1)
 else:
     print('[+] Game successfully initialised')
@@ -56,20 +58,24 @@ game_window = pygame.display.set_mode((FRAME_SIZE_X, FRAME_SIZE_Y))
 
 # Game Over
 def game_over():
-    font = pygame.font.SysFont(FONT_FAMILY, 90)
-    game_over_surface = font.render('YOU DIED', True, RED)
+    game_over_surface = FONT.render('YOU DIED', True, RED)
 
 
 # Score
-def show_score(choice, color, font, size):
-    score_font = pygame.font.SysFont(font, size)
-    score_surface = score_font.render('Score : ' + str(score), True, color)
+# Text aligned to top left of window
+def show_score(color, FONT, size):
+    score_surface = FONT.render('Score : ' + str(score), True, color)
     score_rect = score_surface.get_rect()
-    if choice == 1:
-        score_rect.midtop = (FRAME_SIZE_X/10, 15)
-    else:
-        score_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/1.25)
+    score_rect.topleft = (10, 15)
     game_window.blit(score_surface, score_rect)
+
+# Speed
+def show_speed(color, FONT, size):
+    speed_surface = FONT.render('Speed : ' + str(speed), True, color)
+    speed_rect = speed_surface.get_rect()
+    speed_rect.topleft = (10, 50)
+    game_window.blit(speed_surface, speed_rect)
+
 
 def generate_food_position():
     while True:
@@ -96,6 +102,15 @@ while True:
                 change_to = 'LEFT'
             if event.key == pygame.K_RIGHT or event.key == ord('d'):
                 change_to = 'RIGHT'
+
+            # Speed
+            if event.key == pygame.K_PERIOD:
+                speed += 10
+                print(speed)
+            if event.key == pygame.K_COMMA:
+                speed = max(10, speed - 10)
+                print(speed)
+            
             # Esc -> Create event to quit the game
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
@@ -175,8 +190,10 @@ while True:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
-    show_score(1, WHITE, FONT_FAMILY, 20)
+    show_score(WHITE, FONT, 20)
+
+    show_speed(WHITE, FONT, 20)
     # Refresh game screen
     pygame.display.update()
     # Refresh rate
-    FPS_CONTROLLER.tick(DIFFICULTY)
+    FPS_CONTROLLER.tick(speed)
