@@ -14,6 +14,13 @@ FRAME_SIZE_Y = 500
 PIXEL_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
+# Constants for sound
+pygame.mixer.init(44100, -16, 2, 512)
+SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
+DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3') #not in used
+HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
+SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
+
 # Difficulty settings
 # Easy      ->  10
 # Medium    ->  25
@@ -22,12 +29,6 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Impossible->  120
 speed = 10
 
-# Sound effect
-pygame.mixer.init(44100, -16, 2, 512)
-SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
-HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
-SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -53,6 +54,7 @@ radar_start_ticks = pygame.time.get_ticks()
 def random_pos():
     return [random.randrange(1, (FRAME_SIZE_X//PIXEL_SIZE)) * PIXEL_SIZE, random.randrange(1, (FRAME_SIZE_Y//PIXEL_SIZE)) * PIXEL_SIZE]
 
+# Game over screen and auto-close
 def game_over():
     game_over_font = pygame.font.Font(FONT_PATH, 100)
     game_over_surface = game_over_font.render('YOU DIED', True, RED)
@@ -66,6 +68,7 @@ def game_over():
     pygame.quit()
     sys.exit()
 
+# Show checkpoints reached by the Convoy
 def show_checkpoints():
     checkpoint_font = pygame.font.Font(FONT_PATH, 20)
     checkpoint_surface = checkpoint_font.render('Checkpoints : ' + str(checkpoints), True, WHITE)
@@ -73,6 +76,7 @@ def show_checkpoints():
     checkpoint_rect.topleft = (10, 15)
     game_window.blit(checkpoint_surface, checkpoint_rect)
 
+# Show convoy's speed
 def show_speed():
     speed_font = pygame.font.Font(FONT_PATH, 12)
     speed_surface = speed_font.render('Speed : ' + str(speed), True, WHITE)
@@ -82,10 +86,10 @@ def show_speed():
 
 
 #   Variables  #
-# Snake
-snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
-snake_body = [[snake_pos[0] - 10, snake_pos[1]], [snake_pos[0] - 20, snake_pos[1]], [snake_pos[0] - 30, snake_pos[1]]]
-last_snake_pos = [0,0]
+# the Convoy
+convoy_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
+convoy_body = [[convoy_pos[0] - 10, convoy_pos[1]], [convoy_pos[0] - 20, convoy_pos[1]], [convoy_pos[0] - 30, convoy_pos[1]]]
+last_convoy_pos = [0,0]
 direction = 'RIGHT'
 change_to = direction
 
@@ -94,7 +98,7 @@ checkpoints_pos = random_pos()
 checkpoints_spawn = True
 checkpoints = 0
 
-# Landmine
+# U-boat, the red dots
 submarines = []
 blink_duration = 2000
 fade_duration = 1000
@@ -138,7 +142,7 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
 
-    # instantaneous manoeuvre prevention
+    # instantaneous manoeuvre prevention -- avoid head-tail switch
     if change_to == 'UP' and direction != 'DOWN':
         direction = 'UP'
     if change_to == 'DOWN' and direction != 'UP':
@@ -158,62 +162,62 @@ while True:
     for i in range(0, FRAME_SIZE_Y + 1, 50):
         pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
         
-    # Snake body
-    for pos in snake_body:
+    # Convoy body
+    for pos in convoy_body:
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
         pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], PIXEL_SIZE, PIXEL_SIZE))
 
         
-    # Snake movements
+    # Convoy movements
     if direction == 'UP':
-        snake_pos[1] -= PIXEL_SIZE
+        convoy_pos[1] -= PIXEL_SIZE
     if direction == 'DOWN':
-        snake_pos[1] += PIXEL_SIZE
+        convoy_pos[1] += PIXEL_SIZE
     if direction == 'LEFT':
-        snake_pos[0] -= PIXEL_SIZE
+        convoy_pos[0] -= PIXEL_SIZE
     if direction == 'RIGHT':
-        snake_pos[0] += PIXEL_SIZE
+        convoy_pos[0] += PIXEL_SIZE
 
         
     # Teleportation logic
-    if snake_pos[0] < 0:
-        snake_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
-    if snake_pos[0] >= FRAME_SIZE_X:
-        snake_pos[0] = 0
-    if snake_pos[1] < 0:
-        snake_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
-    if snake_pos[1] >= FRAME_SIZE_Y:
-        snake_pos[1] = 0
+    if convoy_pos[0] < 0:
+        convoy_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
+    if convoy_pos[0] >= FRAME_SIZE_X:
+        convoy_pos[0] = 0
+    if convoy_pos[1] < 0:
+        convoy_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
+    if convoy_pos[1] >= FRAME_SIZE_Y:
+        convoy_pos[1] = 0
 
 
-    # Snake body growing mechanism
-    snake_body.insert(0, list(snake_pos))
-    if snake_pos[0] == checkpoints_pos[0] and snake_pos[1] == checkpoints_pos[1]:
+    # Convoy body growing mechanism
+    convoy_body.insert(0, list(convoy_pos))
+    if convoy_pos[0] == checkpoints_pos[0] and convoy_pos[1] == checkpoints_pos[1]:
         checkpoints += 1
         checkpoints_spawn = False
         SUPPLIED.play()
     else:
-        snake_body.pop()
+        convoy_body.pop()
 
         
     # Spawning checkpoints on the screen
     if not checkpoints_spawn:
         checkpoints_pos = random_pos()
-        submarines.insert(0,random_pos()) # Spawn landmine
+        submarines.insert(0,random_pos()) # Spawn U-boat/red
     checkpoints_spawn = True
 
     
-    # Snake checkpoints
+    # Convoy checkpoints
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], 10, 10))
 
     
-    # Landmine blinking
+    # U-boat/red blinking
     current_ticks = pygame.time.get_ticks()
     if not show_submarines and current_ticks - start_ticks >= blink_duration:
         show_submarines = True
         pulse_done = False
-        last_snake_pos = list(snake_pos)
+        last_convoy_pos = list(convoy_pos)
         for i in range(len(submarines)):
             submarines[i] = random_pos()
         SONAR.play()
@@ -222,8 +226,8 @@ while True:
         show_submarines = False
         start_ticks = current_ticks
     if show_submarines:
-        for landmine_pos in submarines:
-            pygame.draw.rect(game_window, RED, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))
+        for uboat_pos in submarines:
+            pygame.draw.rect(game_window, RED, pygame.Rect(uboat_pos[0], uboat_pos[1], 10, 10))
 
             
     # Sonar animation
@@ -235,22 +239,22 @@ while True:
             time_passed = 0
             radar_start_ticks = current_ticks
             pulse_done = True
-        pygame.draw.circle(game_window,(0, 255, 0), last_snake_pos, int(radius), 3)
+        pygame.draw.circle(game_window,(0, 255, 0), last_convoy_pos, int(radius), 3)
     
     
     # Game Over conditions
-    # Touching the snake body
-    for block in snake_body[1:]:
-        if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
+    # Touching the Convoy body
+    for block in convoy_body[1:]:
+        if convoy_pos[0] == block[0] and convoy_pos[1] == block[1]:
             game_over()
 
 
-    # Touching landmine
-    for landmine_pos in submarines:
-        if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
-            snake_body.pop()
+    # Touching U-boat
+    for uboat_pos in submarines:
+        if convoy_pos[0] == uboat_pos[0] and convoy_pos[1] == uboat_pos[1]:
+            convoy_body.pop()
             HIT.play()
-            if snake_body == []:
+            if convoy_body == []:
                 game_over()
 
 
