@@ -3,7 +3,7 @@ import pygame, sys, time, random
 pygame.init()
 
 # Constants
-FONT = pygame.font.Font('./Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf', 20)
+FONT = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 20)
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
@@ -53,7 +53,7 @@ def random_pos():
 
 # Game Over
 def game_over():
-    font = pygame.font.Font('./Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf', 100)
+    font = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 100)
     game_over_surface = font.render('YOU DIED', True, RED)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
@@ -228,8 +228,6 @@ while True:
     # Show score and speed value
     show_score(WHITE, FONT, 20)
     show_speed(WHITE, FONT, 20)
-
-    game_over()
     
     # Refresh game screen
     pygame.display.update()
