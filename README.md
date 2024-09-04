@@ -32,6 +32,7 @@
 
 Throttle the speed by pressing the comma (",") key for decreasing and the period/fullstop (".") key for increasing. The speed increases/decreases in increments of 10.
 
+### Read the extended version of the mechanics [here](https://github.com/Darr3n2GG/The-Convoy/wiki/Mechanics).
 
 ## Installation
 
