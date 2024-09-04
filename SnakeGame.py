@@ -80,17 +80,10 @@ def show_speed(color, FONT, size):
     speed_rect.topleft = (10, 50)
     game_window.blit(speed_surface, speed_rect)
 
-
-def generate_food_position():
-    while True:
-        new_food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
-                        random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
-        if new_food_pos not in snake_body:
-            return new_food_pos
-
 # Variables
-snake_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
+snake_pos = [250, 250]
 snake_body = [[100, 50], [90, 50], [80, 50]]
+
 food_pos = [random.randrange(0, FRAME_SIZE_X // SNAKE_SIZE) * SNAKE_SIZE,
             random.randrange(0, FRAME_SIZE_Y // SNAKE_SIZE) * SNAKE_SIZE]
 food_spawn = True
@@ -102,6 +95,10 @@ landmines = []
 blink_duration = 2000
 fade_duration = 1000
 show_landmines = False
+pulse_done = True
+time_passed = 0
+radius = 0
+last_snake_pos = [0,0]
 
 # Main logic
 while True:
@@ -125,10 +122,8 @@ while True:
             # Speed
             if event.key == pygame.K_PERIOD:
                 speed += 10
-                print(speed)
             if event.key == pygame.K_COMMA:
                 speed = max(10, speed - 10)
-                print(speed)
             
             # Esc -> Create event to quit the game
             if event.key == pygame.K_ESCAPE:
@@ -146,6 +141,7 @@ while True:
 
     # GFX
     game_window.fill(BLACK)
+
     # Grid
     for i in range(0, FRAME_SIZE_X, 50):
         pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
@@ -199,16 +195,29 @@ while True:
     current_ticks = pygame.time.get_ticks()
     if not show_landmines and current_ticks - start_ticks >= blink_duration:
         show_landmines = True
+        pulse_done = False
+        start_ticks = current_ticks
+        last_snake_pos = list(snake_pos)
+        SONAR.play()
         for i in range(len(landmines)):
             landmines[i] = random_pos()
-            SONAR.play()
-        start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
         start_ticks = current_ticks
     if show_landmines:
         for landmine_pos in landmines:
-            pygame.draw.rect(game_window, RED, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))   
+            pygame.draw.rect(game_window, RED, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))
+
+    # Sonar animation
+    if not pulse_done:
+        time_passed += 0.02
+        radius = FRAME_SIZE_X * time_passed
+        if radius > FRAME_SIZE_X * 1.1:
+            radius = 0
+            time_passed = 0
+            pulse_done = True
+        pygame.draw.circle(game_window,(0, 255, 0), last_snake_pos, int(radius), 3)
+        print(last_snake_pos)
 
     
     # Game Over conditions
