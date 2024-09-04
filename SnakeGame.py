@@ -44,15 +44,6 @@ pygame.display.set_caption('Worm')
 game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
 
 
-
-# Colors (R, G, B)
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
-green = pygame.Color(0, 255, 0)
-blue = pygame.Color(0, 0, 255)
-
-
 # FPS (frames per second) controller
 fps_controller = pygame.time.Clock()
 start_ticks = pygame.time.get_ticks()
@@ -65,14 +56,6 @@ snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
 food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 food_spawn = True
 
-class LANDMINE():
-    def __init__(self):
-        self.change_position()
-    def change_position(self):
-        self.pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
-    def draw_landmine(self):
-        pygame.draw.rect(game_window, red, pygame.Rect(self.pos[0], self.pos[1], 10, 10))
-
 landmines = []
 blink_duration = 2000
 fade_duration = 1000
@@ -82,6 +65,9 @@ direction = 'RIGHT'
 change_to = direction
 
 score = 0
+
+def random_pos():
+    return [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 
 # Game Over
 def game_over():
@@ -163,8 +149,8 @@ while True:
 
     # Spawning food on the screen
     if not food_spawn:
-        food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
-        landmines.insert(0,LANDMINE()) # Spawn landmine
+        food_pos = random_pos()
+        landmines.insert(0,random_pos()) # Spawn landmine
     food_spawn = True
 
     # GFX
@@ -187,15 +173,15 @@ while True:
     current_ticks = pygame.time.get_ticks()
     if not show_landmines and current_ticks - start_ticks >= blink_duration:
         show_landmines = True
-        for landmine in landmines:
-            landmine.change_position()
+        for i in range(len(landmines)):
+            landmines[i] = random_pos()
         start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
         start_ticks = current_ticks
     if show_landmines:
-        for landmine in landmines:
-            landmine.draw_landmine()
+        for landmine_pos in landmines:
+            pygame.draw.rect(game_window, red, pygame.Rect(landmine_pos[0], landmine_pos[1], 10, 10))
 
     # Game Over conditions
     # Getting out of bounds
@@ -219,9 +205,11 @@ while True:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
-    for landmine in landmines:
-        if snake_pos[0] == landmine.pos[0] and snake_pos[1] == landmine.pos[1]:
+    for landmine_pos in landmines:
+        if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
             snake_body.pop()
+            if snake_body == []:
+                game_over()
 
     show_score(1, white, font_family, 20)
     # Refresh game screen
