@@ -23,9 +23,11 @@ FPS_CONTROLLER = pygame.time.Clock()
 speed = 10
 
 # Sound effect
-pygame.mixer.init()
+pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
 DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
+HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
+SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -127,8 +129,10 @@ while True:
             # Speed
             if event.key == pygame.K_PERIOD:
                 speed += 10
+                # print(speed)
             if event.key == pygame.K_COMMA:
                 speed = max(10, speed - 10)
+                # print(speed)
             
             # Esc -> Create event to quit the game
             if event.key == pygame.K_ESCAPE:
@@ -188,6 +192,7 @@ while True:
     if snake_pos[0] == checkpoints_pos[0] and snake_pos[1] == checkpoints_pos[1]:
         checkpoints += 1
         checkpoints_spawn = False
+        SUPPLIED.play()
     else:
         snake_body.pop()
 
@@ -244,6 +249,7 @@ while True:
     for landmine_pos in submarines:
         if snake_pos[0] == landmine_pos[0] and snake_pos[1] == landmine_pos[1]:
             snake_body.pop()
+            HIT.play()
             if snake_body == []:
                 game_over()
 
