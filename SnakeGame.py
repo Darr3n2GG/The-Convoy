@@ -257,10 +257,11 @@ while True:
     # Touching Submarine
     for submarine_pos in submarines:
         if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
-            convoy_body.pop()
+            # convoy_body.pop()
             HIT.play()
-            if convoy_body == []:
-                game_over()
+            game_over()
+            # if convoy_body == []:
+            #     game_over()
 
 
 
