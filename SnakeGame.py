@@ -48,24 +48,7 @@ game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
 fps_controller = pygame.time.Clock()
 start_ticks = pygame.time.get_ticks()
 
-
-# Game variables
-snake_pos = [410, 410]
-snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
-
-food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
-food_spawn = True
-
-landmines = []
-blink_duration = 2000
-fade_duration = 1000
-show_landmines = False
-
-direction = 'RIGHT'
-change_to = direction
-
-score = 0
-
+# Returns a new list of random positions based on frame size
 def random_pos():
     return [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
 
@@ -96,6 +79,22 @@ def show_score(choice, color, font, size):
     game_window.blit(score_surface, score_rect)
     # pygame.display.flip()
 
+# Game variables
+snake_pos = [420, 420]
+snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
+
+food_pos = random_pos()
+food_spawn = True
+
+landmines = []
+blink_duration = 2000
+fade_duration = 1000
+show_landmines = False
+
+direction = 'RIGHT'
+change_to = direction
+
+score = 0
 
 # Main logic
 while True:
