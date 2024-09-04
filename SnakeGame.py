@@ -3,7 +3,7 @@ import pygame, sys, time, random
 pygame.init()
 
 # Constants
-FONT = pygame.font.Font('./Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf', 20)
+FONT = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 20)
 BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
@@ -14,21 +14,12 @@ FRAME_SIZE_Y = 500
 SNAKE_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
 speed = 20
-
 
 # Sound effect
 pygame.mixer.init(44100, -16, 2, 512)
-background = pygame.mixer.Sound('./soundpack/sonar.mp3')
-detected = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
-ended = False
-
+SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
+DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 
 # Checks for errors encounteREDf
 check_errors = pygame.init()
@@ -55,13 +46,13 @@ def random_pos():
 
 # Game Over
 def game_over():
-    font = pygame.font.SysFont(FONT, 90)
+    font = pygame.font.Font('./font/AtkinsonHyperlegible-Regular.ttf', 100)
     game_over_surface = font.render('YOU DIED', True, RED)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
     game_window.fill(BLACK)
     game_window.blit(game_over_surface, game_over_rect)
-    show_score(0, RED, FONT, 20)
+    show_score(RED, FONT, 20)
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
@@ -159,11 +150,6 @@ while True:
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
         pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], SNAKE_SIZE, SNAKE_SIZE))
 
-    # Sound
-    if not ended:
-        background.play(-1)
-    #detected only plays when enemy is hit
-
     # Snake movements
     if direction == 'UP':
         snake_pos[1] -= SNAKE_SIZE
@@ -200,7 +186,7 @@ while True:
     food_spawn = True
 
     # Snake food
-    pygame.draw.rect(game_window, white, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
+    pygame.draw.rect(game_window, WHITE, pygame.Rect(food_pos[0], food_pos[1], 10, 10))
 
     # Landmine blinking
     current_ticks = pygame.time.get_ticks()
@@ -208,6 +194,7 @@ while True:
         show_landmines = True
         for i in range(len(landmines)):
             landmines[i] = random_pos()
+            SONAR.play()
         start_ticks = current_ticks
     elif show_landmines and current_ticks - start_ticks >= fade_duration:
         show_landmines = False
