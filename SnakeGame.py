@@ -78,18 +78,6 @@ def game_over():
     font = pygame.font.SysFont(FONT_FAMILY, 90)
     game_over_surface = font.render('YOU DIED', True, RED)
 
-    
-# Game variables
-snake_pos = [400, 400]
-snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
-
-food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
-food_spawn = True
-
-direction = 'RIGHT'
-change_to = direction
-
-score = 0
 
 
 # Score
@@ -188,16 +176,12 @@ while True:
     # Sound
     if not ended:
         background.play(-1)
-    #detected only plays when enemy is hit
+        #detected only plays when enemy is hit
         
     # Game Over conditions
-    # Getting out of bounds
-    # if snake_pos[0] < 0 or snake_pos[0] > frame_size_x-10:
-    #     game_over()
-    # if snake_pos[1] < 0 or snake_pos[1] > frame_size_y-10:
-    #     game_over()
+    # Getting out of bounds is removed as teleportation is added
     # Touching the snake body
-    for block in snake_body[1:]:
+    for block in snake_body[1:]:  #block is not previously called
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
             game_over()
 
