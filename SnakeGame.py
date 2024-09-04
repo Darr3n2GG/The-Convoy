@@ -58,7 +58,7 @@ def random_pos():
     
 # Game over screen and auto-close
 def game_over():
-    game_over_font = pygame.font.Font('./fonts/Jacquard24-Regular.ttf', 100)
+    game_over_font = pygame.font.Font('./font/Jacquard24-Regular.ttf', 100)
     game_over_surface = game_over_font.render('Defeat', True, RED)
     game_over_rect = game_over_surface.get_rect()
     game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
