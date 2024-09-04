@@ -218,7 +218,7 @@ while True:
     checkpoints_spawn = True
 
     # Checkpoints
-    pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], 10, 10))
+    pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], PIXEL_SIZE, PIXEL_SIZE))
 
     
     # Emit sonar every 3 seconds
@@ -243,8 +243,11 @@ while True:
                 submarines[i] = random_pos()
             pulse_done = True
         pygame.draw.circle(game_window,(0, 255, 0), last_convoy_pos, int(radius), 3)
-    
-    
+
+        for submarine_pos in submarines:
+            if detect_collision(last_convoy_pos[0], last_convoy_pos[1], radius, submarine_pos[0], submarine_pos[1]):
+                pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], PIXEL_SIZE, PIXEL_SIZE))
+        
     # Game Over conditions
     # Touching the Convoy body
     for block in convoy_body[1:]:
