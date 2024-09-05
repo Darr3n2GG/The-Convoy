@@ -8,7 +8,6 @@ BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
 GREEN = pygame.Color(0, 255, 0)
-# BLUE = pygame.Color(0, 0, 255)
 FRAME_SIZE_X = 500
 FRAME_SIZE_Y = 500
 PIXEL_SIZE = 10
@@ -17,7 +16,6 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Constants for sound
 pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-# DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
