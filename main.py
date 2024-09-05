@@ -250,7 +250,7 @@ while True:
         
     # Game Over conditions
     # Getting out of bounds
-    if convoy_pos[0] < 0 or convoy_pos[0] > FRAME_SIZE_X or convoy_pos[1] < 0 or convoy_pos[1] > FRAME_SIZE_Y:
+    if convoy_pos[0] < 0 or convoy_pos[0] >= FRAME_SIZE_X or convoy_pos[1] < 0 or convoy_pos[1] >= FRAME_SIZE_Y:
         game_over()
 
     # Touching the Convoy body
