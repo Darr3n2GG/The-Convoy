@@ -8,7 +8,6 @@ BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
 GREEN = pygame.Color(0, 255, 0)
-# BLUE = pygame.Color(0, 0, 255)
 FRAME_SIZE_X = 500
 FRAME_SIZE_Y = 500
 PIXEL_SIZE = 10
@@ -17,7 +16,6 @@ FPS_CONTROLLER = pygame.time.Clock()
 # Constants for sound
 pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
-# DETECTED = pygame.mixer.Sound('./soundpack/enemy_sensed.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
@@ -53,6 +51,8 @@ def random_pos():
     
 # Game over screen and auto-close
 def game_over():
+    HIT.play()
+    time.sleep(3)
     game_over_font = pygame.font.Font('./font/Jacquard24-Regular.ttf', 100)
     game_over_surface = game_over_font.render('Defeat', True, RED)
     game_over_rect = game_over_surface.get_rect()
@@ -81,13 +81,11 @@ def show_speed():
     speed_rect.bottomright = (game_window.get_width() - 10, game_window.get_height() - 10)
     game_window.blit(speed_surface, speed_rect)
 
-def detect_collision(cx, cy, radius, px, py):
+def detect_collision(cx, cy, radar_radius, px, py):
     # Calculate the distance between the circle center and the point
     distance = math.sqrt((px - cx) ** 2 + (py - cy) ** 2)
-    # Check if the distance is less than or equal to the radius
-    return distance <= radius
-
-
+    # Check if the distance is less than or equal to the radar_radius
+    return distance <= radar_radius
 
 #   Variables  #
 
@@ -113,13 +111,13 @@ checkpoints = 0
 
 # Submarines
 submarines = []
-emit_duration = 3000
 
 # Radar
+radar_emit_duration = 3000
 radar_pulsed = False
-pulse_done = True
-time_passed = 0
-radius = 0
+radar_pulse_done = True
+radar_time_passed = 0
+radar_radius = 0
 
 
 # Main logic #
@@ -187,18 +185,16 @@ while True:
         convoy_pos[0] -= PIXEL_SIZE
     if direction == 'RIGHT':
         convoy_pos[0] += PIXEL_SIZE
-
         
-    # Teleportation logic
-    if convoy_pos[0] < 0:
-        convoy_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
-    if convoy_pos[0] >= FRAME_SIZE_X:
-        convoy_pos[0] = 0
-    if convoy_pos[1] < 0:
-        convoy_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
-    if convoy_pos[1] >= FRAME_SIZE_Y:
-        convoy_pos[1] = 0
-
+    # # Teleportation logic
+    # if convoy_pos[0] < 0:
+    #     convoy_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
+    # if convoy_pos[0] >= FRAME_SIZE_X:
+    #     convoy_pos[0] = 0
+    # if convoy_pos[1] < 0:
+    #     convoy_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
+    # if convoy_pos[1] >= FRAME_SIZE_Y:
+    #     convoy_pos[1] = 0
 
     # Convoy body growing mechanism
     convoy_body.insert(0, list(convoy_pos))
@@ -208,7 +204,6 @@ while True:
         SUPPLIED.play()
     else:
         convoy_body.pop()
-
         
     # Spawning checkpoints
     if not checkpoints_spawn:
@@ -218,57 +213,58 @@ while True:
 
     # Checkpoints
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], PIXEL_SIZE, PIXEL_SIZE))
-
     
     # Emit sonar every 3 seconds
     current_ticks = pygame.time.get_ticks()
-    if current_ticks - emit_start_ticks >= emit_duration:
-        pulse_done = False
+    if current_ticks - emit_start_ticks >= radar_emit_duration:
+        radar_pulse_done = False
         last_convoy_pos = list(convoy_pos)
         radar_start_ticks = pygame.time.get_ticks()
         SONAR.play()
         emit_start_ticks = current_ticks
-
             
     # Sonar animation
-    if not pulse_done:
-        time_passed = (current_ticks - radar_start_ticks) / 2000
-        radius = FRAME_SIZE_X * time_passed
-        if time_passed > 1:
-            radius = 0
-            time_passed = 0
+    if not radar_pulse_done:
+        radar_time_passed = (current_ticks - radar_start_ticks) / 2000
+        radar_radius = FRAME_SIZE_X * radar_time_passed
+        if radar_time_passed > 1:
+            radar_radius = 0
+            radar_time_passed = 0
             radar_start_ticks = current_ticks
             for i in range(len(submarines)):
                 submarines[i] = random_pos()
-            pulse_done = True
-        pygame.draw.circle(game_window,(0, 255, 0), last_convoy_pos, int(radius), 3)
+            radar_pulse_done = True
+        pygame.draw.circle(game_window,(0, 255, 0), last_convoy_pos, int(radar_radius), 3)
 
         for submarine_pos in submarines:
-            if detect_collision(last_convoy_pos[0], last_convoy_pos[1], radius, submarine_pos[0], submarine_pos[1]):
+            if detect_collision(last_convoy_pos[0], last_convoy_pos[1], radar_radius, submarine_pos[0], submarine_pos[1]):
                 pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], PIXEL_SIZE, PIXEL_SIZE))
         
     # Game Over conditions
+    # Getting out of bounds
+    if convoy_pos[0] < 0 or convoy_pos[0] > FRAME_SIZE_X:
+        game_over()
+    if convoy_pos[1] < 0 or convoy_pos[1] > FRAME_SIZE_Y:
+        game_over()
+
     # Touching the Convoy body
     for block in convoy_body[1:]:
         if convoy_pos[0] == block[0] and convoy_pos[1] == block[1]:
             game_over()
 
-
     # Touching Submarine
     for submarine_pos in submarines:
         if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
-            convoy_body.pop()
-            HIT.play()
-            if convoy_body == []:
-                game_over()
-
-
+            game_over
+            # convoy_body.pop()
+            # HIT.play()
+            # if convoy_body == []:
+            #     game_over()
 
     # Show checkpoints and speed value
     show_checkpoints()
     show_speed()
     
-
     # Refresh game screen
     pygame.display.update()
 
