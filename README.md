@@ -55,6 +55,7 @@ To play The Convoy, Python and Pygame are required.
 If help is needed, feel free to ask at [Discussions/Installation and Game Help](https://github.com/Darr3n2GG/The-Convoy/discussions/categories/installation-and-game-help).
 
  
+## Credits
  
   Derived from [Rajat Dipta Biswas's Snake Eater](https://github.com/rajatdiptabiswas/snake-pygame).
   
