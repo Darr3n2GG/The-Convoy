@@ -25,7 +25,8 @@
 | ⬜️ White    | Checkpoint  |
 | 🟥 Red   | U-boat  |
 
-[U-boats](https://en.wikipedia.org/wiki/U-boat) will reduce the health of the Convoy, which is represented by its length, by 1; while checkpoints will increase its health by 1. Colliding with the edge of the map will teleport the Convoy to the other side. U-boats only appear on the map for 2 seconds every 5 seconds, they will still cause damage when invisible.
+[U-boats](https://en.wikipedia.org/wiki/U-boat) will sink the Convoy in one hit; while checkpoints will increase its size by 1. U-boats appear and disappear from the map every 3 seconds, they will still cause damage when invisible. 
+Colliding with the edge of the map will teleport the Convoy to the other side. 
 
 
 ### Settings
@@ -42,7 +43,7 @@ To play The Convoy, Python and Pygame are required.
 
 2. Install Pygame (if required): [pygame.org](https://www.pygame.org/wiki/GettingStarted). 
 
-3. Download The Convoy [here](https://github.com/Darr3n2GG/Snake-GameJam-2024-CLHS). 
+3. Download The Convoy [here](https://github.com/Darr3n2GG/The-Convoy/releases/tag/Release). 
 
 4. Open The Convoy in a code editor (recommended), or with any other workable method of your choice.
 
