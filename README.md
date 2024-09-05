@@ -26,12 +26,13 @@
 | 🟥 Red   | U-boat  |
 
 [U-boats](https://en.wikipedia.org/wiki/U-boat) will sink the Convoy in one hit; while checkpoints will increase its size by 1. U-boats appear and disappear from the map every 3 seconds, they will still cause damage when invisible. 
-Colliding with the edge of the map will teleport the Convoy to the other side. 
 
 
 ### Settings
 
 Throttle the speed by pressing the comma (",") key for decreasing and the period/fullstop (".") key for increasing. The speed increases/decreases in increments of 10.
+
+Teleportation is disabled by default but can be enabled by uncommenting code in the file.
 
 ### Read the extended version of the instructions [here](https://github.com/Darr3n2GG/The-Convoy/wiki/Instructions).
 
