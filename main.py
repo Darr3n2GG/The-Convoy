@@ -111,6 +111,7 @@ checkpoints = 0
 
 # Submarines
 submarines = []
+submarine_limit = 2000
 
 # Radar
 radar_emit_duration = 3000
@@ -208,7 +209,8 @@ while True:
     # Spawning checkpoints
     if not checkpoints_spawn:
         checkpoints_pos = random_pos()
-        submarines.insert(0,random_pos()) # Spawn Submarine
+        if len(submarines) <= submarine_limit:
+            submarines.insert(0,random_pos()) # Spawn Submarine
     checkpoints_spawn = True
 
     # Checkpoints
@@ -242,9 +244,7 @@ while True:
         
     # Game Over conditions
     # Getting out of bounds
-    if convoy_pos[0] < 0 or convoy_pos[0] > FRAME_SIZE_X:
-        game_over()
-    if convoy_pos[1] < 0 or convoy_pos[1] > FRAME_SIZE_Y:
+    if convoy_pos[0] < 0 or convoy_pos[0] > FRAME_SIZE_X or convoy_pos[1] < 0 or convoy_pos[1] > FRAME_SIZE_Y:
         game_over()
 
     # Touching the Convoy body
@@ -255,7 +255,8 @@ while True:
     # Touching Submarine
     for submarine_pos in submarines:
         if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
-            game_over
+            game_over()
+            print("HIT")
             # convoy_body.pop()
             # HIT.play()
             # if convoy_body == []:
