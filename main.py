@@ -19,6 +19,16 @@ SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 
+# Difficulty settings
+# Easy      ->  10
+# Medium    ->  25
+# Hard      ->  40
+# Harder    ->  60
+# Impossible->  120
+speed = 10
+
+
+
 # Checks for errors encountered
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
@@ -28,6 +38,7 @@ if check_errors[1] > 0:
     sys.exit(-1)
 else:
     print('[+] Game successfully initialised')
+
 
 # Initialise game window
 pygame.display.set_caption('The Convoy')
@@ -93,6 +104,12 @@ def detect_collision(cx, cy, radar_radius, px, py):
     return distance <= radar_radius
 
 #   Variables  #
+# Convoy
+convoy_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
+convoy_body = [[convoy_pos[0] - 10, convoy_pos[1]], [convoy_pos[0] - 20, convoy_pos[1]], [convoy_pos[0] - 30, convoy_pos[1]]]
+last_convoy_pos = [0,0]
+direction = 'RIGHT'
+change_to = direction
 
 # Speed settings
 # Easy      ->  10
@@ -102,15 +119,8 @@ def detect_collision(cx, cy, radar_radius, px, py):
 # Impossible->  120
 speed = 10
 
-# Convoy
-convoy_pos = [FRAME_SIZE_X/2, FRAME_SIZE_Y/2]
-convoy_body = [[convoy_pos[0] - 10, convoy_pos[1]], [convoy_pos[0] - 20, convoy_pos[1]], [convoy_pos[0] - 30, convoy_pos[1]]]
-last_convoy_pos = [0,0]
-direction = 'RIGHT'
-change_to = direction
-
 # checkpoints
-checkpoints_pos = [400, convoy_pos[1]]
+checkpoints_pos = random_pos()
 checkpoints_spawn = True
 checkpoints_reached = 0
 
@@ -125,6 +135,10 @@ radar_pulse_done = True
 radar_time_passed = 0
 radar_alive_duration = 1
 radar_radius = 0
+
+
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # Main logic #
@@ -166,10 +180,11 @@ while True:
     if change_to == 'RIGHT' and direction != 'LEFT':
         direction = 'RIGHT'
 
+
     # GFX
     game_window.fill(BLACK)
 
-    # Draw Grid
+    # Grid
     for i in range(0, FRAME_SIZE_X + 1, 50):
         pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
     for i in range(0, FRAME_SIZE_Y + 1, 50):
@@ -221,7 +236,7 @@ while True:
     # Checkpoints
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], PIXEL_SIZE, PIXEL_SIZE))
     
-    # Emit sonar every 3 seconds
+    # Submarine blinking
     current_ticks = pygame.time.get_ticks()
     if current_ticks - emit_start_ticks >= radar_emit_duration:
         radar_pulse_done = False
@@ -230,7 +245,13 @@ while True:
         for i in range(len(submarines)):
             submarines[i] = change_pos(checkpoints_pos)
         SONAR.play()
-        emit_start_ticks = current_ticks
+        start_ticks = current_ticks
+    elif show_submarines and current_ticks - start_ticks >= fade_duration:
+        show_submarines = False
+        start_ticks = current_ticks
+    if show_submarines:
+        for submarine_pos in submarines:
+            pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], 10, 10))
 
             
     # Sonar animation
