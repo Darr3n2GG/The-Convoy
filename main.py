@@ -195,14 +195,14 @@ while True:
         convoy_pos[0] += PIXEL_SIZE
         
     # # Teleportation logic
-    # if convoy_pos[0] < 0:
-    #     convoy_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
-    # if convoy_pos[0] >= FRAME_SIZE_X:
-    #     convoy_pos[0] = 0
-    # if convoy_pos[1] < 0:
-    #     convoy_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
-    # if convoy_pos[1] >= FRAME_SIZE_Y:
-    #     convoy_pos[1] = 0
+    if convoy_pos[0] < 0:
+        convoy_pos[0] = FRAME_SIZE_X - PIXEL_SIZE
+    if convoy_pos[0] >= FRAME_SIZE_X:
+        convoy_pos[0] = 0
+    if convoy_pos[1] < 0:
+        convoy_pos[1] = FRAME_SIZE_Y - PIXEL_SIZE
+    if convoy_pos[1] >= FRAME_SIZE_Y:
+        convoy_pos[1] = 0
 
     # Convoy body growing mechanism
     convoy_body.insert(0, list(convoy_pos))
