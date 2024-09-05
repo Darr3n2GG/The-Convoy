@@ -256,7 +256,6 @@ while True:
     for submarine_pos in submarines:
         if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
             game_over()
-            print("HIT")
             # convoy_body.pop()
             # HIT.play()
             # if convoy_body == []:
