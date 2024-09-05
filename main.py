@@ -1,4 +1,4 @@
-import pygame, sys, time, random, math
+import pygame, sys, time, random, math, json
 
 pygame.init()
 
@@ -41,21 +41,18 @@ radar_start_ticks = None
 
 # Functions #
 #generate a random position
-def random_pos(length):
-    return random.randrange(1, (length//10)) * 10
+def random_pos(x, y):
+    return [random.randrange(1, (x//10)) * 10, random.randrange(1, (y//10)) * 10]
 
 # Returns a new list of random positions based on frame size
 def change_pos(overlapping_body):
-    xpos = random_pos(FRAME_SIZE_X)
-    ypos = random_pos(FRAME_SIZE_Y)
-    while [xpos, ypos] in convoy_body: #repeats generating the random position when it is occupied by player or another body
-        xpos = random_pos(FRAME_SIZE_X)
-        ypos = random_pos(FRAME_SIZE_Y)
+    pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
+    while pos in convoy_body: #repeats generating the random position when it is occupied by player or another body
+        pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
     if overlapping_body != None:
-        while [xpos, ypos] in overlapping_body:
-            xpos = random_pos(FRAME_SIZE_X)
-            ypos = random_pos(FRAME_SIZE_Y)
-    return [xpos, ypos]
+        while pos in overlapping_body:
+            pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
+    return pos
     
 # Game over screen and auto-close
 def game_over():
@@ -76,7 +73,7 @@ def game_over():
 # Show checkpoints reached by the Convoy
 def show_checkpoints():
     checkpoint_font = pygame.font.Font(FONT_PATH, 20)
-    checkpoint_surface = checkpoint_font.render('Checkpoints : ' + str(checkpoints), True, WHITE)
+    checkpoint_surface = checkpoint_font.render('Checkpoints : ' + str(checkpoints_reached), True, WHITE)
     checkpoint_rect = checkpoint_surface.get_rect()
     checkpoint_rect.topleft = (10, 15)
     game_window.blit(checkpoint_surface, checkpoint_rect)
@@ -115,7 +112,7 @@ change_to = direction
 # checkpoints
 checkpoints_pos = [400, convoy_pos[1]]
 checkpoints_spawn = True
-checkpoints = 0
+checkpoints_reached = 0
 
 # Submarines
 submarines = []
@@ -207,13 +204,13 @@ while True:
     # Convoy body growing mechanism
     convoy_body.insert(0, list(convoy_pos))
     if convoy_pos[0] == checkpoints_pos[0] and convoy_pos[1] == checkpoints_pos[1]:
-        checkpoints += 1
+        checkpoints_reached += 1
         checkpoints_spawn = False
         SUPPLIED.play()
     else:
         convoy_body.pop()
         
-    # After eating checkpoints
+    # After reaching checkpoints
     if not checkpoints_spawn:
         if len(submarines) <= submarine_limit:
             submarines.insert(0,change_pos(None)) # Spawn Submarine
