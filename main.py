@@ -118,6 +118,7 @@ radar_emit_duration = 3000
 radar_pulsed = False
 radar_pulse_done = True
 radar_time_passed = 0
+radar_alive_duration = 1
 radar_radius = 0
 
 
@@ -206,9 +207,9 @@ while True:
     else:
         convoy_body.pop()
         
-    # Spawning checkpoints
+    # After eating checkpoints
     if not checkpoints_spawn:
-        checkpoints_pos = random_pos()
+        checkpoints_pos = random_pos() # Change checkpoint position
         if len(submarines) <= submarine_limit:
             submarines.insert(0,random_pos()) # Spawn Submarine
     checkpoints_spawn = True
@@ -222,19 +223,20 @@ while True:
         radar_pulse_done = False
         last_convoy_pos = list(convoy_pos)
         radar_start_ticks = pygame.time.get_ticks()
+        for i in range(len(submarines)):
+            submarines[i] = random_pos()
         SONAR.play()
         emit_start_ticks = current_ticks
+
             
     # Sonar animation
     if not radar_pulse_done:
         radar_time_passed = (current_ticks - radar_start_ticks) / 2000
         radar_radius = FRAME_SIZE_X * radar_time_passed
-        if radar_time_passed > 1:
+        if radar_time_passed > radar_alive_duration:
             radar_radius = 0
             radar_time_passed = 0
             radar_start_ticks = current_ticks
-            for i in range(len(submarines)):
-                submarines[i] = random_pos()
             radar_pulse_done = True
         pygame.draw.circle(game_window,(0, 255, 0), last_convoy_pos, int(radar_radius), 3)
 
