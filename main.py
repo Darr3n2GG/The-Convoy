@@ -40,13 +40,21 @@ radar_start_ticks = None
 
 
 # Functions #
+#generate a random position
+def random_pos(length):
+    return random.randrange(1, (length//10)) * 10
+
 # Returns a new list of random positions based on frame size
-def random_pos():
-    xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
-    ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
-    while [xpos, ypos] in convoy_body: #repeats generating the random position when it is occupied by player
-        xpos = random.randrange(1, (FRAME_SIZE_X//10)) * 10
-        ypos = random.randrange(1, (FRAME_SIZE_Y//10)) * 10
+def change_pos(overlapping_body):
+    xpos = random_pos(FRAME_SIZE_X)
+    ypos = random_pos(FRAME_SIZE_Y)
+    while [xpos, ypos] in convoy_body: #repeats generating the random position when it is occupied by player or another body
+        xpos = random_pos(FRAME_SIZE_X)
+        ypos = random_pos(FRAME_SIZE_Y)
+    if overlapping_body != None:
+        while [xpos, ypos] in overlapping_body:
+            xpos = random_pos(FRAME_SIZE_X)
+            ypos = random_pos(FRAME_SIZE_Y)
     return [xpos, ypos]
     
 # Game over screen and auto-close
@@ -144,10 +152,8 @@ while True:
             # Speed
             if event.key == pygame.K_PERIOD:
                 speed += 10
-                # print(speed)
             if event.key == pygame.K_COMMA:
                 speed = max(10, speed - 10)
-                # print(speed)
             
             # Esc -> Create event to quit the game
             if event.key == pygame.K_ESCAPE:
@@ -209,9 +215,10 @@ while True:
         
     # After eating checkpoints
     if not checkpoints_spawn:
-        checkpoints_pos = random_pos() # Change checkpoint position
         if len(submarines) <= submarine_limit:
-            submarines.insert(0,random_pos()) # Spawn Submarine
+            submarines.insert(0,change_pos(None)) # Spawn Submarine
+        for submarine_pos in submarines:
+            checkpoints_pos = change_pos(submarine_pos) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints
@@ -224,7 +231,7 @@ while True:
         last_convoy_pos = list(convoy_pos)
         radar_start_ticks = pygame.time.get_ticks()
         for i in range(len(submarines)):
-            submarines[i] = random_pos()
+            submarines[i] = change_pos(checkpoints_pos)
         SONAR.play()
         emit_start_ticks = current_ticks
 
