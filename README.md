@@ -2,7 +2,7 @@
 
   You are the convoy commodore of the Convoy, who is tasked with escorting merchant ships. Your mission is simple yet challenging: reach as many checkpoints as possible and evade U-boats, which will inflict damage on the convoy. Godspeed.
 
-![Game preview](./image/preview1.png/)
+![Game preview](./images/preview.png/)
 
 ## Instructions
 
