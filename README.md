@@ -59,4 +59,6 @@ If help is needed, feel free to ask at [Discussions/Installation and Game Help](
  
   Derived from [Rajat Dipta Biswas's Snake Eater](https://github.com/rajatdiptabiswas/snake-pygame).
   
-  Sounds from Pixabay. ( [Sonar](https://pixabay.com/sound-effects/sonar-a-dry-98689/) [Beep](https://pixabay.com/sound-effects/short-beep-tone-47916/) [Repair](https://pixabay.com/sound-effects/repair-metal-85833/) [Explode](https://pixabay.com/sound-effects/large-underwater-explosion-190270/) )
+  Sounds from Pixabay. ( [Sonar](https://pixabay.com/sound-effects/sonar-a-dry-98689/) [Beep](https://pixabay.com/sound-effects/short-beep-tone-47916/)  [Explode](https://pixabay.com/sound-effects/large-underwater-explosion-190270/) )
+  
+  Sounds from creatorassets. [Repair (reach_checkpoint)](https://creatorassets.com/a/8-bit-coin-sound-effects)
