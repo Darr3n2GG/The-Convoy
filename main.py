@@ -1,4 +1,4 @@
-import pygame, sys, time, random, math, json
+import pygame, sys, time, random, math
 
 pygame.init()
 
@@ -46,12 +46,12 @@ def random_pos(x, y):
 
 # Returns a new list of random positions based on frame size
 def change_pos(overlapping_body):
-    pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
+    pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
     while pos in convoy_body: #repeats generating the random position when it is occupied by player or another body
-        pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
+        pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
     if overlapping_body != None:
         while pos in overlapping_body:
-            pos = [random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)]
+            pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
     return pos
     
 # Game over screen and auto-close
