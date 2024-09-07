@@ -120,7 +120,7 @@ change_to = direction
 speed = 10
 
 # checkpoints
-checkpoints_pos = random_pos()
+checkpoints_pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
 checkpoints_spawn = True
 checkpoints_reached = 0
 
