@@ -132,7 +132,6 @@ change_to = direction
 
 # checkpoints
 checkpoints_pos = [convoy_pos[0] + 100, convoy_pos[1]]
-print(checkpoints_pos)
 checkpoints_spawn = True
 checkpoints_reached = 0
 
