@@ -27,8 +27,6 @@ SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
 # Impossible->  120
 speed = 10
 
-
-
 # Checks for errors encountered
 check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
@@ -46,12 +44,9 @@ game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
 
 # FPS controller
 fps_controller = pygame.time.Clock()
-emit_start_ticks = pygame.time.get_ticks()
-sonar_start_ticks = 0
 
+#  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
 
-# Functions #
-    
 # Game over screen and auto-close
 def game_over():
     HIT.play()
@@ -140,6 +135,7 @@ submarines = []
 submarine_limit = 2000
 
 # Sonar
+sonar_start_ticks = pygame.time.get_ticks()
 sonar_emit_duration = 3000
 sonar_pulse_done = True
 sonar_time_passed = 0
@@ -150,6 +146,7 @@ sonar_radius = 0
 
 
 #  ------------------------------------------------------------------------- Main Logic -------------------------------------------------------------------------  #
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -245,12 +242,11 @@ while True:
     
     # Emit sonar
     current_ticks = pygame.time.get_ticks()
-    if current_ticks - emit_start_ticks >= sonar_emit_duration:
+    if current_ticks - sonar_start_ticks >= sonar_emit_duration:
         for i in range(len(submarines)):
             submarines[i] = change_pos_depend_overlappping_body(checkpoints_pos)
         # Ready for next sonar cycle
         sonar_start_ticks = current_ticks
-        emit_start_ticks = current_ticks
         last_convoy_pos = list(convoy_pos)
         SONAR.play()
         sonar_pulse_done = False
@@ -266,10 +262,12 @@ while True:
         for submarine_pos in list(submarines):
             if detect_collision(last_convoy_pos[0], last_convoy_pos[1], sonar_radius, submarine_pos[0], submarine_pos[1]):
                 pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], PIXEL_SIZE, PIXEL_SIZE))
+
 #  -------------------------------------------------------------------------------------------------------------------------------------------------------------  #
 
         
 #  -------------------------------------------------------------------- Game Over Conditions -------------------------------------------------------------------  #
+
     # Getting out of bounds
     if convoy_pos[0] < 0 or convoy_pos[0] > FRAME_SIZE_X - PIXEL_SIZE or convoy_pos[1] < 0 or convoy_pos[1] > FRAME_SIZE_Y - PIXEL_SIZE:
         game_over()
@@ -287,8 +285,8 @@ while True:
             # HIT.play()
             # if convoy_body == []:
             #     game_over()
-#  -------------------------------------------------------------------------------------------------------------------------------------------------------------  #
 
+#  -------------------------------------------------------------------------------------------------------------------------------------------------------------  #
 
     # Show checkpoints and speed value
     show_checkpoints()
