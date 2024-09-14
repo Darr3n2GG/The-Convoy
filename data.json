@@ -2,5 +2,9 @@
     "frame_size":{
             "x": 500,
             "y": 500
-        }
+        },
+    "pixel_size": 10,
+    "pixel_size_comment": "this setting is bugged, very goofy aaaa",
+    "default_speed": 10,
+    "window_caption": "The Convoy"
 }

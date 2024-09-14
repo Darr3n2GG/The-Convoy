@@ -5,6 +5,9 @@ pygame.init()
 with open('data.json') as f:
     data = json.load(f)
     FRAME_SIZE = data['frame_size']
+    PIXEL_SIZE = data['pixel_size']
+    DEFAULT_SPEED = data['default_speed']
+    WINDOW_CAPTION = data['window_caption']
 
 
 # Constants
@@ -15,7 +18,6 @@ RED = pygame.Color(255, 0, 0)
 GREEN = pygame.Color(0, 255, 0)
 FRAME_SIZE_X = FRAME_SIZE['x']
 FRAME_SIZE_Y = FRAME_SIZE['y']
-PIXEL_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
 # Constants for sound
@@ -23,14 +25,6 @@ pygame.mixer.init(44100, -16, 2, 512)
 SONAR = pygame.mixer.Sound('./soundpack/sonar.mp3')
 HIT = pygame.mixer.Sound('./soundpack/explode.mp3')
 SUPPLIED = pygame.mixer.Sound('./soundpack/repair.mp3')
-
-# Difficulty settings
-# Easy      ->  10
-# Medium    ->  25
-# Hard      ->  40
-# Harder    ->  60
-# Impossible->  120
-speed = 10
 
 # Checks for errors encountered
 check_errors = pygame.init()
@@ -42,9 +36,8 @@ if check_errors[1] > 0:
 else:
     print('[+] Game successfully initialised')
 
-
 # Initialise game window
-pygame.display.set_caption('The Convoy')
+pygame.display.set_caption(WINDOW_CAPTION)
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
 
 #  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
@@ -98,13 +91,13 @@ def set_convoy_body(x, y):
     i = 0
     start_pos = []
     while i < convoy_start_size:
-        start_pos.insert(i - 1, [x - 10*i, y])
+        start_pos.insert(i - 1, [x - PIXEL_SIZE*i, y])
         i += 1
     return start_pos
 
 # Generates a random position
 def random_pos(x, y):
-    return [random.randrange(1, (x//10)) * 10, random.randrange(1, (y//10)) * 10]
+    return [random.randrange(1, (x//PIXEL_SIZE)) * PIXEL_SIZE, random.randrange(1, (y//PIXEL_SIZE)) * PIXEL_SIZE]
 
 # Helper function to generate a new random position not in the specified body list
 def generate_unique_pos(excluded_positions):
@@ -135,7 +128,7 @@ def generate_non_overlapping_pos(overlapping_body=None):
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-speed = 10
+speed = DEFAULT_SPEED
 
 # Convoy
 convoy_start_size = 3
@@ -209,9 +202,12 @@ while running:
     game_window.fill(BLACK)
 
     # Grid
-    for i in range(0, FRAME_SIZE_Y + 1, 50):
+    for i in range(0, FRAME_SIZE_Y + 1, 5*PIXEL_SIZE):
+        # Draws a horizontal line every 50px towards height of window
+        # .draw.line(play_surface, color, start_point, end_point)
         pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
-    for i in range(0, FRAME_SIZE_X + 1, 50):
+    for i in range(0, FRAME_SIZE_X + 1, 5*PIXEL_SIZE):
+        # Draws a vertical line every 50px towards width of window
         pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
 
     # Convoy movements
