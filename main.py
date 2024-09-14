@@ -1,6 +1,11 @@
-import pygame, sys, time, random, math
+import pygame, sys, time, random, math, json
 
 pygame.init()
+
+with open('data.json') as f:
+    data = json.load(f)
+    FRAME_SIZE = data['frame_size']
+
 
 # Constants
 FONT_PATH = './font/AtkinsonHyperlegible-Regular.ttf'
@@ -8,8 +13,8 @@ BLACK = pygame.Color(0, 0, 0)
 WHITE = pygame.Color(255, 255, 255)
 RED = pygame.Color(255, 0, 0)
 GREEN = pygame.Color(0, 255, 0)
-FRAME_SIZE_X = 500
-FRAME_SIZE_Y = 500
+FRAME_SIZE_X = FRAME_SIZE['x']
+FRAME_SIZE_Y = FRAME_SIZE['y']
 PIXEL_SIZE = 10
 FPS_CONTROLLER = pygame.time.Clock()
 
@@ -42,42 +47,46 @@ else:
 pygame.display.set_caption('The Convoy')
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
 
-# FPS controller
-fps_controller = pygame.time.Clock()
-
 #  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
 
-# Game over screen and auto-close
+# Helper function to render text
+def render_text(text, font_path, font_size, color, position, position_type='midtop'):
+    font = pygame.font.Font(font_path, font_size)
+    surface = font.render(text, True, color)
+    rect = surface.get_rect()
+
+    # Set the position type dynamically
+    setattr(rect, position_type, position)
+
+    game_window.blit(surface, rect)
+
+# Game over screen with defeat message and checkpoints
 def game_over():
-    HIT.play()
-    time.sleep(3)
-    game_over_font = pygame.font.Font('./font/Jacquard24-Regular.ttf', 100)
-    game_over_surface = game_over_font.render('Defeat', True, RED)
-    game_over_rect = game_over_surface.get_rect()
-    game_over_rect.midtop = (FRAME_SIZE_X/2, FRAME_SIZE_Y/4)
+    HIT.play() #add a toggle for enabling game logic to stop game
+
+    # Render the "Defeat" message using the helper function
     game_window.fill(BLACK)
-    game_window.blit(game_over_surface, game_over_rect)
+    render_text('Defeat', './font/Jacquard24-Regular.ttf', 100, RED, (FRAME_SIZE_X / 2, FRAME_SIZE_Y / 4))
+
+    # Fill the screen and show checkpoints
     show_checkpoints()
+
+    # Update the display
     pygame.display.flip()
     time.sleep(3)
-    pygame.quit()
-    sys.exit()
+    
+    global running
+    running = False
 
-# Show checkpoints reached by the Convoy
+# Show checkpoints reached by the convoy
 def show_checkpoints():
-    checkpoint_font = pygame.font.Font(FONT_PATH, 20)
-    checkpoint_surface = checkpoint_font.render('Checkpoints : ' + str(checkpoints_reached), True, WHITE)
-    checkpoint_rect = checkpoint_surface.get_rect()
-    checkpoint_rect.topleft = (10, 15)
-    game_window.blit(checkpoint_surface, checkpoint_rect)
+    # Reuse the render_text function for checkpoints display
+    render_text(f'Checkpoints: {checkpoints_reached}', FONT_PATH, 20, WHITE, (10, 15), 'topleft')
 
 # Show convoy's speed
 def show_speed():
-    speed_font = pygame.font.Font(FONT_PATH, 12)
-    speed_surface = speed_font.render('Speed : ' + str(speed), True, WHITE)
-    speed_rect = speed_surface.get_rect()
-    speed_rect.bottomright = (game_window.get_width() - 10, game_window.get_height() - 10)
-    game_window.blit(speed_surface, speed_rect)
+    # Reuse the render_text function for speed display
+    render_text(f'Speed: {speed}', FONT_PATH, 12, WHITE, (game_window.get_width() - 10, game_window.get_height() - 10), 'bottomright')
 
 def detect_collision(cx, cy, sonar_radius, px, py):
     # Calculate the distance between the circle center and the point
@@ -97,15 +106,26 @@ def set_convoy_body(x, y):
 def random_pos(x, y):
     return [random.randrange(1, (x//10)) * 10, random.randrange(1, (y//10)) * 10]
 
-# Returns a new list of random positions based on frame size
-def change_pos_depend_overlappping_body(overlapping_body):
+# Helper function to generate a new random position not in the specified body list
+def generate_unique_pos(excluded_positions):
     pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
-    while pos in convoy_body: #repeats generating the random position when it is occupied by player or another body
+    
+    # Keep generating a new position if it's in the excluded positions
+    while pos in excluded_positions:
         pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
-    if overlapping_body != None:
-        while pos in overlapping_body:
-            pos = random_pos(FRAME_SIZE_X,FRAME_SIZE_Y)
+        
     return pos
+
+# Returns a new list of random positions based on frame size, avoiding overlaps
+def generate_non_overlapping_pos(overlapping_body=None):
+    excluded_positions = convoy_body.copy()
+
+    # If overlapping_body is provided, combine it with convoy_body
+    if overlapping_body:
+        excluded_positions.extend(overlapping_body)
+
+    # Generate a position not in any excluded body
+    return generate_unique_pos(excluded_positions)
 
 #  ------------------------------------------------------------------------- Variables -------------------------------------------------------------------------  #
 
@@ -133,6 +153,7 @@ checkpoints_reached = 0
 # Submarines
 submarines = []
 submarine_limit = 2000
+last_submarine_pos = 0
 
 # Sonar
 sonar_start_ticks = pygame.time.get_ticks()
@@ -146,12 +167,11 @@ sonar_radius = 0
 
 
 #  ------------------------------------------------------------------------- Main Logic -------------------------------------------------------------------------  #
-
-while True:
+running = True
+while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            running = False
 
         # Whenever a key is pressed down
         elif event.type == pygame.KEYDOWN:
@@ -189,9 +209,9 @@ while True:
     game_window.fill(BLACK)
 
     # Grid
-    for i in range(0, FRAME_SIZE_X + 1, 50):
-        pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
     for i in range(0, FRAME_SIZE_Y + 1, 50):
+        pygame.draw.line(game_window, GREEN, (0, i), (FRAME_SIZE_X, i))
+    for i in range(0, FRAME_SIZE_X + 1, 50):
         pygame.draw.line(game_window, GREEN, (i, 0), (i, FRAME_SIZE_Y))
 
     # Convoy movements
@@ -232,9 +252,9 @@ while True:
     # After reaching checkpoints
     if not checkpoints_spawn:
         if len(submarines) <= submarine_limit:
-            submarines.insert(0,change_pos_depend_overlappping_body(None)) # Spawn Submarine
+            submarines.insert(0,generate_non_overlapping_pos()) # Spawn Submarine
         for submarine_pos in submarines:
-            checkpoints_pos = change_pos_depend_overlappping_body(submarine_pos) # Change checkpoint position
+            checkpoints_pos = generate_non_overlapping_pos(submarine_pos) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints
@@ -244,10 +264,11 @@ while True:
     current_ticks = pygame.time.get_ticks()
     if current_ticks - sonar_start_ticks >= sonar_emit_duration:
         for i in range(len(submarines)):
-            submarines[i] = change_pos_depend_overlappping_body(checkpoints_pos)
+            submarines[i] = generate_non_overlapping_pos(checkpoints_pos)
         # Ready for next sonar cycle
         sonar_start_ticks = current_ticks
         last_convoy_pos = list(convoy_pos)
+        last_submarine_pos = list(submarines)
         SONAR.play()
         sonar_pulse_done = False
 
@@ -259,7 +280,7 @@ while True:
         if sonar_time_passed > sonar_alive_duration: # Reset sonar
             sonar_pulse_done = True
 
-        for submarine_pos in list(submarines):
+        for submarine_pos in last_submarine_pos:
             if detect_collision(last_convoy_pos[0], last_convoy_pos[1], sonar_radius, submarine_pos[0], submarine_pos[1]):
                 pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], PIXEL_SIZE, PIXEL_SIZE))
 
@@ -297,3 +318,7 @@ while True:
 
     # Refresh rate
     FPS_CONTROLLER.tick(speed)
+
+# Close game
+pygame.quit()
+sys.exit()
