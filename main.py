@@ -9,7 +9,6 @@ with open('data.json') as f:
     DEFAULT_SPEED = data['default_speed']
     WINDOW_CAPTION = data['window_caption']
 
-
 # Constants
 FONT_PATH = './font/AtkinsonHyperlegible-Regular.ttf'
 BLACK = pygame.Color(0, 0, 0)
@@ -144,9 +143,14 @@ checkpoints_spawn = True
 checkpoints_reached = 0
 
 # Submarines
+class Submarine:
+    def __init__(self) -> None:
+        self.pos = generate_non_overlapping_pos()
+    def draw(self) -> None:
+        pygame.draw.rect(game_window, RED, pygame.Rect(self.pos, self.pos, PIXEL_SIZE, PIXEL_SIZE))
 submarines = []
 submarine_limit = 2000
-last_submarine_pos = 0
+last_submarine_pos = []
 
 # Sonar
 sonar_start_ticks = pygame.time.get_ticks()
