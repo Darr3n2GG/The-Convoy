@@ -39,6 +39,7 @@ else:
 # Initialise game window
 pygame.display.set_caption(WINDOW_CAPTION)
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
+window_area = position_generator.Area(FRAME_SIZE_X, FRAME_SIZE_Y)
 
 #  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
 
@@ -95,6 +96,9 @@ def set_convoy_body(x, y):
         i += 1
     return start_pos
 
+def draw_pixel(color, position):
+    pygame.draw.rect(game_window, color, pygame.Rect(position,position, PIXEL_SIZE,PIXEL_SIZE))
+
 #  ------------------------------------------------------------------------- Variables -------------------------------------------------------------------------  #
 
 # Speed settings
@@ -119,11 +123,9 @@ checkpoints_spawn = True
 checkpoints_reached = 0
 
 # Submarines
-def draw_pixel(color, position):
-    pygame.draw.rect(game_window, color, pygame.Rect(position,position, PIXEL_SIZE,PIXEL_SIZE))
 class Submarine:
     def __init__(self) -> None:
-        self.pos = position_generator.generate_non_overlapping_pos()
+        self.pos = position_generator.generate_non_overlapping_pos(window_area)
     def draw(self) -> None:
         draw_pixel(RED, self.pos)
 submarines = []
@@ -213,7 +215,7 @@ while running:
     #     convoy_pos[1] = 0
 
     # Convoy body growing mechanism
-    convoy_body.insert(0, list(convoy_pos))
+    convoy_body.insert(0, convoy_pos.copy())
     if convoy_pos[0] == checkpoints_pos[0] and convoy_pos[1] == checkpoints_pos[1]:
         checkpoints_reached += 1
         checkpoints_spawn = False
@@ -230,9 +232,9 @@ while running:
     # After reaching checkpoints
     if not checkpoints_spawn:
         if len(submarines) <= submarine_limit:
-            submarines.insert(0,position_generator.generate_non_overlapping_pos()) # Spawn Submarine
+            submarines.insert(0,position_generator.generate_non_overlapping_pos(window_area)) # Spawn Submarine
         for submarine_pos in submarines:
-            checkpoints_pos = position_generator.generate_non_overlapping_pos(submarine_pos) # Change checkpoint position
+            checkpoints_pos = position_generator.generate_non_overlapping_pos(window_area, submarine_pos) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints
@@ -242,11 +244,11 @@ while running:
     current_ticks = pygame.time.get_ticks()
     if current_ticks - sonar_start_ticks >= sonar_emit_duration:
         for i in range(len(submarines)):
-            submarines[i] = position_generator.generate_non_overlapping_pos(checkpoints_pos)
+            submarines[i] = position_generator.generate_non_overlapping_pos(window_area, checkpoints_pos)
         # Ready for next sonar cycle
         sonar_start_ticks = current_ticks
-        last_convoy_pos = list(convoy_pos)
-        last_submarine_pos = list(submarines)
+        last_convoy_pos = convoy_pos.copy()
+        last_submarine_pos = submarines.copy()
         SONAR.play()
         sonar_pulse_done = False
 

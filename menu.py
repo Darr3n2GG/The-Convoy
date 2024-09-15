@@ -14,10 +14,10 @@ check_errors = pygame.init()
 # pygame.init() example output -> (6, 0)
 # second number in tuple gives number of errors
 if check_errors[1] > 0:
-    print('[!] Had {check_errors[1]} errors when initialising game, exiting...')
+    print('[!] Had {check_errors[1]} errors when initialising menu, exiting...')
     sys.exit(-1)
 else:
-    print('[+] Game successfully initialised')
+    print('[+] Menu successfully initialised')
 
 while True:
     for event in pygame.event.get():
