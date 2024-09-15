@@ -1,4 +1,5 @@
 import pygame, sys, time, random, math, json
+import position_generator
 
 pygame.init()
 
@@ -94,31 +95,6 @@ def set_convoy_body(x, y):
         i += 1
     return start_pos
 
-# Generates a random position
-def random_pos(x, y):
-    return [random.randrange(1, (x//PIXEL_SIZE)) * PIXEL_SIZE, random.randrange(1, (y//PIXEL_SIZE)) * PIXEL_SIZE]
-
-# Helper function to generate a new random position not in the specified body list
-def generate_unique_pos(excluded_positions):
-    pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
-    
-    # Keep generating a new position if it's in the excluded positions
-    while pos in excluded_positions:
-        pos = random_pos(FRAME_SIZE_X, FRAME_SIZE_Y)
-        
-    return pos
-
-# Returns a new list of random positions based on frame size, avoiding overlaps
-def generate_non_overlapping_pos(overlapping_body=None):
-    excluded_positions = convoy_body.copy()
-
-    # If overlapping_body is provided, combine it with convoy_body
-    if overlapping_body:
-        excluded_positions.extend(overlapping_body)
-
-    # Generate a position not in any excluded body
-    return generate_unique_pos(excluded_positions)
-
 #  ------------------------------------------------------------------------- Variables -------------------------------------------------------------------------  #
 
 # Speed settings
@@ -143,11 +119,13 @@ checkpoints_spawn = True
 checkpoints_reached = 0
 
 # Submarines
+def draw_pixel(color, position):
+    pygame.draw.rect(game_window, color, pygame.Rect(position,position, PIXEL_SIZE,PIXEL_SIZE))
 class Submarine:
     def __init__(self) -> None:
-        self.pos = generate_non_overlapping_pos()
+        self.pos = position_generator.generate_non_overlapping_pos()
     def draw(self) -> None:
-        pygame.draw.rect(game_window, RED, pygame.Rect(self.pos, self.pos, PIXEL_SIZE, PIXEL_SIZE))
+        draw_pixel(RED, self.pos)
 submarines = []
 submarine_limit = 2000
 last_submarine_pos = []
@@ -248,13 +226,13 @@ while running:
         # .draw.rect(play_surface, color, xy-coordinate)
         # xy-coordinate -> .Rect(x, y, size_x, size_y)
         pygame.draw.rect(game_window, GREEN, pygame.Rect(pos[0], pos[1], PIXEL_SIZE, PIXEL_SIZE))
-        
+
     # After reaching checkpoints
     if not checkpoints_spawn:
         if len(submarines) <= submarine_limit:
-            submarines.insert(0,generate_non_overlapping_pos()) # Spawn Submarine
+            submarines.insert(0,position_generator.generate_non_overlapping_pos()) # Spawn Submarine
         for submarine_pos in submarines:
-            checkpoints_pos = generate_non_overlapping_pos(submarine_pos) # Change checkpoint position
+            checkpoints_pos = position_generator.generate_non_overlapping_pos(submarine_pos) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints
@@ -264,7 +242,7 @@ while running:
     current_ticks = pygame.time.get_ticks()
     if current_ticks - sonar_start_ticks >= sonar_emit_duration:
         for i in range(len(submarines)):
-            submarines[i] = generate_non_overlapping_pos(checkpoints_pos)
+            submarines[i] = position_generator.generate_non_overlapping_pos(checkpoints_pos)
         # Ready for next sonar cycle
         sonar_start_ticks = current_ticks
         last_convoy_pos = list(convoy_pos)
