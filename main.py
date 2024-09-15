@@ -39,7 +39,7 @@ else:
 # Initialise game window
 pygame.display.set_caption(WINDOW_CAPTION)
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
-window_area = position_generator.Area(FRAME_SIZE_X, FRAME_SIZE_Y)
+window_area = position_generator.Area(FRAME_SIZE_X, FRAME_SIZE_Y, PIXEL_SIZE)
 
 #  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
 
@@ -132,13 +132,13 @@ submarines = []
 submarine_limit = 2000
 last_submarine_pos = []
 
-# Sonar
-sonar_start_ticks = pygame.time.get_ticks()
+# Sonar        
 sonar_emit_duration = 3000
 sonar_pulse_done = True
-sonar_time_passed = 0
 sonar_alive_duration = 1
 sonar_radius = 0
+is_emit = pygame.USEREVENT + 1
+sonar_timer = pygame.time.set_timer(is_emit, sonar_emit_duration, 0)
 
 #  -------------------------------------------------------------------------------------------------------------------------------------------------------------  #
 
@@ -171,6 +171,16 @@ while running:
             # Esc -> Create event to quit the game
             if event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
+        
+        if event.type == is_emit:
+            for i in range(len(submarines)):
+                submarines[i] = position_generator.generate_non_overlapping_pos(window_area, checkpoints_pos) * 10
+            last_convoy_pos = convoy_pos.copy()
+            last_submarine_pos = submarines.copy()
+            SONAR.play()
+            sonar_start_ticks = pygame.time.get_ticks()
+            sonar_pulse_done = False
+
 
     # instantaneous manoeuvre prevention -- avoid head-tail switch
     if change_to == 'UP' and direction != 'DOWN':
@@ -239,21 +249,10 @@ while running:
 
     # Checkpoints
     pygame.draw.rect(game_window, WHITE, pygame.Rect(checkpoints_pos[0], checkpoints_pos[1], PIXEL_SIZE, PIXEL_SIZE))
-    
-    # Emit sonar
-    current_ticks = pygame.time.get_ticks()
-    if current_ticks - sonar_start_ticks >= sonar_emit_duration:
-        for i in range(len(submarines)):
-            submarines[i] = position_generator.generate_non_overlapping_pos(window_area, checkpoints_pos)
-        # Ready for next sonar cycle
-        sonar_start_ticks = current_ticks
-        last_convoy_pos = convoy_pos.copy()
-        last_submarine_pos = submarines.copy()
-        SONAR.play()
-        sonar_pulse_done = False
 
     # Sonar animation
-    if not sonar_pulse_done:    
+    current_ticks = pygame.time.get_ticks()
+    if not sonar_pulse_done:
         sonar_time_passed = (current_ticks - sonar_start_ticks) / 2000
         sonar_radius = int(FRAME_SIZE_X * sonar_time_passed)
         pygame.draw.circle(game_window, GREEN, last_convoy_pos, sonar_radius, 3)
