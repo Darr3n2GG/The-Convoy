@@ -1,6 +1,7 @@
 import random
 from typing import NamedTuple
 
+# Class for an area with unit size (10 unit size = 10 per position)
 class Area(NamedTuple):
     width: int
     height: int
