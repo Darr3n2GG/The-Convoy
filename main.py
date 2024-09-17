@@ -1,5 +1,5 @@
 import pygame, sys, time, random, math, json
-import position_generator
+import rand_pos
 
 pygame.init()
 
@@ -39,7 +39,7 @@ else:
 # Initialise game window
 pygame.display.set_caption(WINDOW_CAPTION)
 game_window = pygame.display.set_mode((FRAME_SIZE_X + 1, FRAME_SIZE_Y + 1))
-window_area = position_generator.Area(FRAME_SIZE_X, FRAME_SIZE_Y, PIXEL_SIZE)
+window_area = rand_pos.Area(FRAME_SIZE_X, FRAME_SIZE_Y, PIXEL_SIZE)
 
 #  ------------------------------------------------------------------------- Functions -------------------------------------------------------------------------  #
 
@@ -56,9 +56,9 @@ def render_text(text, font_path, font_size, color, position, position_type='midt
 
 # Game over screen with defeat message and checkpoints
 def game_over():
-    HIT.play() #add a toggle for enabling game logic to stop game
+    HIT.play() # add a toggle for enabling game logic to stop game
 
-    # Render the "Defeat" message using the helper function
+    # Render the "Defeat" message using render_text()
     game_window.fill(BLACK)
     render_text('Defeat', './font/Jacquard24-Regular.ttf', 100, RED, (FRAME_SIZE_X / 2, FRAME_SIZE_Y / 4))
 
@@ -69,17 +69,18 @@ def game_over():
     pygame.display.flip()
     time.sleep(3)
     
+    # Stop game
     global running
     running = False
 
 # Show checkpoints reached by the convoy
 def show_checkpoints():
-    # Reuse the render_text function for checkpoints display
+    # Use the render_text() function for checkpoints display
     render_text(f'Checkpoints: {checkpoints_reached}', FONT_PATH, 20, WHITE, (10, 15), 'topleft')
 
 # Show convoy's speed
 def show_speed():
-    # Reuse the render_text function for speed display
+    # Use the render_text() function for speed display
     render_text(f'Speed: {speed}', FONT_PATH, 12, WHITE, (game_window.get_width() - 10, game_window.get_height() - 10), 'bottomright')
 
 def detect_collision(cx, cy, sonar_radius, px, py):
@@ -96,8 +97,9 @@ def set_convoy_body(x, y):
         i += 1
     return start_pos
 
-def draw_pixel(color, position):
-    pygame.draw.rect(game_window, color, pygame.Rect(position,position, PIXEL_SIZE,PIXEL_SIZE))
+def add_submarine():
+    if len(submarines) <= submarine_limit:
+        submarines.insert(0,Submarine()) # Spawn Submarine
 
 #  ------------------------------------------------------------------------- Variables -------------------------------------------------------------------------  #
 
@@ -108,6 +110,13 @@ def draw_pixel(color, position):
 # Harder    ->  60
 # Impossible->  120
 speed = DEFAULT_SPEED
+
+class Entity():
+    def __init__(self, pos: list[int], color: pygame.Color) -> None:
+        self.pos = pos
+        self.color = color
+    def draw(self):
+        pygame.draw.rect(game_window, self.color, pygame.Rect(self.pos[0], self.pos[1], PIXEL_SIZE, PIXEL_SIZE))
 
 # Convoy
 convoy_start_size = 3
@@ -123,14 +132,23 @@ checkpoints_spawn = True
 checkpoints_reached = 0
 
 # Submarines
-class Submarine:
+class Submarine(Entity):
     def __init__(self) -> None:
-        self.pos = position_generator.generate_non_overlapping_pos(window_area)
-    def draw(self) -> None:
-        draw_pixel(RED, self.pos)
+        random_pos = rand_pos.get_non_overlapping_pos(window_area, convoy_body)
+        super().__init__(random_pos, RED)
+        
+    def reset_pos(self):
+        overlapping_bodies = convoy_body.copy()
+        overlapping_bodies.append(checkpoints_pos)
+        random_pos = rand_pos.get_non_overlapping_pos(window_area, overlapping_bodies)
+        self.pos = random_pos
+
+    def show(self):
+        self.draw()
+
 submarines = []
 submarine_limit = 2000
-last_submarine_pos = []
+submarines_scanned = []
 
 # Sonar        
 sonar_emit_duration = 3000
@@ -174,9 +192,9 @@ while running:
         
         if event.type == is_emit:
             for i in range(len(submarines)):
-                submarines[i] = position_generator.generate_non_overlapping_pos(window_area, checkpoints_pos) * 10
+                submarines[i].reset_pos()
             last_convoy_pos = convoy_pos.copy()
-            last_submarine_pos = submarines.copy()
+            submarines_scanned = submarines.copy()
             SONAR.play()
             sonar_start_ticks = pygame.time.get_ticks()
             sonar_pulse_done = False
@@ -241,10 +259,11 @@ while running:
 
     # After reaching checkpoints
     if not checkpoints_spawn:
-        if len(submarines) <= submarine_limit:
-            submarines.insert(0,position_generator.generate_non_overlapping_pos(window_area)) # Spawn Submarine
-        for submarine_pos in submarines:
-            checkpoints_pos = position_generator.generate_non_overlapping_pos(window_area, submarine_pos + convoy_body) # Change checkpoint position
+        add_submarine()
+        overlapping_bodies = convoy_body.copy()
+        for submarine in submarines:
+            overlapping_bodies.append(submarine.pos)
+        checkpoints_pos = rand_pos.get_non_overlapping_pos(window_area, overlapping_bodies) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints
@@ -259,9 +278,9 @@ while running:
         if sonar_time_passed > sonar_alive_duration: # Reset sonar
             sonar_pulse_done = True
 
-        for submarine_pos in last_submarine_pos:
-            if detect_collision(last_convoy_pos[0], last_convoy_pos[1], sonar_radius, submarine_pos[0], submarine_pos[1]):
-                pygame.draw.rect(game_window, RED, pygame.Rect(submarine_pos[0], submarine_pos[1], PIXEL_SIZE, PIXEL_SIZE))
+        for submarine in submarines_scanned:
+            if detect_collision(last_convoy_pos[0], last_convoy_pos[1], sonar_radius, submarine.pos[0], submarine.pos[1]):
+                submarine.show()
 
 #  -------------------------------------------------------------------------------------------------------------------------------------------------------------  #
 
@@ -273,13 +292,13 @@ while running:
         game_over()
 
     # Touching the Convoy body
-    for block in convoy_body[1:]:
-        if convoy_pos[0] == block[0] and convoy_pos[1] == block[1]:
+    for body in convoy_body[1:]:
+        if convoy_pos[0] == body[0] and convoy_pos[1] == body[1]:
             game_over()
 
     # Touching Submarine
-    for submarine_pos in submarines:
-        if convoy_pos[0] == submarine_pos[0] and convoy_pos[1] == submarine_pos[1]:
+    for submarine in submarines:
+        if convoy_pos[0] == submarine.pos[0] and convoy_pos[1] == submarine.pos[1]:
             game_over()
             # convoy_body.pop()
             # HIT.play()
