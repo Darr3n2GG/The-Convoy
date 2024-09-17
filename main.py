@@ -244,7 +244,7 @@ while running:
         if len(submarines) <= submarine_limit:
             submarines.insert(0,position_generator.generate_non_overlapping_pos(window_area)) # Spawn Submarine
         for submarine_pos in submarines:
-            checkpoints_pos = position_generator.generate_non_overlapping_pos(window_area, submarine_pos) # Change checkpoint position
+            checkpoints_pos = position_generator.generate_non_overlapping_pos(window_area, submarine_pos + convoy_body) # Change checkpoint position
     checkpoints_spawn = True
 
     # Checkpoints

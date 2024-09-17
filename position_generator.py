@@ -16,11 +16,10 @@ def get_random_pos(area: Area) -> list[int]:
 # Helper function to generate a new random position not in excluded positions
 def generate_unique_pos(excluded_positions: list, area: Area) -> list[int]:
     pos = get_random_pos(area)
-    print(pos)
+    
     # Keep generating a new position if it's in the excluded positions
     while pos in excluded_positions:
         pos = get_random_pos(area)
-        print(pos)
         
     return pos
 
